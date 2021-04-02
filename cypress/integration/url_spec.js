@@ -85,4 +85,8 @@ describe('parseUrl', () => {
             const _ = parseUrl(url)
         }).to.throw('Must be an HTTP URL')
     });
+
+    it('should parse an http url having all fields');
+    it('should ignore the trailing query string separator of a url');
+    it('should create a root path for a url having no path');
 })
