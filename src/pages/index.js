@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
+import UrlField from '../components/UrlField';
 import { getQueryParams, isHttpUrl } from '../url';
 
 export default function Home() {
@@ -18,7 +19,7 @@ export default function Home() {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Burl</title>
+                <title>bURL</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
@@ -31,12 +32,12 @@ export default function Home() {
                             ? 'This URL is not valid!'
                             : 'Your URL is broken down below')
                 }</p>
-                <input className="protocol" disabled={!isValidUrl} />
-                <input className="hostname" disabled={!isValidUrl} />
-                <input className="port" disabled={!isValidUrl} />
-                <input className="path" disabled={!isValidUrl} />
+                <UrlField name="protocol" disabled={!isValidUrl} />
+                <UrlField name="hostname" disabled={!isValidUrl} />
+                <UrlField name="port" disabled={!isValidUrl} />
+                <UrlField name="path" disabled={!isValidUrl} />
                 <ul className="query"></ul>
-                <input className="fragment" disabled={!isValidUrl} />
+                <UrlField name="fragment" disabled={!isValidUrl} />
             </main>
         </div>
     )
