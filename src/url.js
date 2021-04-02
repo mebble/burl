@@ -19,5 +19,5 @@ export const isHttpUrl = (string) => {
         return false;
     }
 
-    return true;
+    return url.protocol === "http:" || url.protocol === "https:";
 };

@@ -54,6 +54,14 @@ describe('isHttpUrl', () => {
         expect(isHttpUrl('example.com')).to.be.false
     })
 
+    it('is false for javascript url', () => {
+        expect(isHttpUrl('javascript:void(0)')).to.be.false
+    })
+
+    it('is false for string with some other protocol', () => {
+        expect(isHttpUrl('ftp://example.com')).to.be.false
+    })
+
     it('is true for string with http protocol', () => {
         expect(isHttpUrl('http://example.com')).to.be.true
     })
