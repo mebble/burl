@@ -20,7 +20,7 @@ export default function Home() {
             </Head>
             <main className={styles.main}>
                 <h1 className={styles.title}>bURL</h1>
-                <input className="url" value={url} />
+                <input className="url" value={url} onChange={e => setUrl(e.target.value)} />
                 <p className="prompt">This URL is not valid!</p>
                 <input className="protocol" disabled />
                 <input className="host" disabled />
