@@ -142,7 +142,29 @@ describe('parseUrl', () => {
         expect(url.fragment).to.equal('foo')
     });
 
-    it('should set a root path for a url having no path');
-    it('should set empty values for non-mandatory fields');
-    it('should set the hostname of a url having subdomains');
+    it('should set a root path for a url having no path', () => {
+        const urlString = 'http://example.com:80?a=cat'
+
+        const url = parseUrl(urlString)
+
+        expect(url.path).to.equal('/')
+    });
+
+    it.skip('should set empty values for absent fields', () => {
+        const urlString = 'http://example.com'
+
+        const url = parseUrl(urlString)
+
+        expect(url.port).to.equal('')
+        expect(url.query.size).to.equal(0)
+        expect(url.fragment).to.equal('')
+    });
+
+    it('should set the hostname of a url having subdomains', () => {
+        const urlString = 'http://one.two.three.example.com:80/path'
+
+        const url = parseUrl(urlString)
+
+        expect(url.hostname).to.equal('one.two.three.example.com')
+    });
 })
