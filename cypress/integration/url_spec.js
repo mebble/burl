@@ -100,9 +100,23 @@ describe('parseUrl', () => {
         }).to.throw('Must be an HTTP URL')
     });
 
-    it('should parse an http url having all fields');
+    it('should parse a url having all fields', () => {
+        const urlString = 'http://example.com:9000/path?a=cat&b=dog#foo'
+
+        const url = parseUrl(urlString)
+
+        expect(url.protocol).to.equal('http')
+        expect(url.hostname).to.equal('example.com')
+        expect(url.port).to.equal('9000')
+        expect(url.path).to.equal('/path')
+        expect(url.query.get('a')).to.equal('cat')
+        expect(url.query.get('b')).to.equal('dog')
+        expect(url.fragment).to.equal('foo')
+    });
+
     it('should ignore the trailing query string separator of a url');
-    it('should create a root path for a url having no path');
-    it('should create empty values for non-mandatory fields');
-    it('should parse the hostname of a url having subdomains');
+    it('should set a root path for a url having no path');
+    it('should set empty values for non-mandatory fields');
+    it('should set the hostname of a url having subdomains');
+    it('should set the explicitly given port even if the protocol infers it');
 })

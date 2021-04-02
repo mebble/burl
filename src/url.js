@@ -1,3 +1,5 @@
+import { Url } from './types';
+
 export const getQueryParams = (url) => {
     if (!url.includes('?') || url.slice(-1) === '?') {
         return new Map();
@@ -23,5 +25,19 @@ export const isHttpUrl = (string) => {
 };
 
 export const parseUrl = (url) => {
-    throw new Error('Must be an HTTP URL')
+    if (!isHttpUrl(url)) {
+        throw new Error('Must be an HTTP URL');
+    }
+
+    const webApiUrl = new URL(url);
+    const parsedUrl = new Url({
+        protocol: webApiUrl.protocol.slice(0, -1),
+        hostname: webApiUrl.hostname,
+        port: webApiUrl.port,
+        path: webApiUrl.pathname,
+        query: getQueryParams(url),
+        fragment: webApiUrl.hash.slice(1),
+    });
+
+    return parsedUrl;
 };
