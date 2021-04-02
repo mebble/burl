@@ -10,4 +10,13 @@ describe('getQueryParams', () => {
         const params = getQueryParams('http://example.com/some/path')
         expect(params).to.deep.equal(new Map())
     })
+
+    it('should return a map of the query params from the URL', () => {
+        const params = getQueryParams('http://example.com/some/path?a=cat&b=dog')
+        const expected = new Map([
+            ['a', 'cat'],
+            ['b', 'dog']
+        ])
+        expect(params).to.deep.equal(expected)
+    })
 })
