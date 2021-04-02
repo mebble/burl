@@ -1,4 +1,4 @@
-import { getQueryParams, isHttpUrl } from '../../src/url'
+import { getQueryParams, isHttpUrl, parseUrl } from '../../src/url'
 
 describe('getQueryParams', () => {
     it('should return an empty map for an invalid URL', () => {
@@ -69,4 +69,20 @@ describe('isHttpUrl', () => {
     it('is true for string with https protocol', () => {
         expect(isHttpUrl('https://example.com')).to.be.true
     })
+})
+
+describe('parseUrl', () => {
+    it('should throw an error when url is not an http url', () => {
+        const url = 'ftp://example.com'
+        expect(() => {
+            const _ = parseUrl(url)
+        }).to.throw('Must be an HTTP URL')
+    });
+
+    it('should throw an error when url is an invalid url', () => {
+        const url = 'some-invalid-url'
+        expect(() => {
+            const _ = parseUrl(url)
+        }).to.throw('Must be an HTTP URL')
+    });
 })

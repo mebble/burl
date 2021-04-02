@@ -21,3 +21,7 @@ export const isHttpUrl = (string) => {
 
     return url.protocol === "http:" || url.protocol === "https:";
 };
+
+export const parseUrl = (url) => {
+    throw new Error('Must be an HTTP URL')
+};
