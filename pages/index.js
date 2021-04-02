@@ -12,6 +12,12 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>bURL</h1>
         <input className="url" />
+        <input className="protocol" />
+        <input className="host" />
+        <input className="port" />
+        <input className="path" />
+        <ul class="query"></ul>
+        <input className="fragment" />
       </main>
     </div>
   )
