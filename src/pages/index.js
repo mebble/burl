@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
-import { getQueryParams, isHttpUrl } from '../src/url';
+import { getQueryParams, isHttpUrl } from '../url';
 
 export default function Home() {
     const [url, setUrl] = useState('');
