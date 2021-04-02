@@ -9,7 +9,9 @@ export default function Home() {
 
     useEffect(() => {
         const appParams = getQueryParams(window.location.search);
-        setUrl(appParams.get('u'));
+        if (appParams.has('u')) {
+            setUrl(appParams.get('u'));
+        }
     }, []);
 
     return (
@@ -21,7 +23,9 @@ export default function Home() {
             <main className={styles.main}>
                 <h1 className={styles.title}>bURL</h1>
                 <input className="url" value={url} onChange={e => setUrl(e.target.value)} />
-                <p className="prompt">This URL is not valid!</p>
+                <p className="prompt">{
+                    url === '' ? 'Enter a URL above' : 'This URL is not valid!'
+                }</p>
                 <input className="protocol" disabled />
                 <input className="host" disabled />
                 <input className="port" disabled />

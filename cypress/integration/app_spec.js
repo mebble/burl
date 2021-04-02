@@ -1,11 +1,13 @@
 describe('app visit', () => {
-    it('should contain the title', () => {
-        cy.visit('/')
-        cy.get('h1')
-            .contains('bURL')
-    })
-
     context('without query string', () => {
+        it('should contain the title and the correct prompt', () => {
+            cy.visit('/')
+            cy.get('h1')
+                .contains('bURL')
+            cy.get('.prompt')
+                .contains('Enter a URL above')
+        })
+
         it('should contain empty URL fields', () => {
             cy.visit('/')
 
@@ -32,7 +34,7 @@ describe('app visit', () => {
     })
 
     context('with invalid URL in query string', () => {
-        it('should contain the given URL and an error message', () => {
+        it('should contain the given URL and the correct prompt', () => {
             const url = 'some-invalid-url'
             const message = 'This URL is not valid!'
 
