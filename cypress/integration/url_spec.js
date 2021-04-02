@@ -123,7 +123,25 @@ describe('parseUrl', () => {
         expect(url.port).to.equal('80')
     });
 
-    it('should ignore the trailing query string separator of a url');
+    it('should ignore the trailing query string separator of a url', () => {
+        const urlString = 'http://example.com:80/path?'
+
+        const url = parseUrl(urlString)
+
+        expect(url.path).to.equal('/path')
+        expect(url.query.size).to.equal(0)
+    });
+
+    it.skip('should ignore the trailing query string separator of a url having a fragment', () => {
+        const urlString = 'http://example.com:80/path?#foo'
+
+        const url = parseUrl(urlString)
+
+        expect(url.path).to.equal('/path')
+        expect(url.query.size).to.equal(0)
+        expect(url.fragment).to.equal('foo')
+    });
+
     it('should set a root path for a url having no path');
     it('should set empty values for non-mandatory fields');
     it('should set the hostname of a url having subdomains');
