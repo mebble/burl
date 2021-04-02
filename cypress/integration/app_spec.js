@@ -13,21 +13,19 @@ describe('app visit', () => {
             cy.get('.url')
                 .should('have.value', '')
 
-            cy.get('.protocol')
-                .should('have.value', '')
-                .and('be.disabled')
-            cy.get('.host')
-                .should('have.value', '')
-                .and('be.disabled')
-            cy.get('.port')
-                .should('have.value', '')
-                .and('be.disabled')
-            cy.get('.path')
-                .should('have.value', '')
-                .and('be.disabled')
-            cy.get('.fragment')
-                .should('have.value', '')
-                .and('be.disabled')
+            const fields = [
+                '.protocol',
+                '.host',
+                '.port',
+                '.path',
+                '.fragment',
+            ]
+
+            fields.forEach(field => {
+                cy.get(field)
+                    .should('have.value', '')
+                    .and('be.disabled')
+            })
 
             cy.get('.query')
                 .should('not.have.descendants', 'li')
