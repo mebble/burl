@@ -114,9 +114,17 @@ describe('parseUrl', () => {
         expect(url.fragment).to.equal('foo')
     });
 
+    it('should set the explicitly given port even if the protocol infers it', () => {
+        const urlString = 'http://example.com:80/path'
+
+        const url = parseUrl(urlString)
+
+        expect(url.protocol).to.equal('http')
+        expect(url.port).to.equal('80')
+    });
+
     it('should ignore the trailing query string separator of a url');
     it('should set a root path for a url having no path');
     it('should set empty values for non-mandatory fields');
     it('should set the hostname of a url having subdomains');
-    it('should set the explicitly given port even if the protocol infers it');
 })

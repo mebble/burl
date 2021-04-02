@@ -33,11 +33,15 @@ export const parseUrl = (url) => {
     const parsedUrl = new Url({
         protocol: webApiUrl.protocol.slice(0, -1),
         hostname: webApiUrl.hostname,
-        port: webApiUrl.port,
+        port: getPort(url),
         path: webApiUrl.pathname,
         query: getQueryParams(url),
         fragment: webApiUrl.hash.slice(1),
     });
 
     return parsedUrl;
+};
+
+const getPort = (url) => {
+    return url.match(/:(\d+)/)[1];
 };
