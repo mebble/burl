@@ -30,4 +30,17 @@ describe('app visit', () => {
                 .should('not.have.descendants', 'li')
         })
     })
+
+    context('with invalid URL in query string', () => {
+        it('should contain the given URL and an error message', () => {
+            const url = 'some-invalid-url'
+            const message = 'This URL is not valid!'
+
+            cy.visit(`/?u=${url}`)
+            cy.get('.url')
+                .should('have.value', url)
+            cy.get('.prompt')
+                .contains(message)
+        })
+    })
 })
