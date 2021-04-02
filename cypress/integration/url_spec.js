@@ -21,6 +21,11 @@ describe('getQueryParams', () => {
         expect(params).to.deep.equal(new Map())
     })
 
+    it.skip('should return an empty map for a URL with a trailing query string separator and a fragment', () => {
+        const params = getQueryParams('http://example.com/some/path?#foo')
+        expect(params).to.deep.equal(new Map())
+    })
+
     it('should return a map of the query params from the URL', () => {
         const params = getQueryParams('http://example.com/some/path?a=cat&b=dog')
         const expected = new Map([
@@ -34,6 +39,15 @@ describe('getQueryParams', () => {
         const params = getQueryParams('http://example.com/some/path?a=cat?&b=dog')
         const expected = new Map([
             ['a', 'cat?'],
+            ['b', 'dog']
+        ])
+        expect(params).to.deep.equal(expected)
+    })
+
+    it.skip('should return a map of the query params of a URL having a fragment after the query string', () => {
+        const params = getQueryParams('http://example.com/some/path?a=cat&b=dog#foo')
+        const expected = new Map([
+            ['a', 'cat'],
             ['b', 'dog']
         ])
         expect(params).to.deep.equal(expected)
@@ -89,4 +103,6 @@ describe('parseUrl', () => {
     it('should parse an http url having all fields');
     it('should ignore the trailing query string separator of a url');
     it('should create a root path for a url having no path');
+    it('should create empty values for non-mandatory fields');
+    it('should parse the hostname of a url having subdomains');
 })
