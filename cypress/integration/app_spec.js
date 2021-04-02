@@ -47,4 +47,18 @@ describe('app visit', () => {
                 .should('not.have.descendants', 'li')
         })
     })
+
+    context('with valid URL in query string', () => {
+        it('should contain the given URL and the correct prompt', () => {
+            const url = 'http://example.com:8080/'
+            const prompt = 'Your URL is broken down below'
+
+            cy.visit(`/?u=${url}`)
+
+            cy.get('.url')
+                .should('have.value', url)
+            cy.get('.prompt')
+                .contains(prompt)
+        })
+    })
 })
