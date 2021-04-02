@@ -9,3 +9,15 @@ export const getQueryParams = (url) => {
 
     return new Map(queryList);
 };
+
+export const isHttpUrl = (string) => {
+    let url;
+
+    try {
+        url = new URL(string);
+    } catch (_) {
+        return false;
+    }
+
+    return true;
+};

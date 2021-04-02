@@ -1,4 +1,4 @@
-import { getQueryParams } from '../../src/url'
+import { getQueryParams, isHttpUrl } from '../../src/url'
 
 describe('getQueryParams', () => {
     it('should return an empty map for an invalid URL', () => {
@@ -46,5 +46,19 @@ describe('getQueryParams', () => {
             ['b', 'dog']
         ])
         expect(params).to.deep.equal(expected)
+    })
+})
+
+describe('isHttpUrl', () => {
+    it('is false for string without protocol', () => {
+        expect(isHttpUrl('example.com')).to.be.false
+    })
+
+    it('is true for string with http protocol', () => {
+        expect(isHttpUrl('http://example.com')).to.be.true
+    })
+
+    it('is true for string with https protocol', () => {
+        expect(isHttpUrl('https://example.com')).to.be.true
     })
 })
