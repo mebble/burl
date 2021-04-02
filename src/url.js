@@ -1,5 +1,5 @@
 export const getQueryParams = (url) => {
-    if (!url.includes('?')) {
+    if (!url.includes('?') || url.slice(-1) === '?') {
         return new Map();
     }
 
