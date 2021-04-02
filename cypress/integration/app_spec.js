@@ -1,48 +1,50 @@
 describe('app visit', () => {
-    context('without query string', () => {
-        it('should contain the title and the correct prompt', () => {
-            cy.visit('/')
-            cy.get('h1')
-                .contains('bURL')
-            cy.get('.prompt')
-                .contains('Enter a URL above')
-        })
+    const fields = [
+        '.protocol',
+        '.host',
+        '.port',
+        '.path',
+        '.fragment',
+    ]
 
-        it('should contain empty URL fields', () => {
+    context('without query string', () => {
+        it('should contain the correct prompt and empty URL fields', () => {
+            const prompt = 'Enter a URL above'
+
             cy.visit('/')
 
             cy.get('.url')
                 .should('have.value', '')
-
-            const fields = [
-                '.protocol',
-                '.host',
-                '.port',
-                '.path',
-                '.fragment',
-            ]
-
+            cy.get('.prompt')
+                .contains(prompt)
             fields.forEach(field => {
                 cy.get(field)
                     .should('have.value', '')
                     .and('be.disabled')
             })
-
             cy.get('.query')
                 .should('not.have.descendants', 'li')
         })
     })
 
     context('with invalid URL in query string', () => {
-        it('should contain the given URL and the correct prompt', () => {
+        it('should contain the given URL, the correct prompt and empty URL fields', () => {
             const url = 'some-invalid-url'
-            const message = 'This URL is not valid!'
+            const prompt = 'This URL is not valid!'
 
             cy.visit(`/?u=${url}`)
+
             cy.get('.url')
                 .should('have.value', url)
             cy.get('.prompt')
-                .contains(message)
+                .contains(prompt)
+            fields.forEach(field => {
+                cy.get(field)
+                    .should('have.value', '')
+                    .and('be.disabled')
+            })
+            cy.get('.query')
+                .should('not.have.descendants', 'li')
         })
     })
 })
