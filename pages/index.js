@@ -11,6 +11,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>bURL</h1>
+        <input className="url" />
       </main>
     </div>
   )

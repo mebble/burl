@@ -5,4 +5,13 @@ describe('app visit', () => {
             .get('h1')
             .contains('bURL')
     })
+
+    context('without query string', () => {
+        it('should contain empty URL fields', () => {
+            cy.visit('/')
+            cy
+                .get('.url')
+                .should('have.value', '')
+        })
+    })
 })
