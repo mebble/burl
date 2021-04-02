@@ -44,7 +44,7 @@ describe('getQueryParams', () => {
         expect(params).to.deep.equal(expected)
     })
 
-    it.skip('should return a map of the query params of a URL having a fragment after the query string', () => {
+    it('should return a map of the query params of a URL having a fragment after the query string', () => {
         const params = getQueryParams('http://example.com/some/path?a=cat&b=dog#foo')
         const expected = new Map([
             ['a', 'cat'],
