@@ -1,0 +1,26 @@
+{
+  "name": "burl",
+  "version": "0.1.0",
+  "description": "Breaking URLs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mebble/burl.git"
+  },
+  "keywords": [
+    "URL"
+  ],
+  "author": "Neil Syiemlieh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mebble/burl/issues"
+  },
+  "homepage": "https://github.com/mebble/burl#readme",
+  "devDependencies": {
+    "cypress": "^6.8.0"
+  }
+}
