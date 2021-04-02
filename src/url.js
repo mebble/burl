@@ -45,3 +45,14 @@ export const parseUrl = (url) => {
 const getPort = (url) => {
     return url.match(/:(\d+)/)[1];
 };
+
+export const emptyUrl = () => {
+    return new Url({
+        protocol: '',
+        hostname: '',
+        port: '',
+        path: '',
+        query: new Map(),
+        fragment: '',
+    });
+};
