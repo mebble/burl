@@ -12,12 +12,12 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>bURL</h1>
         <input className="url" />
-        <input className="protocol" />
-        <input className="host" />
-        <input className="port" />
-        <input className="path" />
+        <input className="protocol" disabled />
+        <input className="host" disabled />
+        <input className="port" disabled />
+        <input className="path" disabled />
         <ul class="query"></ul>
-        <input className="fragment" />
+        <input className="fragment" disabled />
       </main>
     </div>
   )
