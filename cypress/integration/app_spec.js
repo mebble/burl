@@ -1,7 +1,7 @@
 describe('app visit', () => {
     const fields = [
         '.protocol',
-        '.host',
+        '.hostname',
         '.port',
         '.path',
         '.fragment',

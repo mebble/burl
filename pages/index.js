@@ -27,7 +27,7 @@ export default function Home() {
                     url === '' ? 'Enter a URL above' : 'This URL is not valid!'
                 }</p>
                 <input className="protocol" disabled />
-                <input className="host" disabled />
+                <input className="hostname" disabled />
                 <input className="port" disabled />
                 <input className="path" disabled />
                 <ul className="query"></ul>
