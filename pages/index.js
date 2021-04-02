@@ -30,12 +30,12 @@ export default function Home() {
                             ? 'This URL is not valid!'
                             : 'Your URL is broken down below')
                 }</p>
-                <input className="protocol" disabled />
-                <input className="hostname" disabled />
-                <input className="port" disabled />
-                <input className="path" disabled />
+                <input className="protocol" disabled={!isHttpUrl(url)} />
+                <input className="hostname" disabled={!isHttpUrl(url)} />
+                <input className="port" disabled={!isHttpUrl(url)} />
+                <input className="path" disabled={!isHttpUrl(url)} />
                 <ul className="query"></ul>
-                <input className="fragment" disabled />
+                <input className="fragment" disabled={!isHttpUrl(url)} />
             </main>
         </div>
     )

@@ -8,7 +8,7 @@ describe('app visit', () => {
     ]
 
     context('without query string', () => {
-        it('should contain the correct prompt and empty URL fields', () => {
+        it('should contain the correct prompt and empty and disabled URL fields', () => {
             const prompt = 'Enter a URL above'
 
             cy.visit('/')
@@ -28,7 +28,7 @@ describe('app visit', () => {
     })
 
     context('with invalid URL in query string', () => {
-        it('should contain the given URL, the correct prompt and empty URL fields', () => {
+        it('should contain the given URL, the correct prompt and empty and disabled URL fields', () => {
             const url = 'some-invalid-url'
             const prompt = 'This URL is not valid!'
 
@@ -49,7 +49,7 @@ describe('app visit', () => {
     })
 
     context('with valid URL in query string', () => {
-        it('should contain the given URL and the correct prompt', () => {
+        it('should contain the given URL, the correct prompt and editable URL fields', () => {
             const url = 'http://example.com:8080/'
             const prompt = 'Your URL is broken down below'
 
@@ -59,6 +59,10 @@ describe('app visit', () => {
                 .should('have.value', url)
             cy.get('.prompt')
                 .contains(prompt)
+            fields.forEach(field => {
+                cy.get(field)
+                    .and('not.be.disabled')
+            })
         })
     })
 })
