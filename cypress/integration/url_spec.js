@@ -61,6 +61,42 @@ describe('getQueryParams', () => {
         ])
         expect(params).to.deep.equal(expected)
     })
+
+    context('URL having a URL query parameter value', () => {
+        it('should return the param value for a url with no other query params or fragments', () => {
+            const params = getQueryParams('http://example.com/some/path?url=http://example.com')
+            const expected = new Map([
+                ['url', 'http://example.com']
+            ])
+            expect(params).to.deep.equal(expected)
+        })
+
+        it('should return the param value for a url with a fragment', () => {
+            const params = getQueryParams('http://example.com/some/path?url=http://example.com#foo')
+            const expected = new Map([
+                ['url', 'http://example.com']
+            ])
+            expect(params).to.deep.equal(expected)
+        })
+
+        it('should return the query param map for a url having other query params as well', () => {
+            const params = getQueryParams('http://example.com/some/path?url=http://example.com?a=cat&b=dog')
+            const expected = new Map([
+                ['url', 'http://example.com?a=cat'],
+                ['b', 'dog'],
+            ])
+            expect(params).to.deep.equal(expected)
+        })
+
+        it('should return the query param map for a url having other query params as well and a fragment', () => {
+            const params = getQueryParams('http://example.com/some/path?url=http://example.com?a=cat&b=dog#foo')
+            const expected = new Map([
+                ['url', 'http://example.com?a=cat'],
+                ['b', 'dog'],
+            ])
+            expect(params).to.deep.equal(expected)
+        })
+    })
 })
 
 describe('isHttpUrl', () => {
