@@ -49,6 +49,7 @@ In the Cypress runner, select the test file you want to run. This test will be r
 - Bonus
     - Dark/light theme
     - i18n and l10n
+    - SEO
 
 ## References
 
