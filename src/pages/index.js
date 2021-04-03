@@ -39,9 +39,11 @@ export default function Home() {
                 <UrlField name="port" value={parsedUrl.port} disabled={!isValidUrl} />
                 <UrlField name="path" value={parsedUrl.path} disabled={!isValidUrl} />
                 <ul className="query">{
-                    Array.from(parsedUrl.query).map(([ key, val ]) => {
-                        return <li key={key}>{key}: {val}</li>;
-                    })
+                    Array.from(parsedUrl.query).map(([ key, val ]) => (
+                        <li key={key}>
+                            <UrlField name={key} value={val} disabled={!isValidUrl} />
+                        </li>
+                    ))
                 }</ul>
                 <UrlField name="fragment" value={parsedUrl.fragment} disabled={!isValidUrl} />
             </main>

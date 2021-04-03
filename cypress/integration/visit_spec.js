@@ -78,7 +78,8 @@ describe('app visit', () => {
                 .each(($item, i) => {
                     const [ key, val ] = expectedQueryParams[i]
                     cy.wrap($item).contains(key)
-                    cy.wrap($item).contains(val)
+                    cy.wrap($item).find(`.${key}`)
+                        .should('have.value', val)
                 })
             cy.get('.fragment')
                 .should('have.value', 'foo')
