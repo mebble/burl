@@ -1,4 +1,5 @@
 import { prompt } from '../../src/constants'
+import { assertQueryParams } from '../support/helpers'
 
 describe('app visit', () => {
     const fields = [
@@ -75,12 +76,7 @@ describe('app visit', () => {
             cy.get('.path')
                 .should('have.value', '/path')
             cy.get('.query > li')
-                .each(($item, i) => {
-                    const [ key, val ] = expectedQueryParams[i]
-                    cy.wrap($item).contains(key)
-                    cy.wrap($item).find(`.${key}`)
-                        .should('have.value', val)
-                })
+                .each(assertQueryParams(cy, expectedQueryParams))
             cy.get('.fragment')
                 .should('have.value', 'foo')
         })
