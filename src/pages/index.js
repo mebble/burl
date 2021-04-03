@@ -18,6 +18,24 @@ export default function Home() {
         }
     }, []);
 
+    // const [url, send] = useReducer(urlReducer, emptyUrl())
+    // const [urlInput, setUrlInput] = useState('')
+
+    // useEffect(() => {
+    //     if (!url.isEmpty()) {
+    //         setUrlInput(url.toString())
+    //     }
+    // }, [url])
+
+    // useEffect(() => {
+    //     try {
+    //         url = parse(urlInput)
+    //     } catch () {
+    //         url = emptyUrl()
+    //     }
+    //     send(action('REPLACE', url))
+    // }, [urlInput])
+
     return (
         <div className={styles.container}>
             <Head>
