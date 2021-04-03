@@ -49,8 +49,12 @@ describe('app visit', () => {
     })
 
     context('with valid URL in query string', () => {
-        it('should contain the given URL, the correct prompt and editable URL fields', () => {
-            const url = 'http://example.com:8080/'
+        it.skip('should contain the given URL, the correct prompt and filled editable URL fields', () => {
+            const url = 'http://example.com:8080/path?a=cat&b=dog#foo'
+            const expectedQueryParams = [
+                ['a', 'cat'],
+                ['b', 'dog'],
+            ];
             const prompt = 'Your URL is broken down below'
 
             cy.visit(`/?u=${url}`)
@@ -63,6 +67,23 @@ describe('app visit', () => {
                 cy.get(field)
                     .and('not.be.disabled')
             })
+
+            cy.get('.protocol')
+                .should('have.value', 'http')
+            cy.get('.hostname')
+                .should('have.value', 'example.com')
+            cy.get('.port')
+                .should('have.value', '8080')
+            cy.get('.path')
+                .should('have.value', '/path')
+            cy.get('.query > li')
+                .each(($item, i) => {
+                    const [ key, val ] = expectedQueryParams[i]
+                    cy.wrap($item).contains(key)
+                    cy.wrap($item).contains(val)
+                })
+            cy.get('.fragment')
+                .should('have.value', 'foo')
         })
     })
 })
