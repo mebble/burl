@@ -1,3 +1,5 @@
+import { prompt } from '../../src/constants'
+
 describe('app visit', () => {
     const fields = [
         '.protocol',
@@ -9,14 +11,12 @@ describe('app visit', () => {
 
     context('without query string', () => {
         it('should contain the correct prompt and empty and disabled URL fields', () => {
-            const prompt = 'Enter a URL above'
-
             cy.visit('/')
 
             cy.get('.url')
                 .should('have.value', '')
             cy.get('.prompt')
-                .contains(prompt)
+                .contains(prompt.intro)
             fields.forEach(field => {
                 cy.get(field)
                     .should('have.value', '')
@@ -30,14 +30,13 @@ describe('app visit', () => {
     context('with invalid URL in query string', () => {
         it('should contain the given URL, the correct prompt and empty and disabled URL fields', () => {
             const url = 'some-invalid-url'
-            const prompt = 'This URL is not valid!'
 
             cy.visit(`/?u=${url}`)
 
             cy.get('.url')
                 .should('have.value', url)
             cy.get('.prompt')
-                .contains(prompt)
+                .contains(prompt.invalid)
             fields.forEach(field => {
                 cy.get(field)
                     .should('have.value', '')
@@ -55,14 +54,13 @@ describe('app visit', () => {
                 ['a', 'cat'],
                 ['b', 'dog'],
             ];
-            const prompt = 'Your URL is broken down below'
 
             cy.visit(`/?u=${url}`)
 
             cy.get('.url')
                 .should('have.value', url)
             cy.get('.prompt')
-                .contains(prompt)
+                .contains(prompt.done)
             fields.forEach(field => {
                 cy.get(field)
                     .and('not.be.disabled')

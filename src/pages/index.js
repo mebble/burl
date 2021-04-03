@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css';
 
 import UrlField from '../components/UrlField';
 import { getQueryParams, isHttpUrl } from '../url';
+import { prompt } from '../constants';
 
 export default function Home() {
     const [url, setUrl] = useState('');
@@ -27,10 +28,10 @@ export default function Home() {
                 <input className="url" value={url} onChange={e => setUrl(e.target.value)} />
                 <p className="prompt">{
                     url === ''
-                        ? 'Enter a URL above'
+                        ? prompt.intro
                         : (!isValidUrl
-                            ? 'This URL is not valid!'
-                            : 'Your URL is broken down below')
+                            ? prompt.invalid
+                            : prompt.done)
                 }</p>
                 <UrlField name="protocol" disabled={!isValidUrl} />
                 <UrlField name="hostname" disabled={!isValidUrl} />
