@@ -35,6 +35,15 @@ describe('getQueryParams', () => {
         expect(params).to.deep.equal(expected)
     })
 
+    it('should overwrite values of duplicate keys of the query params from the URL', () => {
+        const params = getQueryParams('http://example.com/some/path?a=cat&b=dog&a=camel')
+        const expected = new Map([
+            ['a', 'camel'],
+            ['b', 'dog'],
+        ])
+        expect(params).to.deep.equal(expected)
+    })
+
     it('should return a map of the query params of a URL having a query string separator within the query string', () => {
         const params = getQueryParams('http://example.com/some/path?a=cat?&b=dog')
         const expected = new Map([

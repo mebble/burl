@@ -62,4 +62,22 @@ describe('typing into URL input', () => {
         cy.get('.fragment')
             .should('have.value', 'foo')
     })
+
+    it('should display only the last of the duplicate keys of the URL query params', () => {
+        const expectedQueryParams = [
+            ['a', 'camel'],
+            ['b', 'dog'],
+        ];
+
+        cy.get('.url')
+            .type('http://example.com/some/path?a=cat&b=dog&a=camel')
+
+        cy.get('.query > li')
+            .each(($item, i) => {
+                const [ key, val ] = expectedQueryParams[i]
+                cy.wrap($item).contains(key)
+                cy.wrap($item).contains(val)
+            })
+    })
+
 })
