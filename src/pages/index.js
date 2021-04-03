@@ -3,12 +3,13 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
 import UrlField from '../components/UrlField';
-import { getQueryParams, isHttpUrl } from '../url';
+import { emptyUrl, getQueryParams, isHttpUrl, parseUrl } from '../url';
 import { prompt } from '../constants';
 
 export default function Home() {
     const [url, setUrl] = useState('');
     const isValidUrl = isHttpUrl(url);
+    const parsedUrl = isValidUrl ? parseUrl(url) : emptyUrl();
 
     useEffect(() => {
         const appParams = getQueryParams(window.location.search);
@@ -33,12 +34,16 @@ export default function Home() {
                             ? prompt.invalid
                             : prompt.done)
                 }</p>
-                <UrlField name="protocol" disabled={!isValidUrl} />
-                <UrlField name="hostname" disabled={!isValidUrl} />
-                <UrlField name="port" disabled={!isValidUrl} />
-                <UrlField name="path" disabled={!isValidUrl} />
-                <ul className="query"></ul>
-                <UrlField name="fragment" disabled={!isValidUrl} />
+                <UrlField name="protocol" value={parsedUrl.protocol} disabled={!isValidUrl} />
+                <UrlField name="hostname" value={parsedUrl.hostname} disabled={!isValidUrl} />
+                <UrlField name="port" value={parsedUrl.port} disabled={!isValidUrl} />
+                <UrlField name="path" value={parsedUrl.path} disabled={!isValidUrl} />
+                <ul className="query">{
+                    Array.from(parsedUrl.query).map(([ key, val ]) => {
+                        return <li key={key}>{key}: {val}</li>;
+                    })
+                }</ul>
+                <UrlField name="fragment" value={parsedUrl.fragment} disabled={!isValidUrl} />
             </main>
         </div>
     )
