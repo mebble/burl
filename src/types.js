@@ -7,4 +7,15 @@ export class Url {
         this.query = config.query;
         this.fragment = config.fragment;
     }
+
+    toString() {
+        if (!this._mandatoryFieldsPresent()) {
+            return '';
+        }
+        return `${this.protocol}://${this.hostname}${this.path}`;
+    }
+
+    _mandatoryFieldsPresent() {
+        return this.protocol && this.hostname && this.path;
+    }
 }
