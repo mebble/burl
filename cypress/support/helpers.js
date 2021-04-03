@@ -4,3 +4,11 @@ export const assertQueryParams = (cy, expectedPairs) => ($item, i) => {
     cy.wrap($item).find(`input[name="${key}"]`)
         .should('have.value', val)
 };
+
+export const fieldNames = [
+    'protocol',
+    'hostname',
+    'port',
+    'path',
+    'fragment',
+]

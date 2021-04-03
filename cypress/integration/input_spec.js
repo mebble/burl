@@ -1,13 +1,5 @@
 import { prompt } from '../../src/constants'
-import { assertQueryParams } from '../support/helpers'
-
-const fieldNames = [
-    'protocol',
-    'hostname',
-    'port',
-    'path',
-    'fragment',
-]
+import { assertQueryParams, fieldNames } from '../support/helpers'
 
 describe('typing into URL input', () => {
     before(() => {

@@ -1,15 +1,7 @@
 import { prompt } from '../../src/constants'
-import { assertQueryParams } from '../support/helpers'
+import { assertQueryParams, fieldNames } from '../support/helpers'
 
 describe('app visit', () => {
-    const fieldNames = [
-        'protocol',
-        'hostname',
-        'port',
-        'path',
-        'fragment',
-    ]
-
     context('without query string', () => {
         it('should contain the correct prompt and empty and disabled URL fields', () => {
             cy.visit('/')
