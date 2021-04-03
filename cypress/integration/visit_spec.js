@@ -2,24 +2,24 @@ import { prompt } from '../../src/constants'
 import { assertQueryParams } from '../support/helpers'
 
 describe('app visit', () => {
-    const fields = [
-        '.protocol',
-        '.hostname',
-        '.port',
-        '.path',
-        '.fragment',
+    const fieldNames = [
+        'protocol',
+        'hostname',
+        'port',
+        'path',
+        'fragment',
     ]
 
     context('without query string', () => {
         it('should contain the correct prompt and empty and disabled URL fields', () => {
             cy.visit('/')
 
-            cy.get('.url')
+            cy.get('input[name="url"]')
                 .should('have.value', '')
             cy.get('.prompt')
                 .contains(prompt.intro)
-            fields.forEach(field => {
-                cy.get(field)
+            fieldNames.forEach(name => {
+                cy.get(`input[name="${name}"]`)
                     .should('have.value', '')
                     .and('be.disabled')
             })
@@ -34,12 +34,12 @@ describe('app visit', () => {
 
             cy.visit(`/?u=${url}`)
 
-            cy.get('.url')
+            cy.get('input[name="url"]')
                 .should('have.value', url)
             cy.get('.prompt')
                 .contains(prompt.invalid)
-            fields.forEach(field => {
-                cy.get(field)
+            fieldNames.forEach(name => {
+                cy.get(`input[name="${name}"]`)
                     .should('have.value', '')
                     .and('be.disabled')
             })
@@ -58,12 +58,12 @@ describe('app visit', () => {
 
             cy.visit(`/?u=${url}`)
 
-            cy.get('.url')
+            cy.get('input[name="url"]')
                 .should('have.value', url)
             cy.get('.prompt')
                 .contains(prompt.done)
-            fields.forEach(field => {
-                cy.get(field)
+            fieldNames.forEach(name => {
+                cy.get(`input[name="${name}"]`)
                     .and('not.be.disabled')
             })
 

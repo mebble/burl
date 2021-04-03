@@ -26,7 +26,7 @@ export default function Home() {
             </Head>
             <main className={styles.main}>
                 <h1 className={styles.title}>bURL</h1>
-                <input className="url" value={url} onChange={e => setUrl(e.target.value)} />
+                <input name="url" value={url} type="text" onChange={e => setUrl(e.target.value)} />
                 <p className="prompt">{
                     url === ''
                         ? prompt.intro

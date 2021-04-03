@@ -1,12 +1,12 @@
 import { prompt } from '../../src/constants'
 import { assertQueryParams } from '../support/helpers'
 
-const fields = [
-    '.protocol',
-    '.hostname',
-    '.port',
-    '.path',
-    '.fragment',
+const fieldNames = [
+    'protocol',
+    'hostname',
+    'port',
+    'path',
+    'fragment',
 ]
 
 describe('typing into URL input', () => {
@@ -14,17 +14,17 @@ describe('typing into URL input', () => {
         cy.visit('/')
     })
     beforeEach(() => {
-        cy.get('.url').clear()
+        cy.get('input[name="url"]').clear()
     })
 
     it('should show invalid prompt and empty disabled URL fields when invalid URL is typed', () => {
-        cy.get('.url')
+        cy.get('input[name="url"]')
             .type('Hey hello')
 
         cy.get('.prompt')
             .contains(prompt.invalid)
-        fields.forEach(field => {
-            cy.get(field)
+        fieldNames.forEach(name => {
+            cy.get(`input[name="${name}"]`)
                 .should('have.value', '')
                 .and('be.disabled')
         })
@@ -36,27 +36,27 @@ describe('typing into URL input', () => {
             ['b', 'dog'],
         ];
 
-        cy.get('.url')
+        cy.get('input[name="url"]')
             .type('http://example.com:80/path?a=cat&b=dog#foo')
 
         cy.get('.prompt')
             .contains(prompt.done)
-        fields.forEach(field => {
-            cy.get(field)
+        fieldNames.forEach(name => {
+            cy.get(`input[name="${name}"]`)
                 .and('not.be.disabled')
         })
 
-        cy.get('.protocol')
+        cy.get('input[name="protocol"]')
             .should('have.value', 'http')
-        cy.get('.hostname')
+        cy.get('input[name="hostname"]')
             .should('have.value', 'example.com')
-        cy.get('.port')
+        cy.get('input[name="port"]')
             .should('have.value', '80')
-        cy.get('.path')
+        cy.get('input[name="path"]')
             .should('have.value', '/path')
         cy.get('.query > li')
             .each(assertQueryParams(cy, expectedQueryParams))
-        cy.get('.fragment')
+        cy.get('input[name="fragment"]')
             .should('have.value', 'foo')
     })
 
@@ -66,7 +66,7 @@ describe('typing into URL input', () => {
             ['b', 'dog'],
         ];
 
-        cy.get('.url')
+        cy.get('input[name="url"]')
             .type('http://example.com/some/path?a=cat&b=dog&a=camel')
 
         cy.get('.query > li')
