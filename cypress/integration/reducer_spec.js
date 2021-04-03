@@ -1,13 +1,28 @@
-import { urlInputReducer } from '../../src/reducers'
+import { urlReducer } from '../../src/reducers'
+import { Url } from '../../src/types'
 
-describe('urlInputReducer', () => {
+describe('urlReducer', () => {
     it('replaces the current urlInput', () => {
-        const current = 'some-value'
-        const newValue = 'some-new-value'
-        const action = { type: 'REPLACE', payload: newValue }
+        const oldUrl = new Url({
+            protocol: 'http',
+            hostname: 'url1.com',
+            port: '',
+            path: '/',
+            query: new Map(),
+            fragment: '',
+        })
+        const expected = new Url({
+            protocol: 'http',
+            hostname: 'url2.com',
+            port: '',
+            path: '/',
+            query: new Map(),
+            fragment: '',
+        })
+        const action = { type: 'REPLACE', payload: expected }
 
-        const actual = urlInputReducer(current, action)
+        const newUrl = urlReducer(oldUrl, action)
 
-        expect(actual).to.equal(newValue)
+        expect(newUrl).to.equal(expected)
     })
 })

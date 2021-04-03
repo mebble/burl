@@ -1,3 +1,3 @@
-export const urlInputReducer = (urlInput, action) => {
+export const urlReducer = (urlInput, action) => {
     return action.payload;
 };
