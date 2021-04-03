@@ -21,5 +21,21 @@ describe('Url', () => {
 
             expect(url.toString()).to.equal('http://example.com/')
         })
+
+        it('should return the string of a URL having all fields', () => {
+            const url = new Url({
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '9000',
+                path: '/path',
+                query: new Map([
+                    ['a', 'cat'],
+                    ['b', 'dog'],
+                ]),
+                fragment: 'foo',
+            })
+
+            expect(url.toString()).to.equal('http://example.com:9000/path?a=cat&b=dog#foo')
+        })
     })
 })
