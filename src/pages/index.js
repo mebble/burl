@@ -7,9 +7,9 @@ import { emptyUrl, getQueryParams, isHttpUrl, parseUrl } from '../url';
 import { prompt } from '../constants';
 
 export default function Home() {
-    const [url, setUrl] = useState('');
-    const isValidUrl = isHttpUrl(url);
-    const parsedUrl = isValidUrl ? parseUrl(url) : emptyUrl();
+    const [urlInput, setUrl] = useState('');
+    const isValidUrl = isHttpUrl(urlInput);
+    const parsedUrl = isValidUrl ? parseUrl(urlInput) : emptyUrl();
 
     useEffect(() => {
         const appParams = getQueryParams(window.location.search);
@@ -26,9 +26,9 @@ export default function Home() {
             </Head>
             <main className={styles.main}>
                 <h1 className={styles.title}>bURL</h1>
-                <input name="url" value={url} type="text" onChange={e => setUrl(e.target.value)} />
+                <input name="url" value={urlInput} type="text" onChange={e => setUrl(e.target.value)} />
                 <p className="prompt">{
-                    url === ''
+                    urlInput === ''
                         ? prompt.intro
                         : (!isValidUrl
                             ? prompt.invalid
