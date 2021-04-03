@@ -43,7 +43,11 @@ export const parseUrl = (url) => {
 };
 
 const getPort = (url) => {
-    return url.match(/:(\d+)/)[1];
+    const match = url.match(/:(\d+)/);
+    if (match) {
+        return match[1];
+    }
+    return '';
 };
 
 export const emptyUrl = () => {

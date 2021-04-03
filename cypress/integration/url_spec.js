@@ -186,7 +186,7 @@ describe('parseUrl', () => {
         expect(url.path).to.equal('/')
     });
 
-    it.skip('should set empty values for absent fields', () => {
+    it('should set empty values for absent fields', () => {
         const urlString = 'http://example.com'
 
         const url = parseUrl(urlString)
