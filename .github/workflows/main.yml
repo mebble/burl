@@ -14,7 +14,10 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
       - name: Cypress Run
-        run: yarn cypress:run
+        uses: cypress-io/github-action@v2
+        with:
+          build: yarn build
+          start: yarn start
   build:
     needs: test
     runs-on: ubuntu-latest
