@@ -27,15 +27,11 @@ jobs:
         with:
           build: yarn build
           start: yarn start
-  build:
+  deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
@@ -45,39 +41,15 @@ jobs:
           key: ${{ runner.os }}-node_modules-build-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-node_modules-build-
-      - name: Install dependencies
-        run: yarn --frozen-lockfile
-      - name: Build site
-        run: yarn build
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: out
-          path: out/
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            ~/.cache/Cypress
-          key: ${{ runner.os }}-node_modules-build-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-build-
-      - name: Download build artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: out
-          path: out/
-      - name: Deploy to Netlify
+      - name: Build and deploy to Netlify
         uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_DEPLOY_TO_PROD: true
           build_directory: out/
-
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: out
+          path: out/
