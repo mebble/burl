@@ -253,5 +253,28 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
-    it('returns the given payload on an unknown action')
+    it('returns the current URL on an unknown action', () => {
+        const current = new Url({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map([
+                ['a', 'cat'],
+                ['b', 'dog'],
+            ]),
+            fragment: 'f1',
+        })
+
+        const action = { type: 'UNKNOWN', payload: 'abc' }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl.protocol).to.equal(current.protocol)
+        expect(newUrl.hostname).to.equal(current.hostname)
+        expect(newUrl.port).to.equal(current.port)
+        expect(newUrl.path).to.equal(current.path)
+        expect(newUrl.query).to.deep.equal(current.query)
+        expect(newUrl.fragment).to.equal(current.fragment)
+    })
 })

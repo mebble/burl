@@ -65,5 +65,9 @@ export const urlReducer = (url, action) => {
             fragment: url.fragment,
         });
     }
-    return action.payload;
+    if (action.type === 'REPLACE') {
+        return action.payload;
+    }
+
+    return url;
 };
