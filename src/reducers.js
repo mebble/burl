@@ -31,5 +31,25 @@ export const urlReducer = (url, action) => {
             fragment: url.fragment,
         });
     }
+    if (action.type === 'PATH') {
+        return new Url({
+            protocol: url.protocol,
+            hostname: url.hostname,
+            port: url.port,
+            path: action.payload,
+            query: url.query,
+            fragment: url.fragment,
+        });
+    }
+    if (action.type === 'FRAGMENT') {
+        return new Url({
+            protocol: url.protocol,
+            hostname: url.hostname,
+            port: url.port,
+            path: url.path,
+            query: url.query,
+            fragment: action.payload,
+        });
+    }
     return action.payload;
 };

@@ -112,4 +112,62 @@ describe('urlReducer', () => {
         expect(newUrl.query).to.deep.equal(expected.query)
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
+
+    it('replaces only the the path on PATH action', () => {
+        const current = new Url({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/path1',
+            query: new Map(),
+            fragment: '',
+        })
+        const expected = new Url({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/path2',
+            query: new Map(),
+            fragment: '',
+        })
+        const action = { type: 'PATH', payload: '/path2' }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl.protocol).to.equal(expected.protocol)
+        expect(newUrl.hostname).to.equal(expected.hostname)
+        expect(newUrl.port).to.equal(expected.port)
+        expect(newUrl.path).to.equal(expected.path)
+        expect(newUrl.query).to.deep.equal(expected.query)
+        expect(newUrl.fragment).to.equal(expected.fragment)
+    })
+
+    it('replaces only the the fragment on FRAGMENT action', () => {
+        const current = new Url({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map(),
+            fragment: 'f1',
+        })
+        const expected = new Url({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map(),
+            fragment: 'f2',
+        })
+        const action = { type: 'FRAGMENT', payload: 'f2' }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl.protocol).to.equal(expected.protocol)
+        expect(newUrl.hostname).to.equal(expected.hostname)
+        expect(newUrl.port).to.equal(expected.port)
+        expect(newUrl.path).to.equal(expected.path)
+        expect(newUrl.query).to.deep.equal(expected.query)
+        expect(newUrl.fragment).to.equal(expected.fragment)
+    })
 })
