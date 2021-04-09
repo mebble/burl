@@ -52,9 +52,10 @@ export const urlReducer = (url, action) => {
         });
     }
     if (action.type === 'QUERY') {
+        const { key, value } = action.payload;
         const newQuery = new Map(url.query);
-        if (newQuery.has(action.payload.key)) {
-            newQuery.set(action.payload.key, action.payload.value);
+        if (newQuery.has(key)) {
+            newQuery.set(key, value);
         }
         return new Url({
             protocol: url.protocol,
