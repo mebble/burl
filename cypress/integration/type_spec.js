@@ -37,5 +37,35 @@ describe('Url', () => {
 
             expect(url.toString()).to.equal('http://example.com:9000/path?a=cat&b=dog#foo')
         })
+
+        it('should return the parsed URL and not the raw string of a valid URL', () => {
+            const url = new Url({
+                raw: 'some-raw-string',
+                isBad: false,
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '',
+                path: '/',
+                query: new Map(),
+                fragment: '',
+            })
+
+            expect(url.toString()).to.equal('http://example.com/')
+        })
+
+        it('should return the raw string and not the parsed URL of a bad URL', () => {
+            const url = new Url({
+                raw: 'some-raw-string',
+                isBad: true,
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '',
+                path: '/',
+                query: new Map(),
+                fragment: '',
+            })
+
+            expect(url.toString()).to.equal('some-raw-string')
+        })
     })
 })

@@ -11,6 +11,9 @@ export class Url {
     }
 
     toString() {
+        if (this.isBad) {
+            return this.raw;
+        }
         if (!this._mandatoryFieldsPresent()) {
             return '';
         }
