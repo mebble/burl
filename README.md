@@ -3,7 +3,7 @@
 [![CI Status](https://github.com/mebble/burl/workflows/CI/badge.svg)](https://github.com/mebble/burl/actions)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c59c4fa2-64e4-46e8-a0dc-ebd07896475b/deploy-status)](https://app.netlify.com/sites/burl/deploys)
 
-Break up URLs
+Break up URLs at [burl.bar](https://burl.bar/)
 
 ## Requirements
 
