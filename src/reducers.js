@@ -51,5 +51,17 @@ export const urlReducer = (url, action) => {
             fragment: action.payload,
         });
     }
+    if (action.type === 'QUERY') {
+        const newQuery = new Map(url.query);
+        newQuery.set(action.payload.key, action.payload.value);
+        return new Url({
+            protocol: url.protocol,
+            hostname: url.hostname,
+            port: url.port,
+            path: url.path,
+            query: newQuery,
+            fragment: url.fragment,
+        });
+    }
     return action.payload;
 };
