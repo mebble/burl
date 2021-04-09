@@ -60,3 +60,15 @@ export const emptyUrl = () => {
         fragment: '',
     });
 };
+
+export const badUrl = (raw) => {
+    return new Url({
+        raw: raw,
+        protocol: '',
+        hostname: '',
+        port: '',
+        path: '',
+        query: new Map(),
+        fragment: '',
+    });
+};

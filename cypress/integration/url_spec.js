@@ -1,4 +1,4 @@
-import { getQueryParams, isHttpUrl, parseUrl, emptyUrl } from '../../src/url'
+import { getQueryParams, isHttpUrl, parseUrl, emptyUrl, badUrl } from '../../src/url'
 
 describe('getQueryParams', () => {
     it('should return an empty map for an invalid URL', () => {
@@ -224,5 +224,19 @@ describe('emptyUrl', () => {
         expect(url.path).to.equal('')
         expect(url.query.size).to.equal(0)
         expect(url.fragment).to.equal('')
+    })
+})
+
+describe('badUrl', () => {
+    it('should return url with empty fields and raw string', () => {
+        const url = badUrl('some-bad-url-value')
+
+        expect(url.protocol).to.equal('')
+        expect(url.hostname).to.equal('')
+        expect(url.port).to.equal('')
+        expect(url.path).to.equal('')
+        expect(url.query.size).to.equal(0)
+        expect(url.fragment).to.equal('')
+        expect(url.raw).to.equal('some-bad-url-value')
     })
 })

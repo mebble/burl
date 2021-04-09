@@ -1,5 +1,6 @@
 export class Url {
     constructor(config) {
+        this.raw = config.raw;
         this.protocol = config.protocol;
         this.hostname = config.hostname;
         this.port = config.port;
