@@ -26,7 +26,7 @@ export const isHttpUrl = (string) => {
 
 export const parseUrl = (url) => {
     if (!isHttpUrl(url)) {
-        throw new Error('Must be an HTTP URL');
+        return badUrl();
     }
 
     const webApiUrl = new URL(url);

@@ -131,18 +131,20 @@ describe('isHttpUrl', () => {
 })
 
 describe('parseUrl', () => {
-    it('should throw an error when url is not an http url', () => {
-        const url = 'ftp://example.com'
-        expect(() => {
-            const _ = parseUrl(url)
-        }).to.throw('Must be an HTTP URL')
+    it('should return a "bad url" when url is not an http url', () => {
+        const urlString = 'ftp://example.com'
+
+        const url = parseUrl(urlString)
+
+        expect(url.isBad).to.be.true
     });
 
-    it('should throw an error when url is an invalid url', () => {
-        const url = 'some-invalid-url'
-        expect(() => {
-            const _ = parseUrl(url)
-        }).to.throw('Must be an HTTP URL')
+    it('should return a "bad url" when url is an invalid url', () => {
+        const urlString = 'some-invalid-url'
+
+        const url = parseUrl(urlString)
+
+        expect(url.isBad).to.be.true
     });
 
     it('should parse a url having all fields', () => {
