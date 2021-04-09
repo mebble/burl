@@ -7,6 +7,7 @@ export class Url {
         this.path = config.path;
         this.query = config.query;
         this.fragment = config.fragment;
+        this.isBad = config.isBad;
     }
 
     toString() {

@@ -70,5 +70,6 @@ export const badUrl = (raw) => {
         path: '',
         query: new Map(),
         fragment: '',
+        isBad: true,
     });
 };

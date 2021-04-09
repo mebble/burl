@@ -239,4 +239,10 @@ describe('badUrl', () => {
         expect(url.fragment).to.equal('')
         expect(url.raw).to.equal('some-bad-url-value')
     })
+
+    it('should return url with bad boolean true', () => {
+        const url = badUrl('some-bad-url-value')
+
+        expect(url.isBad).to.be.true
+    })
 })
