@@ -26,7 +26,7 @@ describe('urlReducer', () => {
         expect(newUrl).to.equal(expected)
     })
 
-    it('replaces only the the protocol on PROTOCOL action', () => {
+    it('replaces only the protocol on PROTOCOL action', () => {
         const current = new Url({
             protocol: 'http',
             hostname: 'url.com',
@@ -55,7 +55,7 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
-    it('replaces only the the hostname on HOSTNAME action', () => {
+    it('replaces only the hostname on HOSTNAME action', () => {
         const current = new Url({
             protocol: 'http',
             hostname: 'url1.com',
@@ -84,7 +84,7 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
-    it('replaces only the the port on PORT action', () => {
+    it('replaces only the port on PORT action', () => {
         const current = new Url({
             protocol: 'http',
             hostname: 'url.com',
@@ -113,7 +113,7 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
-    it('replaces only the the path on PATH action', () => {
+    it('replaces only the path on PATH action', () => {
         const current = new Url({
             protocol: 'http',
             hostname: 'url.com',
@@ -142,7 +142,7 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
-    it('replaces only the the fragment on FRAGMENT action', () => {
+    it('replaces only the fragment on FRAGMENT action', () => {
         const current = new Url({
             protocol: 'http',
             hostname: 'url.com',
