@@ -147,6 +147,14 @@ describe('parseUrl', () => {
         expect(url.isBad).to.be.true
     });
 
+    it('should return url with raw string when input is an invalid url', () => {
+        const urlString = 'some-invalid-url'
+
+        const url = parseUrl(urlString)
+
+        expect(url.raw).to.equal(urlString)
+    });
+
     it('should parse a url having all fields', () => {
         const urlString = 'http://example.com:9000/path?a=cat&b=dog#foo'
 
@@ -160,6 +168,14 @@ describe('parseUrl', () => {
         expect(url.query.get('a')).to.equal('cat')
         expect(url.query.get('b')).to.equal('dog')
         expect(url.fragment).to.equal('foo')
+    });
+
+    it('should return url with raw string when url is valid and has all fields', () => {
+        const urlString = 'http://example.com:9000/path?a=cat&b=dog#foo'
+
+        const url = parseUrl(urlString)
+
+        expect(url.raw).to.equal(urlString)
     });
 
     it('should set the explicitly given port even if the protocol infers it', () => {

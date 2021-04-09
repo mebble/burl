@@ -26,11 +26,12 @@ export const isHttpUrl = (string) => {
 
 export const parseUrl = (url) => {
     if (!isHttpUrl(url)) {
-        return badUrl();
+        return badUrl(url);
     }
 
     const webApiUrl = new URL(url);
     const parsedUrl = new Url({
+        raw: url,
         protocol: webApiUrl.protocol.slice(0, -1),
         hostname: webApiUrl.hostname,
         port: getPort(url),
