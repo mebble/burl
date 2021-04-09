@@ -53,7 +53,9 @@ export const urlReducer = (url, action) => {
     }
     if (action.type === 'QUERY') {
         const newQuery = new Map(url.query);
-        newQuery.set(action.payload.key, action.payload.value);
+        if (newQuery.has(action.payload.key)) {
+            newQuery.set(action.payload.key, action.payload.value);
+        }
         return new Url({
             protocol: url.protocol,
             hostname: url.hostname,

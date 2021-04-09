@@ -212,5 +212,46 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
+    it('ignores the given query param value on QUERY action if query key is not in current URL', () => {
+        const current = new Url({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map([
+                ['a', 'cat'],
+                ['b', 'dog'],
+            ]),
+            fragment: 'f1',
+        })
+        const expected = new Url({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map([
+                ['a', 'cat'],
+                ['b', 'dog'],
+            ]),
+            fragment: 'f1',
+        })
+        const action = {
+            type: 'QUERY',
+            payload: {
+                key: 'c',
+                value: 'camel'
+            }
+        }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl.protocol).to.equal(expected.protocol)
+        expect(newUrl.hostname).to.equal(expected.hostname)
+        expect(newUrl.port).to.equal(expected.port)
+        expect(newUrl.path).to.equal(expected.path)
+        expect(newUrl.query).to.deep.equal(expected.query)
+        expect(newUrl.fragment).to.equal(expected.fragment)
+    })
+
     it('returns the given payload on an unknown action')
 })
