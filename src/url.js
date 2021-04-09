@@ -37,6 +37,7 @@ export const parseUrl = (url) => {
         path: webApiUrl.pathname,
         query: getQueryParams(url),
         fragment: webApiUrl.hash.slice(1),
+        isBad: false,
     });
 
     return parsedUrl;

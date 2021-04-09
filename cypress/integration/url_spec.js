@@ -152,6 +152,7 @@ describe('parseUrl', () => {
 
         const url = parseUrl(urlString)
 
+        expect(url.isBad).to.be.false
         expect(url.protocol).to.equal('http')
         expect(url.hostname).to.equal('example.com')
         expect(url.port).to.equal('9000')
