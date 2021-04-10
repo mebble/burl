@@ -72,3 +72,7 @@ export const urlReducer = (url, action) => {
 
     return url;
 };
+
+export const action = (type, payload) => {
+    return { type, payload };
+};

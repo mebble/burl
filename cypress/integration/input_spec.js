@@ -64,5 +64,4 @@ describe('typing into URL input', () => {
         cy.get('.query > li')
             .each(assertQueryParams(cy, expectedQueryParams))
     })
-
 })
