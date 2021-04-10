@@ -234,7 +234,7 @@ describe('parseUrl', () => {
 })
 
 describe('emptyUrl', () => {
-    it('should return a url with empty fields', () => {
+    it('should return a url with empty fields and raw string', () => {
         const url = emptyUrl();
 
         expect(url.protocol).to.equal('')
@@ -243,6 +243,7 @@ describe('emptyUrl', () => {
         expect(url.path).to.equal('')
         expect(url.query.size).to.equal(0)
         expect(url.fragment).to.equal('')
+        expect(url.raw).to.equal('')
     })
 })
 

@@ -60,6 +60,7 @@ export const emptyUrl = () => {
         path: '',
         query: new Map(),
         fragment: '',
+        raw: '',
     });
 };
 
