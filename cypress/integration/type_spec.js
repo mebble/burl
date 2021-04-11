@@ -14,12 +14,12 @@ describe('Url', () => {
                 protocol: 'http',
                 hostname: 'example.com',
                 port: '',
-                path: '/',
+                path: '/path',
                 query: new Map(),
                 fragment: '',
             })
 
-            expect(url.toString()).to.equal('http://example.com/')
+            expect(url.toString()).to.equal('http://example.com/path')
         })
 
         it('should return the string of a URL having all fields', () => {
@@ -45,12 +45,12 @@ describe('Url', () => {
                 protocol: 'http',
                 hostname: 'example.com',
                 port: '',
-                path: '/',
+                path: '/path',
                 query: new Map(),
                 fragment: '',
             })
 
-            expect(url.toString()).to.equal('http://example.com/')
+            expect(url.toString()).to.equal('http://example.com/path')
         })
 
         it('should return the raw string and not the parsed URL of a bad URL', () => {
@@ -60,7 +60,7 @@ describe('Url', () => {
                 protocol: 'http',
                 hostname: 'example.com',
                 port: '',
-                path: '/',
+                path: '/path',
                 query: new Map(),
                 fragment: '',
             })
