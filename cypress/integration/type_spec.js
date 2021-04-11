@@ -125,5 +125,33 @@ describe('Url', () => {
 
             expect(url.toString()).to.equal('http://example.com:/path')
         })
+
+        it('should have the implicit port even if the protocol infers it: http', () => {
+            const url = new Url({
+                raw: 'http://example.com:80/path',
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '80',
+                path: '/path',
+                query: new Map(),
+                fragment: '',
+            })
+
+            expect(url.toString()).to.equal('http://example.com:80/path')
+        })
+
+        it('should have the implicit port even if the protocol infers it: https', () => {
+            const url = new Url({
+                raw: 'https://example.com:443/path',
+                protocol: 'https',
+                hostname: 'example.com',
+                port: '443',
+                path: '/path',
+                query: new Map(),
+                fragment: '',
+            })
+
+            expect(url.toString()).to.equal('https://example.com:443/path')
+        })
     })
 })

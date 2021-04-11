@@ -22,6 +22,10 @@ export class Url {
 
         const parsedUrl = new UrlParse(this.raw);
 
+        if (this.port) {
+            parsedUrl.host = parsedUrl.hostname + ':' + this.port;
+        }
+
         let stringified = parsedUrl.toString();
         if (this.path === '/' && !this.raw.endsWith('/') && stringified.endsWith('/')) {
             stringified = stringified.slice(0, -1)
