@@ -22,7 +22,9 @@ export class Url {
         if (this.port) {
             string += `:${this.port}`;
         }
-        string += this.path;
+        if (this.path !== '/') {
+            string += this.path;
+        }
         if (this.query.size > 0) {
             string += `?${this._toQueryString()}`;
         }
