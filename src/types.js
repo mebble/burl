@@ -19,7 +19,7 @@ export class Url {
         }
 
         let string = `${this.protocol}://${this.hostname}`;
-        if (this.port) {
+        if (this.port || this.raw.endsWith(':')) {
             string += `:${this.port}`;
         }
         if (this.path !== '/' || this.raw.endsWith('/')) {

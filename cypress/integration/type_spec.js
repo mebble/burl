@@ -41,6 +41,7 @@ describe('Url', () => {
 
         it('should return the string of a URL having only mandatory fields', () => {
             const url = new Url({
+                raw: 'http://example.com/path',
                 protocol: 'http',
                 hostname: 'example.com',
                 port: '',
@@ -94,6 +95,20 @@ describe('Url', () => {
             })
 
             expect(url.toString()).to.equal('http://example.com/')
+        })
+
+        it('should have a trailing port colon if the raw string does', () => {
+            const url = new Url({
+                raw: 'http://example.com:',
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '',
+                path: '/',
+                query: new Map(),
+                fragment: '',
+            })
+
+            expect(url.toString()).to.equal('http://example.com:')
         })
     })
 })
