@@ -3,18 +3,20 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
 import UrlField from '../components/UrlField';
-import { emptyUrl, getQueryParams, isHttpUrl, parseUrl } from '../url';
+import { emptyUrl, getQueryParams, parseUrl } from '../url';
 import { prompt } from '../constants';
 import { urlReducer, action } from '../reducers';
 
 export default function Home() {
     const [ url, send ] = useReducer(urlReducer, emptyUrl());
     const [urlInput, setUrl] = useState('');
+    const disableFields = url.isBad || url.toString() === '';
 
     useEffect(() => {
         const appParams = getQueryParams(window.location.search);
         if (appParams.has('u')) {
             setUrl(appParams.get('u'));
+            send(action('REPLACE', parseUrl(appParams.get('u'))))
         }
     }, []);
 
@@ -52,18 +54,18 @@ export default function Home() {
                             ? prompt.invalid
                             : prompt.done)
                 }</p>
-                <UrlField name="protocol" value={url.protocol} disabled={url.isBad} />
-                <UrlField name="hostname" value={url.hostname} disabled={url.isBad} />
-                <UrlField name="port" value={url.port} disabled={url.isBad} />
-                <UrlField name="path" value={url.path} disabled={url.isBad} />
+                <UrlField name="protocol" value={url.protocol} disabled={disableFields} />
+                <UrlField name="hostname" value={url.hostname} disabled={disableFields} />
+                <UrlField name="port" value={url.port} disabled={disableFields} />
+                <UrlField name="path" value={url.path} disabled={disableFields} />
                 <ul className="query">{
                     Array.from(url.query).map(([ key, val ]) => (
                         <li key={key}>
-                            <UrlField name={key} value={val} disabled={url.isBad} />
+                            <UrlField name={key} value={val} disabled={disableFields} />
                         </li>
                     ))
                 }</ul>
-                <UrlField name="fragment" value={url.fragment} disabled={url.isBad} />
+                <UrlField name="fragment" value={url.fragment} disabled={disableFields} />
             </main>
         </div>
     )
