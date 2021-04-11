@@ -25,7 +25,7 @@ export class Url {
         if (this.path !== '/' || this.raw.endsWith('/')) {
             string += this.path;
         }
-        if (this.query.size > 0) {
+        if (this.query.size > 0 || this._hasQueryMark()) {
             string += `?${this._toQueryString()}`;
         }
         if (this.fragment) {
@@ -42,11 +42,20 @@ export class Url {
     _toQueryString() {
         return Array.from(this.query)
             .map(([k, v]) => `${k}=${v}`)
-            .reduce((acc, pair) => acc + '&' + pair);
+            .reduce((acc, pair) => {
+                return acc === ''
+                    ? pair
+                    : acc + '&' + pair;
+            }, '');
     }
 
     _hasPortColon() {
         const [ _, afterHostname ] = this.raw.split(this.hostname);
         return afterHostname[0] === ':';
+    }
+
+    _hasQueryMark() {
+        const [ _, afterPath ] = this.raw.split(this.path);
+        return afterPath[0] === '?';
     }
 }

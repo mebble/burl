@@ -153,5 +153,19 @@ describe('Url', () => {
 
             expect(url.toString()).to.equal('https://example.com:443/path')
         })
+
+        it('should have a query question mark if the raw string does but query is empty', () => {
+            const url = new Url({
+                raw: 'http://example.com/path?#foo',
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '',
+                path: '/path',
+                query: new Map(),
+                fragment: 'foo',
+            })
+
+            expect(url.toString()).to.equal('http://example.com/path?#foo')
+        })
     })
 })
