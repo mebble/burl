@@ -1,3 +1,5 @@
+import { default as UrlParse } from 'url-parse';
+
 export class Url {
     constructor(config) {
         this.raw = config.raw;
@@ -18,21 +20,14 @@ export class Url {
             return '';
         }
 
-        let string = `${this.protocol}://${this.hostname}`;
-        if (this.port || this.raw.endsWith(':')) {
-            string += `:${this.port}`;
-        }
-        if (this.path !== '/' || this.raw.endsWith('/')) {
-            string += this.path;
-        }
-        if (this.query.size > 0) {
-            string += `?${this._toQueryString()}`;
-        }
-        if (this.fragment) {
-            string += `#${this.fragment}`;
+        const parsedUrl = new UrlParse(this.raw);
+
+        let stringified = parsedUrl.toString();
+        if (this.path === '/' && !this.raw.endsWith('/') && stringified.endsWith('/')) {
+            stringified = stringified.slice(0, -1)
         }
 
-        return string;
+        return stringified;
     }
 
     _mandatoryFieldsPresent() {

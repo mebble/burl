@@ -26,7 +26,7 @@ describe('Url', () => {
 
         it('should return the parsed URL and not the raw string of a valid URL', () => {
             const url = new Url({
-                raw: 'some-raw-string',
+                raw: 'http://example.com/path',
                 isBad: false,
                 protocol: 'http',
                 hostname: 'example.com',
@@ -55,6 +55,7 @@ describe('Url', () => {
 
         it('should return the string of a URL having all fields', () => {
             const url = new Url({
+                raw: 'http://example.com:9000/path?a=cat&b=dog#foo',
                 protocol: 'http',
                 hostname: 'example.com',
                 port: '9000',
@@ -109,6 +110,20 @@ describe('Url', () => {
             })
 
             expect(url.toString()).to.equal('http://example.com:')
+        })
+
+        it('should have a port colon if the raw string does and subsequent tokens exist', () => {
+            const url = new Url({
+                raw: 'http://example.com:/path',
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '',
+                path: '/path',
+                query: new Map(),
+                fragment: '',
+            })
+
+            expect(url.toString()).to.equal('http://example.com:/path')
         })
     })
 })
