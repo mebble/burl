@@ -178,13 +178,22 @@ describe('parseUrl', () => {
         expect(url.raw).to.equal(urlString)
     });
 
-    it('should set the explicitly given port even if the protocol infers it', () => {
+    it('should set the explicitly given port even if the protocol infers it: http', () => {
         const urlString = 'http://example.com:80/path'
 
         const url = parseUrl(urlString)
 
         expect(url.protocol).to.equal('http')
         expect(url.port).to.equal('80')
+    });
+
+    it('should set the explicitly given port even if the protocol infers it: https', () => {
+        const urlString = 'https://example.com:443/path'
+
+        const url = parseUrl(urlString)
+
+        expect(url.protocol).to.equal('https')
+        expect(url.port).to.equal('443')
     });
 
     it('should ignore the trailing query string separator of a url', () => {
