@@ -1,4 +1,5 @@
 import { Url } from './types';
+import { emptyIfBlank } from './utils';
 
 export const getQueryParams = (url) => {
     if (!url.includes('?') || url.slice(-1) === '?') {
@@ -7,7 +8,10 @@ export const getQueryParams = (url) => {
 
     const query = url.split(/\?(.+)/)[1].split('#')[0];
     const queryList = query.split('&')
-        .map(pair => pair.split(/=(.*)/));
+        .map(pair => {
+            const [ key, val ] = pair.split(/=(.*)/);
+            return [ key, emptyIfBlank(val) ];
+        });
 
     return new Map(queryList);
 };
