@@ -71,6 +71,16 @@ describe('getQueryParams', () => {
         expect(params).to.deep.equal(expected)
     })
 
+    it('should return an empty string value if the query param value of a key is absent', () => {
+        const params = getQueryParams('http://example.com/path?a=cat&b=&c=turtle')
+        const expected = new Map([
+            ['a', 'cat'],
+            ['b', ''],
+            ['c', 'turtle'],
+        ])
+        expect(params).to.deep.equal(expected)
+    })
+
     context('URL having a URL query parameter value', () => {
         it('should return the param value for a url with no other query params or fragments', () => {
             const params = getQueryParams('http://example.com/some/path?url=http://example.com')

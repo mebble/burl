@@ -7,7 +7,7 @@ export const getQueryParams = (url) => {
 
     const query = url.split(/\?(.+)/)[1].split('#')[0];
     const queryList = query.split('&')
-        .map(pair => pair.split(/=(.+)/));
+        .map(pair => pair.split(/=(.*)/));
 
     return new Map(queryList);
 };
