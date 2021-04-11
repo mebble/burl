@@ -1,5 +1,3 @@
-import { default as UrlParse } from 'url-parse';
-
 export class Url {
     constructor(config) {
         this.raw = config.raw;
@@ -20,18 +18,21 @@ export class Url {
             return '';
         }
 
-        const parsedUrl = new UrlParse(this.raw);
-
-        if (this.port) {
-            parsedUrl.host = parsedUrl.hostname + ':' + this.port;
+        let string = `${this.protocol}://${this.hostname}`;
+        if (this.port || this._hasPortColon()) {
+            string += `:${this.port}`;
+        }
+        if (this.path !== '/' || this.raw.endsWith('/')) {
+            string += this.path;
+        }
+        if (this.query.size > 0) {
+            string += `?${this._toQueryString()}`;
+        }
+        if (this.fragment) {
+            string += `#${this.fragment}`;
         }
 
-        let stringified = parsedUrl.toString();
-        if (this.path === '/' && !this.raw.endsWith('/') && stringified.endsWith('/')) {
-            stringified = stringified.slice(0, -1)
-        }
-
-        return stringified;
+        return string;
     }
 
     _mandatoryFieldsPresent() {
@@ -42,5 +43,10 @@ export class Url {
         return Array.from(this.query)
             .map(([k, v]) => `${k}=${v}`)
             .reduce((acc, pair) => acc + '&' + pair);
+    }
+
+    _hasPortColon() {
+        const [ _, afterHostname ] = this.raw.split(this.hostname);
+        return afterHostname[0] === ':';
     }
 }
