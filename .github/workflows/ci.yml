@@ -27,6 +27,11 @@ jobs:
         with:
           build: yarn build
           start: yarn start
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: cypress/screenshots/
   deploy:
     needs: test
     runs-on: ubuntu-latest
