@@ -22,7 +22,7 @@ export class Url {
         if (this.port) {
             string += `:${this.port}`;
         }
-        if (this.path !== '/') {
+        if (this.path !== '/' || this.raw.endsWith('/')) {
             string += this.path;
         }
         if (this.query.size > 0) {

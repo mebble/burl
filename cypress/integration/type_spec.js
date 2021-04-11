@@ -81,5 +81,19 @@ describe('Url', () => {
 
             expect(url.toString()).to.equal('http://example.com')
         })
+
+        it('should have a trailing root path if the raw string does', () => {
+            const url = new Url({
+                raw: 'http://example.com/',
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '',
+                path: '/',
+                query: new Map(),
+                fragment: '',
+            })
+
+            expect(url.toString()).to.equal('http://example.com/')
+        })
     })
 })
