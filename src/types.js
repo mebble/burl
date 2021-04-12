@@ -6,7 +6,6 @@ export class RipeUrl {
         this.path = config.path;
         this.query = config.query;
         this.fragment = config.fragment;
-        this.isBad = config.isBad;  // TODO: remove
     }
 
     toString() {
@@ -29,6 +28,10 @@ export class RipeUrl {
         }
 
         return string;
+    }
+
+    isBad() {
+        return false;
     }
 
     _mandatoryFieldsPresent() {
@@ -55,7 +58,11 @@ export class RawUrl {
         this.path = config.path;
         this.query = config.query;
         this.fragment = config.fragment;
-        this.isBad = config.isBad;
+        this._isBad = config.isBad;
+    }
+
+    isBad() {
+        return this._isBad;
     }
 
     toString() {

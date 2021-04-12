@@ -64,6 +64,24 @@ describe('RipeUrl', () => {
             expect(url.toString()).to.equal('https://example.com:443/path')
         })
     })
+
+    describe('isBad', () => {
+        it('should be false when all url fields are valid', () => {
+            const url = new RipeUrl({
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '9000',
+                path: '/path',
+                query: new Map([
+                    ['a', 'cat'],
+                    ['b', 'dog'],
+                ]),
+                fragment: 'foo',
+            })
+
+            expect(url.isBad()).to.be.false
+        })
+    })
 })
 
 describe('RawUrl', () => {
@@ -81,6 +99,20 @@ describe('RawUrl', () => {
             })
 
             expect(url.toString()).to.equal('some-raw-string')
+        })
+    })
+
+    describe('isBad', () => {
+        it('should return the property set in the constructor', () => {
+            const url1 = new RawUrl({
+                isBad: true,
+            })
+            const url2 = new RawUrl({
+                isBad: false,
+            })
+
+            expect(url1.isBad()).to.be.true
+            expect(url2.isBad()).to.be.false
         })
     })
 })

@@ -157,7 +157,7 @@ describe('parseUrl', () => {
 
         const url = parseUrl(urlString)
 
-        expect(url.isBad).to.be.true
+        expect(url.isBad()).to.be.true
     });
 
     it('should return a "bad url" when url is an invalid url', () => {
@@ -165,7 +165,7 @@ describe('parseUrl', () => {
 
         const url = parseUrl(urlString)
 
-        expect(url.isBad).to.be.true
+        expect(url.isBad()).to.be.true
     });
 
     it('should return a RawUrl when url is invalid', () => {
@@ -197,7 +197,7 @@ describe('parseUrl', () => {
 
         const url = parseUrl(urlString)
 
-        expect(url.isBad).to.be.false
+        expect(url.isBad()).to.be.false
         expect(url.protocol).to.equal('http')
         expect(url.hostname).to.equal('example.com')
         expect(url.port).to.equal('9000')
@@ -303,9 +303,9 @@ describe('badUrl', () => {
         expect(url.toString()).to.equal('some-bad-url-value')
     })
 
-    it('should return url with bad boolean true', () => {
+    it('should return a "bad url"', () => {
         const url = badUrl('some-bad-url-value')
 
-        expect(url.isBad).to.be.true
+        expect(url.isBad()).to.be.true
     })
 })
