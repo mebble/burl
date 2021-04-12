@@ -1,8 +1,8 @@
 import { urlReducer } from '../../src/reducers'
-import { RipeUrl } from '../../src/types'
+import { RawUrl, RipeUrl } from '../../src/types'
 
 describe('urlReducer', () => {
-    it('replaces the current url on REPLACE action', () => {
+    it('forwards the payload on REPLACE action', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url1.com',
@@ -11,7 +11,8 @@ describe('urlReducer', () => {
             query: new Map(),
             fragment: '',
         })
-        const expected = new RipeUrl({
+        const expected = new RawUrl({
+            raw: 'some-raw-string',
             protocol: 'http',
             hostname: 'url2.com',
             port: '',
