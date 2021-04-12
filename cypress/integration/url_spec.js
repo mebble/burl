@@ -168,12 +168,28 @@ describe('parseUrl', () => {
         expect(url.isBad).to.be.true
     });
 
+    it('should return a RawUrl when url is invalid', () => {
+        const urlString = 'some-invalid-url'
+
+        const url = parseUrl(urlString)
+
+        expect(url instanceof RawUrl).to.be.true
+    });
+
     it('should return url with raw string when input is an invalid url', () => {
         const urlString = 'some-invalid-url'
 
         const url = parseUrl(urlString)
 
         expect(url.raw).to.equal(urlString)
+    });
+
+    it('should return a RawUrl when url is valid', () => {
+        const urlString = 'http://example.com:9000/path?a=cat&b=dog#foo'
+
+        const url = parseUrl(urlString)
+
+        expect(url instanceof RawUrl).to.be.true
     });
 
     it('should parse a url having all fields', () => {

@@ -34,7 +34,7 @@ export const parseUrl = (url) => {
     }
 
     const webApiUrl = new URL(url);
-    const parsedUrl = new RipeUrl({
+    const parsedUrl = new RawUrl({
         raw: url,
         protocol: webApiUrl.protocol.slice(0, -1),
         hostname: webApiUrl.hostname,
