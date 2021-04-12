@@ -27,6 +27,23 @@ describe('urlReducer', () => {
         expect(newUrl).to.equal(expected)
     })
 
+    it('returns a RipeUrl on PROTOCOL action', () => {
+        const current = new RawUrl({
+            raw: 'some-raw-string',
+            protocol: 'http',
+            hostname: 'url2.com',
+            port: '',
+            path: '/',
+            query: new Map(),
+            fragment: '',
+        })
+        const action = { type: 'PROTOCOL', payload: 'https' }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl instanceof RipeUrl).to.be.true
+    })
+
     it('replaces only the protocol on PROTOCOL action', () => {
         const current = new RipeUrl({
             protocol: 'http',
@@ -54,6 +71,23 @@ describe('urlReducer', () => {
         expect(newUrl.path).to.equal(expected.path)
         expect(newUrl.query).to.deep.equal(expected.query)
         expect(newUrl.fragment).to.equal(expected.fragment)
+    })
+
+    it('returns a RipeUrl on HOSTNAME action', () => {
+        const current = new RawUrl({
+            raw: 'some-raw-string',
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map(),
+            fragment: '',
+        })
+        const action = { type: 'HOSTNAME', payload: 'e.com' }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl instanceof RipeUrl).to.be.true
     })
 
     it('replaces only the hostname on HOSTNAME action', () => {
@@ -85,6 +119,23 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
+    it('returns a RipeUrl on PORT action', () => {
+        const current = new RawUrl({
+            raw: 'some-raw-string',
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map(),
+            fragment: '',
+        })
+        const action = { type: 'PORT', payload: '9090' }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl instanceof RipeUrl).to.be.true
+    })
+
     it('replaces only the port on PORT action', () => {
         const current = new RipeUrl({
             protocol: 'http',
@@ -112,6 +163,23 @@ describe('urlReducer', () => {
         expect(newUrl.path).to.equal(expected.path)
         expect(newUrl.query).to.deep.equal(expected.query)
         expect(newUrl.fragment).to.equal(expected.fragment)
+    })
+
+    it('returns a RipeUrl on PATH action', () => {
+        const current = new RawUrl({
+            raw: 'some-raw-string',
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map(),
+            fragment: '',
+        })
+        const action = { type: 'PATH', payload: '/path' }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl instanceof RipeUrl).to.be.true
     })
 
     it('replaces only the path on PATH action', () => {
@@ -143,6 +211,23 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
+    it('returns a RipeUrl on FRAGMENT action', () => {
+        const current = new RawUrl({
+            raw: 'some-raw-string',
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map(),
+            fragment: '',
+        })
+        const action = { type: 'FRAGMENT', payload: 'foo' }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl instanceof RipeUrl).to.be.true
+    })
+
     it('replaces only the fragment on FRAGMENT action', () => {
         const current = new RipeUrl({
             protocol: 'http',
@@ -170,6 +255,23 @@ describe('urlReducer', () => {
         expect(newUrl.path).to.equal(expected.path)
         expect(newUrl.query).to.deep.equal(expected.query)
         expect(newUrl.fragment).to.equal(expected.fragment)
+    })
+
+    it('returns a RipeUrl on QUERY action', () => {
+        const current = new RawUrl({
+            raw: 'some-raw-string',
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map(),
+            fragment: '',
+        })
+        const action = { type: 'QUERY', payload: {} }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl instanceof RipeUrl).to.be.true
     })
 
     it('replaces the given query param value on QUERY action', () => {
