@@ -84,4 +84,13 @@ describe('editing one of the URL fields', () => {
         cy.get('input[name="url"]')
             .should('have.value', 'https://example.com:80/path?a=cat&b=dog#foo')
     })
+
+    it('should update the hostname field and url input when the hostname is edited', () => {
+        cy.get('input[name="hostname"]')
+            .type('com')
+            .should('have.value', 'example.comcom')
+
+        cy.get('input[name="url"]')
+            .should('have.value', 'http://example.comcom:80/path?a=cat&b=dog#foo')
+    })
 })
