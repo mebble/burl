@@ -1,4 +1,4 @@
-import { Url } from './types';
+import { RipeUrl } from './types';
 import { emptyIfBlank } from './utils';
 
 export const getQueryParams = (url) => {
@@ -34,7 +34,7 @@ export const parseUrl = (url) => {
     }
 
     const webApiUrl = new URL(url);
-    const parsedUrl = new Url({
+    const parsedUrl = new RipeUrl({
         raw: url,
         protocol: webApiUrl.protocol.slice(0, -1),
         hostname: webApiUrl.hostname,
@@ -57,7 +57,7 @@ const getPort = (url) => {
 };
 
 export const emptyUrl = () => {
-    return new Url({
+    return new RipeUrl({
         protocol: '',
         hostname: '',
         port: '',
@@ -69,7 +69,7 @@ export const emptyUrl = () => {
 };
 
 export const badUrl = (raw) => {
-    return new Url({
+    return new RipeUrl({
         raw: raw,
         protocol: '',
         hostname: '',

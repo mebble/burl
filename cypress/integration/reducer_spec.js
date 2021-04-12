@@ -1,9 +1,9 @@
 import { urlReducer } from '../../src/reducers'
-import { Url } from '../../src/types'
+import { RipeUrl } from '../../src/types'
 
 describe('urlReducer', () => {
     it('replaces the current url on REPLACE action', () => {
-        const current = new Url({
+        const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url1.com',
             port: '',
@@ -11,7 +11,7 @@ describe('urlReducer', () => {
             query: new Map(),
             fragment: '',
         })
-        const expected = new Url({
+        const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url2.com',
             port: '',
@@ -27,7 +27,7 @@ describe('urlReducer', () => {
     })
 
     it('replaces only the protocol on PROTOCOL action', () => {
-        const current = new Url({
+        const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '',
@@ -35,7 +35,7 @@ describe('urlReducer', () => {
             query: new Map(),
             fragment: '',
         })
-        const expected = new Url({
+        const expected = new RipeUrl({
             protocol: 'https',
             hostname: 'url.com',
             port: '',
@@ -56,7 +56,7 @@ describe('urlReducer', () => {
     })
 
     it('replaces only the hostname on HOSTNAME action', () => {
-        const current = new Url({
+        const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url1.com',
             port: '',
@@ -64,7 +64,7 @@ describe('urlReducer', () => {
             query: new Map(),
             fragment: '',
         })
-        const expected = new Url({
+        const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url2.com',
             port: '',
@@ -85,7 +85,7 @@ describe('urlReducer', () => {
     })
 
     it('replaces only the port on PORT action', () => {
-        const current = new Url({
+        const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '1000',
@@ -93,7 +93,7 @@ describe('urlReducer', () => {
             query: new Map(),
             fragment: '',
         })
-        const expected = new Url({
+        const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '2000',
@@ -114,7 +114,7 @@ describe('urlReducer', () => {
     })
 
     it('replaces only the path on PATH action', () => {
-        const current = new Url({
+        const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '',
@@ -122,7 +122,7 @@ describe('urlReducer', () => {
             query: new Map(),
             fragment: '',
         })
-        const expected = new Url({
+        const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '',
@@ -143,7 +143,7 @@ describe('urlReducer', () => {
     })
 
     it('replaces only the fragment on FRAGMENT action', () => {
-        const current = new Url({
+        const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '',
@@ -151,7 +151,7 @@ describe('urlReducer', () => {
             query: new Map(),
             fragment: 'f1',
         })
-        const expected = new Url({
+        const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '',
@@ -172,7 +172,7 @@ describe('urlReducer', () => {
     })
 
     it('replaces the given query param value on QUERY action', () => {
-        const current = new Url({
+        const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '',
@@ -183,7 +183,7 @@ describe('urlReducer', () => {
             ]),
             fragment: 'f1',
         })
-        const expected = new Url({
+        const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '',
@@ -213,7 +213,7 @@ describe('urlReducer', () => {
     })
 
     it('ignores the given query param value on QUERY action if query key is not in current URL', () => {
-        const current = new Url({
+        const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '',
@@ -224,7 +224,7 @@ describe('urlReducer', () => {
             ]),
             fragment: 'f1',
         })
-        const expected = new Url({
+        const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '',
@@ -254,7 +254,7 @@ describe('urlReducer', () => {
     })
 
     it('returns the current URL on an unknown action', () => {
-        const current = new Url({
+        const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
             port: '',

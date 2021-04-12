@@ -1,4 +1,4 @@
-export class Url {
+export class RipeUrl {
     constructor(config) {
         this.raw = config.raw;
         this.protocol = config.protocol;

@@ -1,8 +1,8 @@
-import { Url } from './types'
+import { RipeUrl } from './types'
 
 export const urlReducer = (url, action) => {
     if (action.type === 'PROTOCOL') {
-        return new Url({
+        return new RipeUrl({
             protocol: action.payload,
             hostname: url.hostname,
             port: url.port,
@@ -12,7 +12,7 @@ export const urlReducer = (url, action) => {
         });
     }
     if (action.type === 'HOSTNAME') {
-        return new Url({
+        return new RipeUrl({
             protocol: url.protocol,
             hostname: action.payload,
             port: url.port,
@@ -22,7 +22,7 @@ export const urlReducer = (url, action) => {
         });
     }
     if (action.type === 'PORT') {
-        return new Url({
+        return new RipeUrl({
             protocol: url.protocol,
             hostname: url.hostname,
             port: action.payload,
@@ -32,7 +32,7 @@ export const urlReducer = (url, action) => {
         });
     }
     if (action.type === 'PATH') {
-        return new Url({
+        return new RipeUrl({
             protocol: url.protocol,
             hostname: url.hostname,
             port: url.port,
@@ -42,7 +42,7 @@ export const urlReducer = (url, action) => {
         });
     }
     if (action.type === 'FRAGMENT') {
-        return new Url({
+        return new RipeUrl({
             protocol: url.protocol,
             hostname: url.hostname,
             port: url.port,
@@ -57,7 +57,7 @@ export const urlReducer = (url, action) => {
         if (newQuery.has(key)) {
             newQuery.set(key, value);
         }
-        return new Url({
+        return new RipeUrl({
             protocol: url.protocol,
             hostname: url.hostname,
             port: url.port,

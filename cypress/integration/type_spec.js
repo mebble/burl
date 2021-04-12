@@ -1,5 +1,5 @@
 import { emptyUrl } from '../../src/url'
-import { Url } from '../../src/types'
+import { RipeUrl } from '../../src/types'
 
 describe('Url', () => {
     describe('toString', () => {
@@ -10,7 +10,7 @@ describe('Url', () => {
         })
 
         it('should return the raw string and not the parsed URL of a bad URL', () => {
-            const url = new Url({
+            const url = new RipeUrl({
                 raw: 'some-raw-string',
                 isBad: true,
                 protocol: 'http',
@@ -25,7 +25,7 @@ describe('Url', () => {
         })
 
         it('should return the parsed URL and not the raw string of a valid URL', () => {
-            const url = new Url({
+            const url = new RipeUrl({
                 raw: 'http://example.com/path',
                 isBad: false,
                 protocol: 'http',
@@ -40,7 +40,7 @@ describe('Url', () => {
         })
 
         it('should return the string of a URL having only mandatory fields', () => {
-            const url = new Url({
+            const url = new RipeUrl({
                 raw: 'http://example.com/path',
                 protocol: 'http',
                 hostname: 'example.com',
@@ -54,7 +54,7 @@ describe('Url', () => {
         })
 
         it('should return the string of a URL having all fields', () => {
-            const url = new Url({
+            const url = new RipeUrl({
                 raw: 'http://example.com:9000/path?a=cat&b=dog#foo',
                 protocol: 'http',
                 hostname: 'example.com',
@@ -71,7 +71,7 @@ describe('Url', () => {
         })
 
         it('should not have a trailing root path if the raw string does not', () => {
-            const url = new Url({
+            const url = new RipeUrl({
                 raw: 'http://example.com',
                 protocol: 'http',
                 hostname: 'example.com',
@@ -85,7 +85,7 @@ describe('Url', () => {
         })
 
         it('should have a trailing root path if the raw string does', () => {
-            const url = new Url({
+            const url = new RipeUrl({
                 raw: 'http://example.com/',
                 protocol: 'http',
                 hostname: 'example.com',
@@ -99,7 +99,7 @@ describe('Url', () => {
         })
 
         it('should have a trailing port colon if the raw string does', () => {
-            const url = new Url({
+            const url = new RipeUrl({
                 raw: 'http://example.com:',
                 protocol: 'http',
                 hostname: 'example.com',
@@ -113,7 +113,7 @@ describe('Url', () => {
         })
 
         it('should have a port colon if the raw string does and subsequent tokens exist', () => {
-            const url = new Url({
+            const url = new RipeUrl({
                 raw: 'http://example.com:/path',
                 protocol: 'http',
                 hostname: 'example.com',
@@ -127,7 +127,7 @@ describe('Url', () => {
         })
 
         it('should have the implicit port even if the protocol infers it: http', () => {
-            const url = new Url({
+            const url = new RipeUrl({
                 raw: 'http://example.com:80/path',
                 protocol: 'http',
                 hostname: 'example.com',
@@ -141,7 +141,7 @@ describe('Url', () => {
         })
 
         it('should have the implicit port even if the protocol infers it: https', () => {
-            const url = new Url({
+            const url = new RipeUrl({
                 raw: 'https://example.com:443/path',
                 protocol: 'https',
                 hostname: 'example.com',
@@ -155,7 +155,7 @@ describe('Url', () => {
         })
 
         it('should have a query question mark if the raw string does but query is empty', () => {
-            const url = new Url({
+            const url = new RipeUrl({
                 raw: 'http://example.com/path?#foo',
                 protocol: 'http',
                 hostname: 'example.com',
