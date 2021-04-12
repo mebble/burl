@@ -48,7 +48,7 @@ export default function Home() {
                 <h1 className={styles.title}>bURL</h1>
                 <input name="url" value={url.toString()} type="text" onChange={e => send(action('REPLACE', parseUrl(e.target.value)))} />
                 <p className="prompt">{
-                    url.raw === ''
+                    url.toString() === ''
                         ? prompt.intro
                         : (url.isBad
                             ? prompt.invalid

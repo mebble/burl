@@ -1,31 +1,27 @@
 export class RipeUrl {
     constructor(config) {
-        this.raw = config.raw;
         this.protocol = config.protocol;
         this.hostname = config.hostname;
         this.port = config.port;
         this.path = config.path;
         this.query = config.query;
         this.fragment = config.fragment;
-        this.isBad = config.isBad;
+        this.isBad = config.isBad;  // TODO: remove
     }
 
     toString() {
-        if (this.isBad) {
-            return this.raw;
-        }
         if (!this._mandatoryFieldsPresent()) {
             return '';
         }
 
         let string = `${this.protocol}://${this.hostname}`;
-        if (this.port || this._hasPortColon()) {
+        if (this.port) {
             string += `:${this.port}`;
         }
-        if (this.path !== '/' || this.raw.endsWith('/')) {
+        if (this.path !== '/') {
             string += this.path;
         }
-        if (this.query.size > 0 || this._hasQueryMark()) {
+        if (this.query.size > 0) {
             string += `?${this._toQueryString()}`;
         }
         if (this.fragment) {
@@ -47,16 +43,6 @@ export class RipeUrl {
                     ? pair
                     : acc + '&' + pair;
             }, '');
-    }
-
-    _hasPortColon() {
-        const [ _, afterHostname ] = this.raw.split(this.hostname);
-        return afterHostname[0] === ':';
-    }
-
-    _hasQueryMark() {
-        const [ _, afterPath ] = this.raw.split(this.path);
-        return afterPath[0] === '?';
     }
 }
 
