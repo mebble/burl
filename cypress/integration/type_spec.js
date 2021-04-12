@@ -1,7 +1,7 @@
 import { emptyUrl } from '../../src/url'
-import { RipeUrl } from '../../src/types'
+import { RipeUrl, RawUrl } from '../../src/types'
 
-describe('Url', () => {
+describe('RipeUrl', () => {
     describe('toString', () => {
         it('should return an empty string for an empty URL', () => {
             const url = emptyUrl()
@@ -166,6 +166,25 @@ describe('Url', () => {
             })
 
             expect(url.toString()).to.equal('http://example.com/path?#foo')
+        })
+    })
+})
+
+describe('RawUrl', () => {
+    describe('toString', () => {
+        it('should return the raw string regardless of the url fields', () => {
+            const url = new RawUrl({
+                raw: 'some-raw-string',
+                isBad: true,
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '',
+                path: '/path',
+                query: new Map(),
+                fragment: '',
+            })
+
+            expect(url.toString()).to.equal('some-raw-string')
         })
     })
 })

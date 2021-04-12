@@ -59,3 +59,20 @@ export class RipeUrl {
         return afterPath[0] === '?';
     }
 }
+
+export class RawUrl {
+    constructor(config) {
+        this.raw = config.raw;
+        this.protocol = config.protocol;
+        this.hostname = config.hostname;
+        this.port = config.port;
+        this.path = config.path;
+        this.query = config.query;
+        this.fragment = config.fragment;
+        this.isBad = config.isBad;
+    }
+
+    toString() {
+        return this.raw;
+    }
+}
