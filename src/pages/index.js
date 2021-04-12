@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
@@ -9,34 +9,14 @@ import { urlReducer, action } from '../reducers';
 
 export default function Home() {
     const [ url, send ] = useReducer(urlReducer, emptyUrl());
-    const [urlInput, setUrl] = useState('');
     const disableFields = url.isBad || url.toString() === '';
 
     useEffect(() => {
         const appParams = getQueryParams(window.location.search);
         if (appParams.has('u')) {
-            setUrl(appParams.get('u'));
             send(action('REPLACE', parseUrl(appParams.get('u'))))
         }
     }, []);
-
-    // const [url, send] = useReducer(urlReducer, emptyUrl())
-    // const [urlInput, setUrlInput] = useState('')
-
-    // useEffect(() => {
-    //     if (!url.isEmpty()) {
-    //         setUrlInput(url.toString())
-    //     }
-    // }, [url])
-
-    // useEffect(() => {
-    //     try {
-    //         url = parse(urlInput)
-    //     } catch () {
-    //         url = emptyUrl()
-    //     }
-    //     send(action('REPLACE', url))
-    // }, [urlInput])
 
     return (
         <div className={styles.container}>
