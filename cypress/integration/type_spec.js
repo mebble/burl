@@ -81,6 +81,11 @@ describe('RipeUrl', () => {
 
             expect(url.isBad()).to.be.false
         })
+
+        it('should be true when protocol field is not http')
+        it('should be true when protocol field is not https')
+        it('should be true when port field is greater than max port value')
+        it('should be true when port field has non numeric characters')
     })
 })
 
