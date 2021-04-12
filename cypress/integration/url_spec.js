@@ -176,12 +176,12 @@ describe('parseUrl', () => {
         expect(url instanceof RawUrl).to.be.true
     });
 
-    it('should return url with raw string when input is an invalid url', () => {
+    it('should return url with string equal to the input when input is an invalid url', () => {
         const urlString = 'some-invalid-url'
 
         const url = parseUrl(urlString)
 
-        expect(url.raw).to.equal(urlString)
+        expect(url.toString()).to.equal(urlString)
     });
 
     it('should return a RawUrl when url is valid', () => {
@@ -207,12 +207,12 @@ describe('parseUrl', () => {
         expect(url.fragment).to.equal('foo')
     });
 
-    it('should return url with raw string when url is valid and has all fields', () => {
+    it('should return url with string equal to the input when url is valid and has all fields', () => {
         const urlString = 'http://example.com:9000/path?a=cat&b=dog#foo'
 
         const url = parseUrl(urlString)
 
-        expect(url.raw).to.equal(urlString)
+        expect(url.toString()).to.equal(urlString)
     });
 
     it('should set the explicitly given port even if the protocol infers it: http', () => {
@@ -290,7 +290,7 @@ describe('badUrl', () => {
         expect(url instanceof RawUrl).to.be.true
     })
 
-    it('should return url with empty fields and raw string', () => {
+    it('should return url with empty fields and a string equal to the input', () => {
         const url = badUrl('some-bad-url-value')
 
         expect(url.protocol).to.equal('')
@@ -299,7 +299,8 @@ describe('badUrl', () => {
         expect(url.path).to.equal('')
         expect(url.query.size).to.equal(0)
         expect(url.fragment).to.equal('')
-        expect(url.raw).to.equal('some-bad-url-value')
+
+        expect(url.toString()).to.equal('some-bad-url-value')
     })
 
     it('should return url with bad boolean true', () => {

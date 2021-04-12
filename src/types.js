@@ -48,7 +48,7 @@ export class RipeUrl {
 
 export class RawUrl {
     constructor(config) {
-        this.raw = config.raw;
+        this._raw = config.raw;
         this.protocol = config.protocol;
         this.hostname = config.hostname;
         this.port = config.port;
@@ -59,6 +59,6 @@ export class RawUrl {
     }
 
     toString() {
-        return this.raw;
+        return this._raw;
     }
 }
