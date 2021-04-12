@@ -65,3 +65,23 @@ describe('typing into URL input', () => {
             .each(assertQueryParams(cy, expectedQueryParams))
     })
 })
+
+describe('editing one of the URL fields', () => {
+    before(() => {
+        cy.visit('/')
+    })
+    beforeEach(() => {
+        cy.get('input[name="url"]')
+            .clear()
+            .type('http://example.com:80/path?a=cat&b=dog#foo')
+    })
+
+    it('should update the protocol field and url input when the protocol is edited', () => {
+        cy.get('input[name="protocol"]')
+            .type('s')
+            .should('have.value', 'https')
+
+        cy.get('input[name="url"]')
+            .should('have.value', 'https://example.com:80/path?a=cat&b=dog#foo')
+    })
+})

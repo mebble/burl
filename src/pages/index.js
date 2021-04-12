@@ -46,7 +46,7 @@ export default function Home() {
             </Head>
             <main className={styles.main}>
                 <h1 className={styles.title}>bURL</h1>
-                <input name="url" value={url.raw} type="text" onChange={e => send(action('REPLACE', parseUrl(e.target.value)))} />
+                <input name="url" value={url.toString()} type="text" onChange={e => send(action('REPLACE', parseUrl(e.target.value)))} />
                 <p className="prompt">{
                     url.raw === ''
                         ? prompt.intro
@@ -54,7 +54,7 @@ export default function Home() {
                             ? prompt.invalid
                             : prompt.done)
                 }</p>
-                <UrlField name="protocol" value={url.protocol} disabled={disableFields} />
+                <UrlField name="protocol" value={url.protocol} onChange={e => send(action('PROTOCOL', e.target.value))} disabled={disableFields} />
                 <UrlField name="hostname" value={url.hostname} disabled={disableFields} />
                 <UrlField name="port" value={url.port} disabled={disableFields} />
                 <UrlField name="path" value={url.path} disabled={disableFields} />

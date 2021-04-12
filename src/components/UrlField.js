@@ -1,7 +1,7 @@
-export default function UrlField({ name, value, disabled }) {
+export default function UrlField({ name, value, disabled, onChange }) {
     return (
         <label>
-            {name} <input name={name} value={value} type="text" disabled={disabled} />
+            {name} <input name={name} value={value} onChange={onChange} type="text" disabled={disabled} />
         </label>
     );
 }
