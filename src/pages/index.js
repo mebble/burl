@@ -61,7 +61,7 @@ export default function Home() {
                 <ul className="query">{
                     Array.from(url.query).map(([ key, val ]) => (
                         <li key={key}>
-                            <UrlField name={key} value={val} disabled={disableFields} />
+                            <UrlField name={key} value={val} onChange={e => send(action('QUERY', { key, value: e.target.value }))} disabled={disableFields} />
                         </li>
                     ))
                 }</ul>

@@ -112,6 +112,15 @@ describe('editing one of the URL fields', () => {
             .should('have.value', 'http://example.com:80/path/subpath?a=cat&b=dog#foo')
     })
 
+    it('should update the value of the query param field and url input when a query param value is edited', () => {
+        cy.get('input[name="a"]')
+            .type('nap')
+            .should('have.value', 'catnap')
+
+        cy.get('input[name="url"]')
+            .should('have.value', 'http://example.com:80/path?a=catnap&b=dog#foo')
+    })
+
     it('should update the fragment field and url input when the fragment is edited', () => {
         cy.get('input[name="fragment"]')
             .type('bar')
