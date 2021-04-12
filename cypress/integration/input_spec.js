@@ -102,4 +102,13 @@ describe('editing one of the URL fields', () => {
         cy.get('input[name="url"]')
             .should('have.value', 'http://example.com:8008/path?a=cat&b=dog#foo')
     })
+
+    it('should update the path field and url input when the path is edited', () => {
+        cy.get('input[name="path"]')
+            .type('/subpath')
+            .should('have.value', '/path/subpath')
+
+        cy.get('input[name="url"]')
+            .should('have.value', 'http://example.com:80/path/subpath?a=cat&b=dog#foo')
+    })
 })
