@@ -65,7 +65,7 @@ export default function Home() {
                         </li>
                     ))
                 }</ul>
-                <UrlField name="fragment" value={url.fragment} disabled={disableFields} />
+                <UrlField name="fragment" value={url.fragment} onChange={e => send(action('FRAGMENT', e.target.value))} disabled={disableFields} />
             </main>
         </div>
     )

@@ -111,4 +111,13 @@ describe('editing one of the URL fields', () => {
         cy.get('input[name="url"]')
             .should('have.value', 'http://example.com:80/path/subpath?a=cat&b=dog#foo')
     })
+
+    it('should update the fragment field and url input when the fragment is edited', () => {
+        cy.get('input[name="fragment"]')
+            .type('bar')
+            .should('have.value', 'foobar')
+
+        cy.get('input[name="url"]')
+            .should('have.value', 'http://example.com:80/path?a=cat&b=dog#foobar')
+    })
 })
