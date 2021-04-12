@@ -56,7 +56,7 @@ export default function Home() {
                 }</p>
                 <UrlField name="protocol" value={url.protocol} onChange={e => send(action('PROTOCOL', e.target.value))} disabled={disableFields} />
                 <UrlField name="hostname" value={url.hostname} onChange={e => send(action('HOSTNAME', e.target.value))}  disabled={disableFields} />
-                <UrlField name="port" value={url.port} disabled={disableFields} />
+                <UrlField name="port" value={url.port} onChange={e => send(action('PORT', e.target.value))} disabled={disableFields} />
                 <UrlField name="path" value={url.path} disabled={disableFields} />
                 <ul className="query">{
                     Array.from(url.query).map(([ key, val ]) => (

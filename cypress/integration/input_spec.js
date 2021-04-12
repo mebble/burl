@@ -93,4 +93,13 @@ describe('editing one of the URL fields', () => {
         cy.get('input[name="url"]')
             .should('have.value', 'http://example.comcom:80/path?a=cat&b=dog#foo')
     })
+
+    it('should update the port field and url input when the port is edited', () => {
+        cy.get('input[name="port"]')
+            .type('08')
+            .should('have.value', '8008')
+
+        cy.get('input[name="url"]')
+            .should('have.value', 'http://example.com:8008/path?a=cat&b=dog#foo')
+    })
 })
