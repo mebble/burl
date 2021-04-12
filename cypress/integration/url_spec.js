@@ -1,3 +1,4 @@
+import { RawUrl } from '../../src/types'
 import { getQueryParams, isHttpUrl, parseUrl, emptyUrl, badUrl } from '../../src/url'
 
 describe('getQueryParams', () => {
@@ -277,6 +278,12 @@ describe('emptyUrl', () => {
 })
 
 describe('badUrl', () => {
+    it('should return a RawUrl', () => {
+        const url = badUrl('some-bad-url-value')
+
+        expect(url instanceof RawUrl).to.be.true
+    })
+
     it('should return url with empty fields and raw string', () => {
         const url = badUrl('some-bad-url-value')
 

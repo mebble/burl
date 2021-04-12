@@ -1,4 +1,4 @@
-import { RipeUrl } from './types';
+import { RawUrl, RipeUrl } from './types';
 import { emptyIfBlank } from './utils';
 
 export const getQueryParams = (url) => {
@@ -69,7 +69,7 @@ export const emptyUrl = () => {
 };
 
 export const badUrl = (raw) => {
-    return new RipeUrl({
+    return new RawUrl({
         raw: raw,
         protocol: '',
         hostname: '',
