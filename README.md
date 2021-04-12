@@ -43,6 +43,16 @@ yarn cypress:open
 
 In the Cypress runner, select the test file you want to run. This test will be run in a Cypress-controlled browser. Then as you update your tests and the corresponding application code, you can re-run the tests from the Cypress browser.
 
+Before committing your code, run all the tests of the application
+
+```bash
+# with npm
+npm run cypress:run
+
+# with yarn
+yarn cypress:run
+```
+
 ## TODOs
 
 - Critical
