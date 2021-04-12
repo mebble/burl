@@ -22,7 +22,7 @@ describe('getQueryParams', () => {
         expect(params).to.deep.equal(new Map())
     })
 
-    it.skip('should return an empty map for a URL with a trailing query string separator and a fragment', () => {
+    it('should return an empty map for a URL with a trailing query string separator and a fragment', () => {
         const params = getQueryParams('http://example.com/some/path?#foo')
         expect(params).to.deep.equal(new Map())
     })
@@ -240,16 +240,6 @@ describe('parseUrl', () => {
 
         expect(url.path).to.equal('/path')
         expect(url.query.size).to.equal(0)
-    });
-
-    it.skip('should ignore the trailing query string separator of a url having a fragment', () => {
-        const urlString = 'http://example.com:80/path?#foo'
-
-        const url = parseUrl(urlString)
-
-        expect(url.path).to.equal('/path')
-        expect(url.query.size).to.equal(0)
-        expect(url.fragment).to.equal('foo')
     });
 
     it('should set a root path for a url having no path', () => {

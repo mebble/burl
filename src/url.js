@@ -8,8 +8,9 @@ export const getQueryParams = (url) => {
 
     const query = url.split(/\?(.+)/)[1].split('#')[0];
     const queryList = query.split('&')
-        .map(pair => {
-            const [ key, val ] = pair.split(/=(.*)/);
+        .filter(token => token.length > 0)
+        .map(token => {
+            const [ key, val ] = token.split(/=(.*)/);
             return [ key, emptyIfBlank(val) ];
         });
 
