@@ -63,6 +63,19 @@ describe('RipeUrl', () => {
 
             expect(url.toString()).to.equal('https://example.com:443/path')
         })
+
+        it('should have the path if it is a root path', () => {
+            const url = new RipeUrl({
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '',
+                path: '/',
+                query: new Map(),
+                fragment: '',
+            })
+
+            expect(url.toString()).to.equal('http://example.com/')
+        })
     })
 
     describe('isBad', () => {

@@ -17,7 +17,7 @@ export class RipeUrl {
         if (this.port) {
             string += `:${this.port}`;
         }
-        if (this.path !== '/') {
+        if (this.path) {
             string += this.path;
         }
         if (this.query.size > 0) {
