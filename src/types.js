@@ -35,7 +35,7 @@ export class RipeUrl {
     }
 
     _mandatoryFieldsPresent() {
-        return this.protocol && this.hostname && this.path;
+        return this.protocol && this.hostname;
     }
 
     _toQueryString() {

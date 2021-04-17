@@ -14,12 +14,12 @@ describe('RipeUrl', () => {
                 protocol: 'http',
                 hostname: 'example.com',
                 port: '',
-                path: '/path',
+                path: '',
                 query: new Map(),
                 fragment: '',
             })
 
-            expect(url.toString()).to.equal('http://example.com/path')
+            expect(url.toString()).to.equal('http://example.com')
         })
 
         it('should return the string of a URL having all fields', () => {
