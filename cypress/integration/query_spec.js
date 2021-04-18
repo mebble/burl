@@ -36,6 +36,9 @@ describe('adding new query param', () => {
                 .should('have.length', expectedQueryParams.length)
                 .each(assertQueryParams(cy, expectedQueryParams))
 
+            cy.get('input[name="url"]')
+                .should('have.value', 'http://e.com/?a=cat&b=dog&c=dinosaur')
+
             cy.get('form.query-form').within(() => {
                 cy.get(`input[name="${queryAddNames.key}"]`)
                     .should('have.value', '')
