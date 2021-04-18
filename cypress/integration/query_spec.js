@@ -85,7 +85,7 @@ describe('adding new query param', () => {
     })
 
     context('with an empty key', () => {
-        it('should add a query param and then clear the form inputs')
+        it('should not add a query param and not clear the form inputs')
     })
 })
 
