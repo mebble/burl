@@ -46,7 +46,7 @@ export default function Home() {
                         </li>
                     ))
                 }</ul>
-                <QueryForm disabled={disableFields} />
+                <QueryForm disabled={disableFields} onSubmit={({ newKey, newValue }) => send(action('QUERY_ADD', { key: newKey, value: newValue }))} />
                 <UrlField name="fragment" value={url.fragment} onChange={e => send(action('FRAGMENT', e.target.value))} disabled={disableFields} />
             </main>
         </div>

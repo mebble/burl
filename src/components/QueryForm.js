@@ -1,9 +1,20 @@
-export default function QueryForm({ disabled }) {
+import { useState } from 'react';
+
+export default function QueryForm({ disabled, onSubmit }) {
+    const [ key, setKey ] = useState('');
+    const [ value, setValue ] = useState('');
+
+    const handleSubmit = () => {
+        onSubmit({ newKey: key, newValue: value })
+        setKey('')
+        setValue('')
+    };
+
     return (
         <form class="query-form">
-            <input name="new-query-key" type="text" disabled={disabled} />
-            <input name="new-query-value" type="text" disabled={disabled} />
-            <button type="button" disabled>Add</button>
+            <input name="new-query-key" value={key} type="text" onChange={e => setKey(e.target.value)} disabled={disabled} />
+            <input name="new-query-value" value={value} type="text" onChange={e => setValue(e.target.value)} disabled={disabled} />
+            <button type="button" disabled={disabled} onClick={handleSubmit}>Add</button>
         </form>
     );
 }
