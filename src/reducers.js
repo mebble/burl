@@ -69,7 +69,7 @@ export const urlReducer = (url, action) => {
     if (action.type === 'QUERY_ADD') {
         const { key, value } = action.payload;
         const newQuery = new Map(url.query);
-        if (!newQuery.has(key)) {
+        if (key && !newQuery.has(key)) {
             newQuery.set(key, value);
         }
         return new RipeUrl({
