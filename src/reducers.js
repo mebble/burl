@@ -66,6 +66,19 @@ export const urlReducer = (url, action) => {
             fragment: url.fragment,
         });
     }
+    if (action.type === 'QUERY_ADD') {
+        const { key, value } = action.payload;
+        const newQuery = new Map(url.query);
+        newQuery.set(key, value);
+        return new RipeUrl({
+            protocol: url.protocol,
+            hostname: url.hostname,
+            port: url.port,
+            path: url.path,
+            query: newQuery,
+            fragment: url.fragment,
+        });
+    }
     if (action.type === 'REPLACE') {
         return action.payload;
     }
