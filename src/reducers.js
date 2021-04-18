@@ -82,12 +82,15 @@ export const urlReducer = (url, action) => {
         });
     }
     if (action.type === 'QUERY_REMOVE') {
+        const key = action.payload;
+        const newQuery = new Map(url.query);
+        newQuery.delete(key);
         return new RipeUrl({
             protocol: url.protocol,
             hostname: url.hostname,
             port: url.port,
             path: url.path,
-            query: url.query,
+            query: newQuery,
             fragment: url.fragment,
         })
     }
