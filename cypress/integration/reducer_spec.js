@@ -257,7 +257,7 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
-    it('returns a RipeUrl on QUERY action', () => {
+    it('returns a RipeUrl on QUERY_UPDATE action', () => {
         const current = new RawUrl({
             raw: 'some-raw-string',
             protocol: 'http',
@@ -267,14 +267,14 @@ describe('urlReducer', () => {
             query: new Map(),
             fragment: '',
         })
-        const action = { type: 'QUERY', payload: {} }
+        const action = { type: 'QUERY_UPDATE', payload: {} }
 
         const newUrl = urlReducer(current, action)
 
         expect(newUrl instanceof RipeUrl).to.be.true
     })
 
-    it('replaces the given query param value on QUERY action', () => {
+    it('replaces the given query param value on QUERY_UPDATE action', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
@@ -298,7 +298,7 @@ describe('urlReducer', () => {
             fragment: 'f1',
         })
         const action = {
-            type: 'QUERY',
+            type: 'QUERY_UPDATE',
             payload: {
                 key: 'a',
                 value: 'camel'
@@ -315,7 +315,7 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
-    it('ignores the given query param value on QUERY action if query key is not in current URL', () => {
+    it('ignores the given query param value on QUERY_UPDATE action if query key is not in current URL', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
@@ -339,7 +339,7 @@ describe('urlReducer', () => {
             fragment: 'f1',
         })
         const action = {
-            type: 'QUERY',
+            type: 'QUERY_UPDATE',
             payload: {
                 key: 'c',
                 value: 'camel'
@@ -379,7 +379,7 @@ describe('urlReducer', () => {
             ]),
             fragment: 'f1',
         })
-        const action = { type: 'QUERY', payload: {} }
+        const action = { type: 'QUERY_UPDATE', payload: {} }
 
         const newUrl = urlReducer(current, action)
 

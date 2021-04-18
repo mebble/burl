@@ -51,7 +51,7 @@ export const urlReducer = (url, action) => {
             fragment: action.payload,
         });
     }
-    if (action.type === 'QUERY') {
+    if (action.type === 'QUERY_UPDATE') {
         const { key, value } = action.payload;
         const newQuery = new Map(url.query);
         if (newQuery.has(key)) {
