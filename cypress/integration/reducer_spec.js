@@ -394,6 +394,23 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
+    it('returns a RipeUrl on QUERY_ADD action', () => {
+        const current = new RawUrl({
+            raw: 'some-raw-string',
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map(),
+            fragment: '',
+        })
+        const action = { type: 'QUERY_ADD', payload: {} }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl instanceof RipeUrl).to.be.true
+    })
+
     it('sets a new key-value pair on QUERY_ADD action when the key is new', () => {
         const current = new RipeUrl({
             protocol: 'http',
