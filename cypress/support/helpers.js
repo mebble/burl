@@ -12,3 +12,8 @@ export const fieldNames = [
     'path',
     'fragment',
 ]
+
+export const queryAddNames = {
+    key: 'new-query-key',
+    value: 'new-query-value'
+};

@@ -1,5 +1,5 @@
 import { prompt } from '../../src/constants'
-import { assertQueryParams, fieldNames } from '../support/helpers'
+import { assertQueryParams, fieldNames, queryAddNames } from '../support/helpers'
 
 describe('app visit', () => {
     context('without query string', () => {
@@ -23,9 +23,9 @@ describe('app visit', () => {
             cy.visit('/')
 
             cy.get('form.query-add').within(() => {
-                cy.get('input[name="new-query-key"]')
+                cy.get(`input[name="${queryAddNames.key}"]`)
                     .should('have.value', '')
-                cy.get('input[name="new-query-value"]')
+                cy.get(`input[name="${queryAddNames.value}"]`)
                     .should('have.value', '')
                 cy.get('button').should('have.text', 'Add')
             })
