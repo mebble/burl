@@ -3,7 +3,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
 import UrlField from '../components/UrlField';
-import QueryAdd from '../components/QueryAdd';
+import QueryForm from '../components/QueryForm';
 import { emptyUrl, getQueryParams, parseUrl } from '../url';
 import { prompt } from '../constants';
 import { urlReducer, action } from '../reducers';
@@ -46,7 +46,7 @@ export default function Home() {
                         </li>
                     ))
                 }</ul>
-                <QueryAdd />
+                <QueryForm />
                 <UrlField name="fragment" value={url.fragment} onChange={e => send(action('FRAGMENT', e.target.value))} disabled={disableFields} />
             </main>
         </div>

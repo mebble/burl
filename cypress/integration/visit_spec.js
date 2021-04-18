@@ -19,10 +19,10 @@ describe('app visit', () => {
                 .should('not.have.descendants', 'li')
         })
 
-        it('should contain the query add form', () => {
+        it('should contain the query form', () => {
             cy.visit('/')
 
-            cy.get('form.query-add').within(() => {
+            cy.get('form.query-form').within(() => {
                 cy.get(`input[name="${queryAddNames.key}"]`)
                     .should('have.value', '')
                 cy.get(`input[name="${queryAddNames.value}"]`)
