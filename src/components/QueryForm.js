@@ -5,13 +5,13 @@ export default function QueryForm({ disabled, onSubmit }) {
     const [ value, setValue ] = useState('');
 
     const handleSubmit = () => {
-        onSubmit({ newKey: key, newValue: value })
-        setKey('')
-        setValue('')
+        onSubmit({ newKey: key, newValue: value });
+        setKey('');
+        setValue('');
     };
 
     return (
-        <form class="query-form">
+        <form className="query-form">
             <input name="new-query-key" value={key} type="text" onChange={e => setKey(e.target.value)} disabled={disabled} />
             <input name="new-query-value" value={value} type="text" onChange={e => setValue(e.target.value)} disabled={disabled} />
             <button type="button" disabled={disabled} onClick={handleSubmit}>Add</button>
