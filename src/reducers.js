@@ -81,6 +81,16 @@ export const urlReducer = (url, action) => {
             fragment: url.fragment,
         });
     }
+    if (action.type === 'QUERY_REMOVE') {
+        return new RipeUrl({
+            protocol: url.protocol,
+            hostname: url.hostname,
+            port: url.port,
+            path: url.path,
+            query: url.query,
+            fragment: url.fragment,
+        })
+    }
     if (action.type === 'REPLACE') {
         return action.payload;
     }

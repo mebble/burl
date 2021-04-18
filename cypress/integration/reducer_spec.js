@@ -532,6 +532,96 @@ describe('urlReducer', () => {
         expect(newUrl.fragment).to.equal(expected.fragment)
     })
 
+    it('returns a RipeUrl on QUERY_REMOVE action', () => {
+        const current = new RawUrl({
+            raw: 'some-raw-string',
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map([
+                ['a', 'cat'],
+                ['b', 'dog'],
+            ]),
+            fragment: '',
+        })
+        const action = { type: 'QUERY_REMOVE', payload: {} }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl instanceof RipeUrl).to.be.true
+    })
+
+    it('keeps the current query on QUERY_REMOVE action if query key is not in current URL', () => {
+        const current = new RipeUrl({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map([
+                ['a', 'cat'],
+                ['b', 'dog'],
+            ]),
+            fragment: 'f1',
+        })
+        const expected = new RipeUrl({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map([
+                ['a', 'cat'],
+                ['b', 'dog'],
+            ]),
+            fragment: 'f1',
+        })
+        const action = { type: 'QUERY_REMOVE', payload: 'c' }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl.protocol).to.equal(expected.protocol)
+        expect(newUrl.hostname).to.equal(expected.hostname)
+        expect(newUrl.port).to.equal(expected.port)
+        expect(newUrl.path).to.equal(expected.path)
+        expect(newUrl.query).to.deep.equal(expected.query)
+        expect(newUrl.fragment).to.equal(expected.fragment)
+    })
+
+    it('keeps the current query if key is undefined on QUERY_REMOVE action', () => {
+        const current = new RipeUrl({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map([
+                ['a', 'cat'],
+                ['b', 'dog'],
+            ]),
+            fragment: 'f1',
+        })
+        const expected = new RipeUrl({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map([
+                ['a', 'cat'],
+                ['b', 'dog'],
+            ]),
+            fragment: 'f1',
+        })
+        const action = { type: 'QUERY_REMOVE', payload: undefined }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl.protocol).to.equal(expected.protocol)
+        expect(newUrl.hostname).to.equal(expected.hostname)
+        expect(newUrl.port).to.equal(expected.port)
+        expect(newUrl.path).to.equal(expected.path)
+        expect(newUrl.query).to.deep.equal(expected.query)
+        expect(newUrl.fragment).to.equal(expected.fragment)
+    })
+
     it('returns the current URL on an unknown action', () => {
         const current = new RipeUrl({
             protocol: 'http',
