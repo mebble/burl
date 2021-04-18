@@ -18,6 +18,18 @@ describe('app visit', () => {
             cy.get('.query')
                 .should('not.have.descendants', 'li')
         })
+
+        it('should contain the query add form', () => {
+            cy.visit('/')
+
+            cy.get('form.query-add').within(() => {
+                cy.get('input[name="new-query-key"]')
+                    .should('have.value', '')
+                cy.get('input[name="new-query-value"]')
+                    .should('have.value', '')
+                cy.get('button').should('have.text', 'Add')
+            })
+        })
     })
 
     context('with invalid URL in query string', () => {
