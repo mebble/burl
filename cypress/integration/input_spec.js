@@ -1,5 +1,5 @@
 import { prompt } from '../../src/constants'
-import { assertQueryParams, fieldNames } from '../support/helpers'
+import { assertQueryParams, fieldNames, queryAddNames } from '../support/helpers'
 
 describe('typing into URL input', () => {
     before(() => {
@@ -9,7 +9,7 @@ describe('typing into URL input', () => {
         cy.get('input[name="url"]').clear()
     })
 
-    it('should show invalid prompt and empty disabled URL fields when invalid URL is typed', () => {
+    it('should show invalid prompt, empty disabled URL fields and query form when invalid URL is typed', () => {
         cy.get('input[name="url"]')
             .type('Hey hello')
 
@@ -20,9 +20,20 @@ describe('typing into URL input', () => {
                 .should('have.value', '')
                 .and('be.disabled')
         })
+        cy.get('form.query-form').within(() => {
+            cy.get(`input[name="${queryAddNames.key}"]`)
+                .should('have.value', '')
+                .and('be.disabled')
+            cy.get(`input[name="${queryAddNames.value}"]`)
+                .should('have.value', '')
+                .and('be.disabled')
+            cy.get('button')
+                .should('have.text', 'Add')
+                .and('be.disabled')
+        })
     })
 
-    it('should show good prompt and filled editable URL fields when valid URL is typed', () => {
+    it('should show good prompt and filled editable URL fields and query form when valid URL is typed', () => {
         const expectedQueryParams = [
             ['a', 'cat'],
             ['b', 'dog'],
@@ -50,6 +61,18 @@ describe('typing into URL input', () => {
             .each(assertQueryParams(cy, expectedQueryParams))
         cy.get('input[name="fragment"]')
             .should('have.value', 'foo')
+
+        cy.get('form.query-form').within(() => {
+            cy.get(`input[name="${queryAddNames.key}"]`)
+                .should('have.value', '')
+                .and('not.be.disabled')
+            cy.get(`input[name="${queryAddNames.value}"]`)
+                .should('have.value', '')
+                .and('not.be.disabled')
+            cy.get('button')
+                .should('have.text', 'Add')
+                .and('not.be.disabled')
+        })
     })
 
     it('should display only the last of the duplicate keys of the URL query params', () => {

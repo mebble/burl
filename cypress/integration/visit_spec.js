@@ -3,7 +3,7 @@ import { assertQueryParams, fieldNames, queryAddNames } from '../support/helpers
 
 describe('app visit', () => {
     context('without query string', () => {
-        it('should contain the correct prompt and empty and disabled URL fields', () => {
+        it('should contain the correct prompt and empty and disabled URL fields and query form', () => {
             cy.visit('/')
 
             cy.get('input[name="url"]')
@@ -17,10 +17,6 @@ describe('app visit', () => {
             })
             cy.get('.query')
                 .should('not.have.descendants', 'li')
-        })
-
-        it('should contain the query form', () => {
-            cy.visit('/')
 
             cy.get('form.query-form').within(() => {
                 cy.get(`input[name="${queryAddNames.key}"]`)
