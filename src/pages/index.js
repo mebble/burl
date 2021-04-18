@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import Head from 'next/head';
+import { Flex } from 'rebass';
 import styles from '../styles/Home.module.css';
 
 import UrlField from '../components/UrlField';
@@ -35,20 +36,22 @@ export default function Home() {
                             ? prompt.invalid
                             : prompt.done)
                 }</p>
-                <UrlField name="protocol" value={url.protocol} onChange={e => send(action('PROTOCOL', e.target.value))} disabled={disableFields} />
-                <UrlField name="hostname" value={url.hostname} onChange={e => send(action('HOSTNAME', e.target.value))}  disabled={disableFields} />
-                <UrlField name="port" value={url.port} onChange={e => send(action('PORT', e.target.value))} disabled={disableFields} />
-                <UrlField name="path" value={url.path} onChange={e => send(action('PATH', e.target.value))} disabled={disableFields} />
-                <ul className="query">{
-                    Array.from(url.query).map(([ key, val ]) => (
-                        <li key={key}>
-                            <UrlField name={key} value={val} onChange={e => send(action('QUERY_UPDATE', { key, value: e.target.value }))} disabled={disableFields} />
-                            <button type="button" data-query-key={key} onClick={() => send(action('QUERY_REMOVE', key))}>-</button>
-                        </li>
-                    ))
-                }</ul>
-                <QueryForm disabled={disableFields} onSubmit={({ newKey, newValue }) => send(action('QUERY_ADD', { key: newKey, value: newValue }))} />
-                <UrlField name="fragment" value={url.fragment} onChange={e => send(action('FRAGMENT', e.target.value))} disabled={disableFields} />
+                <Flex flexDirection="column">
+                    <UrlField name="protocol" value={url.protocol} onChange={e => send(action('PROTOCOL', e.target.value))} disabled={disableFields} />
+                    <UrlField name="hostname" value={url.hostname} onChange={e => send(action('HOSTNAME', e.target.value))}  disabled={disableFields} />
+                    <UrlField name="port" value={url.port} onChange={e => send(action('PORT', e.target.value))} disabled={disableFields} />
+                    <UrlField name="path" value={url.path} onChange={e => send(action('PATH', e.target.value))} disabled={disableFields} />
+                    <ul className="query">{
+                        Array.from(url.query).map(([ key, val ]) => (
+                            <li key={key}>
+                                <UrlField name={key} value={val} onChange={e => send(action('QUERY_UPDATE', { key, value: e.target.value }))} disabled={disableFields} />
+                                <button type="button" data-query-key={key} onClick={() => send(action('QUERY_REMOVE', key))}>-</button>
+                            </li>
+                        ))
+                    }</ul>
+                    <QueryForm disabled={disableFields} onSubmit={({ newKey, newValue }) => send(action('QUERY_ADD', { key: newKey, value: newValue }))} />
+                    <UrlField name="fragment" value={url.fragment} onChange={e => send(action('FRAGMENT', e.target.value))} disabled={disableFields} />
+                </Flex>
             </main>
         </div>
     )
