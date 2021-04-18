@@ -43,6 +43,7 @@ export default function Home() {
                     Array.from(url.query).map(([ key, val ]) => (
                         <li key={key}>
                             <UrlField name={key} value={val} onChange={e => send(action('QUERY_UPDATE', { key, value: e.target.value }))} disabled={disableFields} />
+                            <button type="button" data-query-key={key} onClick={() => send(action('QUERY_REMOVE', key))}>-</button>
                         </li>
                     ))
                 }</ul>

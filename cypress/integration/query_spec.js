@@ -90,5 +90,28 @@ describe('adding new query param', () => {
 })
 
 describe('removing query params', () => {
+    before(() => {
+        cy.visit('/')
+    })
+    beforeEach(() => {
+        cy.get('input[name="url"]')
+            .clear()
+            .type('http://e.com?a=cat&b=dog&c=capybara')
+    })
 
+    it('should remove a query param from the query list and the url input on remove button click ', () => {
+        const expectedQueryParams = [
+            ['a', 'cat'],
+            ['c', 'capybara'],
+        ]
+
+        cy.get('button[data-query-key="b"]')
+            .click()
+
+        cy.get('.query > li')
+            .should('have.length', expectedQueryParams.length)
+            .each(assertQueryParams(cy, expectedQueryParams))
+        cy.get('input[name="url"]')
+            .should('have.value', 'http://e.com/?a=cat&c=capybara')
+    })
 })
