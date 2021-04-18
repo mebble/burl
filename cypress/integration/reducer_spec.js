@@ -379,10 +379,13 @@ describe('urlReducer', () => {
             ]),
             fragment: 'f1',
         })
-        const action = { type: 'QUERY_UPDATE', payload: {
-            key: undefined,
-            value: '',
-        } }
+        const action = {
+            type: 'QUERY_UPDATE',
+            payload: {
+                key: undefined,
+                value: '',
+            }
+        }
 
         const newUrl = urlReducer(current, action)
 
@@ -517,10 +520,54 @@ describe('urlReducer', () => {
             ]),
             fragment: 'f1',
         })
-        const action = { type: 'QUERY_ADD', payload: {
-            key: undefined,
-            value: '',
-        } }
+        const action = {
+            type: 'QUERY_ADD',
+            payload: {
+                key: undefined,
+                value: '',
+            }
+        }
+
+        const newUrl = urlReducer(current, action)
+
+        expect(newUrl.protocol).to.equal(expected.protocol)
+        expect(newUrl.hostname).to.equal(expected.hostname)
+        expect(newUrl.port).to.equal(expected.port)
+        expect(newUrl.path).to.equal(expected.path)
+        expect(newUrl.query).to.deep.equal(expected.query)
+        expect(newUrl.fragment).to.equal(expected.fragment)
+    })
+
+    it('keeps the current query if key is an empty string on QUERY_ADD action', () => {
+        const current = new RipeUrl({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map([
+                ['a', 'cat'],
+                ['b', 'dog'],
+            ]),
+            fragment: 'f1',
+        })
+        const expected = new RipeUrl({
+            protocol: 'http',
+            hostname: 'url.com',
+            port: '',
+            path: '/',
+            query: new Map([
+                ['a', 'cat'],
+                ['b', 'dog'],
+            ]),
+            fragment: 'f1',
+        })
+        const action = {
+            type: 'QUERY_ADD',
+            payload: {
+                key: '',
+                value: 'haha',
+            }
+        }
 
         const newUrl = urlReducer(current, action)
 
