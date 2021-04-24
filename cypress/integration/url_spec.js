@@ -1,5 +1,5 @@
 import { RawUrl } from '../../src/types'
-import { getQueryParams, isHttpUrl, parseUrl, emptyUrl, badUrl } from '../../src/url'
+import { getQueryParams, getUrlParam, isHttpUrl, parseUrl, emptyUrl, badUrl } from '../../src/url'
 
 describe('getQueryParams', () => {
     it('should return an empty map for an invalid URL', () => {
@@ -136,6 +136,28 @@ describe('getQueryParams', () => {
             ])
             expect(params).to.deep.equal(expected)
         })
+    })
+})
+
+describe('getUrlParam', () => {
+    it('should return null for an empty query string', () => {
+        const value = getUrlParam('a', '')
+        expect(value).to.be.null
+    })
+
+    it('should return null for a query string not beginning with a query string separator', () => {
+        const value = getUrlParam('a', 'a=cat&b=dog')
+        expect(value).to.be.null
+    })
+
+    it('should return null for a query string having just the query string separator', () => {
+        const value = getUrlParam('a', '?')
+        expect(value).to.be.null
+    })
+
+    it('should return null for a query string not having the param key', () => {
+        const value = getUrlParam('x', '?a=cat&b=dog')
+        expect(value).to.be.null
     })
 })
 

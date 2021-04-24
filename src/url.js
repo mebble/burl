@@ -17,6 +17,10 @@ export const getQueryParams = (url) => {
     return new Map(queryList);
 };
 
+export const getUrlParam = (paramKey, queryString) => {
+    return null;
+};
+
 export const isHttpUrl = (string) => {
     let url;
 
