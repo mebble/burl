@@ -27,12 +27,14 @@ export default function Home() {
             </Head>
             <main className={styles.main}>
                 <h1 className={styles.title}>bURL</h1>
-                <input name="url" value={url.toString()} type="text" onChange={e => send(action('REPLACE', parseUrl(e.target.value)))} />
-                <a className="url"
-                    href={disableFields ? '#' : url.toString()}
-                    target={disableFields ? null : "_blank"}
-                    rel="noopener noreferrer"
-                >Visit</a>
+                <p className={styles.flex}>
+                    <input name="url" value={url.toString()} type="text" onChange={e => send(action('REPLACE', parseUrl(e.target.value)))} />
+                    <a className="url"
+                        href={disableFields ? '#' : url.toString()}
+                        target={disableFields ? null : "_blank"}
+                        rel="noopener noreferrer"
+                    >Visit</a>
+                </p>
                 <p className="prompt">{
                     url.toString() === ''
                         ? prompt.intro
