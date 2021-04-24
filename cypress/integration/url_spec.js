@@ -154,6 +154,11 @@ describe('getUrlParam', () => {
         const value = getUrlParam('b', 'http://example.com?a=cat&b=dog')
         expect(value).to.equal('dog')
     })
+
+    it('should return the value of the given key when the value has a query string separator in it', () => {
+        const value = getUrlParam('b', 'http://example.com?a=cat&b=dog?or?not?')
+        expect(value).to.equal('dog?or?not?')
+    })
 })
 
 describe('isHttpUrl', () => {

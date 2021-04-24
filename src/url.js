@@ -18,8 +18,12 @@ export const getQueryParams = (url) => {
 };
 
 export const getUrlParam = (paramKey, url) => {
-    const pairs = url.split('?')[1]
-        .split('&')
+    const queryString = url.split(/\?(.+)/)[1]
+    if (!queryString) {
+        return null;
+    }
+
+    const pairs = queryString.split('&')
         .map(token => token.split('='));
     const paramIndex = pairs.findIndex(([ key, _ ]) => key === paramKey);
 
