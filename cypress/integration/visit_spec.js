@@ -53,7 +53,7 @@ describe('app visit', () => {
     })
 
     context('with valid URL in query string', () => {
-        it.skip('should contain the given URL, the correct prompt and filled editable URL fields', () => {
+        it('should contain the given URL, the correct prompt and filled editable URL fields', () => {
             const url = 'http://example.com:8080/path?a=cat&b=dog#foo'
             const expectedQueryParams = [
                 ['a', 'cat'],
@@ -80,6 +80,7 @@ describe('app visit', () => {
             cy.get('input[name="path"]')
                 .should('have.value', '/path')
             cy.get('.query > li')
+                .should('have.length', expectedQueryParams.length)
                 .each(assertQueryParams(cy, expectedQueryParams))
             cy.get('input[name="fragment"]')
                 .should('have.value', 'foo')

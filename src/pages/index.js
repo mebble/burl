@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css';
 
 import UrlField from '../components/UrlField';
 import QueryForm from '../components/QueryForm';
-import { badUrl, getQueryParams, parseUrl } from '../url';
+import { badUrl, getUrlParam, parseUrl } from '../url';
 import { prompt } from '../constants';
 import { urlReducer, action } from '../reducers';
 
@@ -13,9 +13,9 @@ export default function Home() {
     const disableFields = url.isBad();
 
     useEffect(() => {
-        const appParams = getQueryParams(window.location.search);
-        if (appParams.has('u')) {
-            send(action('REPLACE', parseUrl(appParams.get('u'))))
+        const urlParam = getUrlParam('u', window.location.href);
+        if (urlParam) {
+            send(action('REPLACE', parseUrl(urlParam)));
         }
     }, []);
 
