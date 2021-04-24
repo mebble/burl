@@ -36,7 +36,7 @@ export const getUrlParam = (paramKey, url) => {
         return null;
     }
 
-    return postQuerySeparator.split(`${paramKey}=`)[1];
+    return postQuerySeparator.split(new RegExp(`${paramKey}=(.+)`))[1];
 };
 
 export const isHttpUrl = (string) => {
