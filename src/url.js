@@ -35,12 +35,14 @@ export const parseUrl = (url) => {
     }
 
     const webApiUrl = new URL(url);
+    const path = webApiUrl.pathname;
+
     const parsedUrl = new RawUrl({
         raw: url,
         protocol: webApiUrl.protocol.slice(0, -1),
         hostname: webApiUrl.hostname,
-        port: getPort(url),
-        path: webApiUrl.pathname,
+        port: getPort(path, url),
+        path: path,
         query: getQueryParams(url),
         fragment: webApiUrl.hash.slice(1),
         isBad: false,
@@ -49,8 +51,9 @@ export const parseUrl = (url) => {
     return parsedUrl;
 };
 
-const getPort = (url) => {
-    const match = url.match(/:(\d+)/);
+const getPort = (pathFound, url) => {
+    const regex = new RegExp(`:(\\d+)${pathFound}`);
+    const match = url.match(regex);
     if (match) {
         return match[1];
     }
