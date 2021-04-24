@@ -18,7 +18,15 @@ export const getQueryParams = (url) => {
 };
 
 export const getUrlParam = (paramKey, queryString) => {
-    return null;
+    const pairs = queryString.slice(1)
+        .split('&')
+        .map(token => token.split('='));
+    const map = new Map(pairs);
+
+    if (!map.has(paramKey)) {
+        return null;
+    }
+    return map.get(paramKey);
 };
 
 export const isHttpUrl = (string) => {
