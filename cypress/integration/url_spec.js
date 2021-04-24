@@ -159,6 +159,11 @@ describe('getUrlParam', () => {
         const value = getUrlParam('b', 'http://example.com?a=cat&b=dog?or?not?')
         expect(value).to.equal('dog?or?not?')
     })
+
+    it('should return the entire string coming after the given key when the key-value pair is at the middle of the query string', () => {
+        const value = getUrlParam('a', 'http://example.com?x=y&a=cat&b=dog#foo')
+        expect(value).to.equal('cat&b=dog#foo')
+    })
 })
 
 describe('isHttpUrl', () => {

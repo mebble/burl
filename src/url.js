@@ -18,12 +18,12 @@ export const getQueryParams = (url) => {
 };
 
 export const getUrlParam = (paramKey, url) => {
-    const queryString = url.split(/\?(.+)/)[1]
-    if (!queryString) {
+    const postQuerySeparator = url.split(/\?(.+)/)[1];
+    if (!postQuerySeparator) {
         return null;
     }
 
-    const pairs = queryString.split('&')
+    const pairs = postQuerySeparator.split('&')
         .map(token => token.split('='));
     const paramIndex = pairs.findIndex(([ key, _ ]) => key === paramKey);
 
@@ -31,7 +31,7 @@ export const getUrlParam = (paramKey, url) => {
         return null;
     }
 
-    return pairs[paramIndex][1];
+    return postQuerySeparator.split(`${paramKey}=`)[1];
 };
 
 export const isHttpUrl = (string) => {
