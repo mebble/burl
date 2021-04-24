@@ -164,6 +164,11 @@ describe('getUrlParam', () => {
         const value = getUrlParam('a', 'http://example.com?x=y&a=cat&b=dog#foo')
         expect(value).to.equal('cat&b=dog#foo')
     })
+
+    it.skip('should return the entire string coming after the given key when the given key pattern appears before the key-value pair', () => {
+        const value = getUrlParam('abc', 'http://example.com?dabc=y&abc=cat&b=dog')
+        expect(value).to.equal('cat&b=dog')
+    })
 })
 
 describe('isHttpUrl', () => {
