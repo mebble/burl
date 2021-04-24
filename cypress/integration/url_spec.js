@@ -217,6 +217,14 @@ describe('parseUrl', () => {
         expect(url.port).to.equal('')
     });
 
+    it('should url has no port but a :digits pattern appears after the explicit path followed by a misleading path', () => {
+        const urlString = 'http://example.com/path?a=:8080/path'
+
+        const url = parseUrl(urlString)
+
+        expect(url.port).to.equal('')
+    });
+
     it('should set the explicitly given port even if the protocol infers it: http', () => {
         const urlString = 'http://example.com:80/path'
 
