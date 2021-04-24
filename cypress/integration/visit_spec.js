@@ -114,4 +114,13 @@ describe('visit the given url', () => {
             .should('have.attr', 'href', "#")
             .and('not.have.attr', 'target')
     })
+
+    it('should have an anchor tag that links to the current page within the current tab if the url is empty', () => {
+        cy.get('input[name="url"]')
+            .clear()
+
+        cy.get('a.url')
+            .should('have.attr', 'href', "#")
+            .and('not.have.attr', 'target')
+    })
 })
