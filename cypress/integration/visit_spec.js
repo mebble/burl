@@ -86,3 +86,23 @@ describe('app visit', () => {
         })
     })
 })
+
+describe('visit the given url', () => {
+    const url = 'http://example.com:80/path?a=cat&b=dog#foo';
+
+    before(() => {
+        cy.visit('/')
+    })
+    beforeEach(() => {
+        cy.get('input[name="url"]')
+            .clear()
+            .type(url)
+    })
+
+    it('should create an anchor tag that opens the given url in a new tab and avoids tabnabbing', () => {
+        cy.get('a.url')
+            .should('have.attr', 'href', url)
+            .should('have.attr', 'target', "_blank")
+            .should('have.attr', 'rel', 'noopener noreferrer')
+    })
+})

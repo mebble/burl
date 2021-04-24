@@ -28,6 +28,7 @@ export default function Home() {
             <main className={styles.main}>
                 <h1 className={styles.title}>bURL</h1>
                 <input name="url" value={url.toString()} type="text" onChange={e => send(action('REPLACE', parseUrl(e.target.value)))} />
+                <a className="url" href={url.toString()} target="_blank" rel="noopener noreferrer">Visit</a>
                 <p className="prompt">{
                     url.toString() === ''
                         ? prompt.intro
