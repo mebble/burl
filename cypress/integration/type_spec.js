@@ -1,14 +1,7 @@
-import { emptyUrl } from '../../src/url'
 import { RipeUrl, RawUrl } from '../../src/types'
 
 describe('RipeUrl', () => {
     describe('toString', () => {
-        it('should return an empty string for an empty URL', () => {
-            const url = emptyUrl()
-
-            expect(url.toString()).to.equal('')
-        })
-
         it('should return the string of a URL having only mandatory fields', () => {
             const url = new RipeUrl({
                 protocol: 'http',

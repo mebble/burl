@@ -4,12 +4,12 @@ import styles from '../styles/Home.module.css';
 
 import UrlField from '../components/UrlField';
 import QueryForm from '../components/QueryForm';
-import { emptyUrl, getQueryParams, parseUrl } from '../url';
+import { badUrl, getQueryParams, parseUrl } from '../url';
 import { prompt } from '../constants';
 import { urlReducer, action } from '../reducers';
 
 export default function Home() {
-    const [ url, send ] = useReducer(urlReducer, emptyUrl());
+    const [ url, send ] = useReducer(urlReducer, badUrl(''));
     const disableFields = url.isBad();
 
     useEffect(() => {

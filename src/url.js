@@ -1,4 +1,4 @@
-import { RawUrl, RipeUrl } from './types';
+import { RawUrl } from './types';
 import { emptyIfBlank } from './utils';
 
 export const getQueryParams = (url) => {
@@ -61,6 +61,7 @@ const getPort = (hostNameFound, pathFound, url) => {
     return '';
 };
 
+// deprecated
 export const emptyUrl = () => {
     return new RawUrl({
         protocol: '',

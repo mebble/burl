@@ -279,6 +279,7 @@ describe('parseUrl', () => {
     });
 })
 
+// deprecated
 describe('emptyUrl', () => {
     it('should return a RawUrl', () => {
         const url = emptyUrl()
