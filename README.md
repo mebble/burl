@@ -5,12 +5,22 @@
 
 Break up URLs at [burl.bar](https://burl.bar/)
 
-## Requirements
+## Usage
+
+Open the app with a blank URL:
+
+[https://burl.bar](https://burl.bar/)
+
+Open the app with some given URL:
+
+[https://burl.bar/?u=https://www.reddit.com/r/aww/comments/mtv5a3/this_german_shepherd_is_well_known_in_her/?utm_source=share&utm_medium=web2x&context=3](https://burl.bar/?u=https://www.reddit.com/r/aww/comments/mtv5a3/this_german_shepherd_is_well_known_in_her/?utm_source=share&utm_medium=web2x&context=3)
+
+## Dev Requirements
 
 - Node.js
 - npm or yarn
 
-## Setup
+## Dev Setup
 
 Clone the project, `cd` into the project's root directory and install the project's dependencies
 
