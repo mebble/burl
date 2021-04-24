@@ -10,7 +10,7 @@ import { urlReducer, action } from '../reducers';
 
 export default function Home() {
     const [ url, send ] = useReducer(urlReducer, emptyUrl());
-    const disableFields = url.isBad() || url.toString() === '';
+    const disableFields = url.isBad();
 
     useEffect(() => {
         const appParams = getQueryParams(window.location.search);

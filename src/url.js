@@ -62,7 +62,7 @@ const getPort = (hostNameFound, pathFound, url) => {
 };
 
 export const emptyUrl = () => {
-    return new RipeUrl({
+    return new RawUrl({
         protocol: '',
         hostname: '',
         port: '',
@@ -70,6 +70,7 @@ export const emptyUrl = () => {
         query: new Map(),
         fragment: '',
         raw: '',
+        isBad: true,
     });
 };
 

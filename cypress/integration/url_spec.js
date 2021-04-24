@@ -280,6 +280,18 @@ describe('parseUrl', () => {
 })
 
 describe('emptyUrl', () => {
+    it('should return a RawUrl', () => {
+        const url = emptyUrl()
+
+        expect(url instanceof RawUrl).to.be.true
+    })
+
+    it('should return a bad url', () => {
+        const url = emptyUrl()
+
+        expect(url.isBad()).to.be.true
+    })
+
     it('should return a url with empty fields and empty toString', () => {
         const url = emptyUrl();
 
