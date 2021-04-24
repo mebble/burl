@@ -17,16 +17,17 @@ export const getQueryParams = (url) => {
     return new Map(queryList);
 };
 
-export const getUrlParam = (paramKey, queryString) => {
-    const pairs = queryString.slice(1)
+export const getUrlParam = (paramKey, url) => {
+    const pairs = url.split('?')[1]
         .split('&')
         .map(token => token.split('='));
-    const map = new Map(pairs);
+    const paramIndex = pairs.findIndex(([ key, _ ]) => key === paramKey);
 
-    if (!map.has(paramKey)) {
+    if (paramIndex === -1) {
         return null;
     }
-    return map.get(paramKey);
+
+    return pairs[paramIndex][1];
 };
 
 export const isHttpUrl = (string) => {

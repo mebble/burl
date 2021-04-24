@@ -140,28 +140,18 @@ describe('getQueryParams', () => {
 })
 
 describe('getUrlParam', () => {
-    it('should return null for an empty query string', () => {
-        const value = getUrlParam('a', '')
+    it('should return null for a url having just the query string separator', () => {
+        const value = getUrlParam('a', 'http://example.com?')
         expect(value).to.be.null
     })
 
-    it('should return null for a query string not beginning with a query string separator', () => {
-        const value = getUrlParam('a', 'a=cat&b=dog')
-        expect(value).to.be.null
-    })
-
-    it('should return null for a query string having just the query string separator', () => {
-        const value = getUrlParam('a', '?')
-        expect(value).to.be.null
-    })
-
-    it('should return null for a query string not having the param key', () => {
-        const value = getUrlParam('x', '?a=cat&b=dog')
+    it('should return null for a url not having the param key', () => {
+        const value = getUrlParam('x', 'http://example.com?a=cat&b=dog')
         expect(value).to.be.null
     })
 
     it('should return the value of the given key when the key-value pair is at the end of the query string', () => {
-        const value = getUrlParam('b', '?a=cat&b=dog')
+        const value = getUrlParam('b', 'http://example.com?a=cat&b=dog')
         expect(value).to.equal('dog')
     })
 })
