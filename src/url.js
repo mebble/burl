@@ -2,11 +2,16 @@ import { RawUrl } from './types';
 import { emptyIfBlank } from './utils';
 
 export const getQueryParams = (url) => {
-    if (!url.includes('?') || url.slice(-1) === '?') {
+    if (!url.includes('?')) {
         return new Map();
     }
 
-    const query = url.split(/\?(.+)/)[1].split('#')[0];
+    const postQuerySeparator = url.split(/\?(.+)/)[1];
+    if (!postQuerySeparator) {
+        return new Map();
+    }
+
+    const query = postQuerySeparator.split('#')[0];
     const queryList = query.split('&')
         .filter(token => token.length > 0)
         .map(token => {

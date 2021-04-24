@@ -46,10 +46,10 @@ describe('getQueryParams', () => {
     })
 
     it('should return a map of the query params of a URL having a query string separator within the query string', () => {
-        const params = getQueryParams('http://example.com/some/path?a=cat?&b=dog')
+        const params = getQueryParams('http://example.com/some/path?a=cat?&b=dog?')
         const expected = new Map([
             ['a', 'cat?'],
-            ['b', 'dog']
+            ['b', 'dog?']
         ])
         expect(params).to.deep.equal(expected)
     })
