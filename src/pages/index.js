@@ -29,8 +29,8 @@ export default function Home() {
                 <h1 className={styles.title}>bURL</h1>
                 <input name="url" value={url.toString()} type="text" onChange={e => send(action('REPLACE', parseUrl(e.target.value)))} />
                 <a className="url"
-                    href={url.isBad() ? '#' : url.toString()}
-                    target={url.isBad() ? null : "_blank"}
+                    href={disableFields ? '#' : url.toString()}
+                    target={disableFields ? null : "_blank"}
                     rel="noopener noreferrer"
                 >Visit</a>
                 <p className="prompt">{
