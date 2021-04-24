@@ -93,16 +93,25 @@ describe('visit the given url', () => {
     before(() => {
         cy.visit('/')
     })
-    beforeEach(() => {
+
+    it('should have an anchor tag that opens the given url in a new tab and avoids tabnabbing', () => {
         cy.get('input[name="url"]')
             .clear()
             .type(url)
-    })
 
-    it('should create an anchor tag that opens the given url in a new tab and avoids tabnabbing', () => {
         cy.get('a.url')
             .should('have.attr', 'href', url)
-            .should('have.attr', 'target', "_blank")
-            .should('have.attr', 'rel', 'noopener noreferrer')
+            .and('have.attr', 'target', "_blank")
+            .and('have.attr', 'rel', 'noopener noreferrer')
+    })
+
+    it('should have an anchor tag that links to the current page within the current tab if the url is invalid', () => {
+        cy.get('input[name="url"]')
+            .clear()
+            .type('invalid-url')
+
+        cy.get('a.url')
+            .should('have.attr', 'href', "#")
+            .and('not.have.attr', 'target')
     })
 })
