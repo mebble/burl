@@ -4,7 +4,7 @@ export default function QueryParam({ name, value, disabled, onValueChange, onRem
     return (
         <Space>
             <Input name={name} value={value} onChange={e => onValueChange(e.target.value)} type="text" disabled={disabled} addonBefore={name} />
-            <Button type="button" data-query-key={name} onClick={onRemove}>-</Button>
+            <Button htmlType="button" data-query-key={name} onClick={onRemove}>-</Button>
         </Space>
     );
 };
