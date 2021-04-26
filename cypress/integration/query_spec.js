@@ -32,7 +32,7 @@ describe('adding new query param', () => {
             ['c', 'dinosaur'],
         ]
         const assertQueryParamsAddedAndQueryFormCleared = () => {
-            cy.get('.query > li')
+            cy.get('.query li')
                 .should('have.length', expectedQueryParams.length)
                 .each(assertQueryParams(cy, expectedQueryParams))
 
@@ -111,7 +111,7 @@ describe('removing query params', () => {
         cy.get('button[data-query-key="b"]')
             .click()
 
-        cy.get('.query > li')
+        cy.get('.query li')
             .should('have.length', expectedQueryParams.length)
             .each(assertQueryParams(cy, expectedQueryParams))
         cy.get('input[name="url"]')

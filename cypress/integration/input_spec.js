@@ -57,7 +57,7 @@ describe('typing into URL input', () => {
             .should('have.value', '80')
         cy.get('input[name="path"]')
             .should('have.value', '/path')
-        cy.get('.query > li')
+        cy.get('.query li')
             .each(assertQueryParams(cy, expectedQueryParams))
         cy.get('input[name="fragment"]')
             .should('have.value', 'foo')
@@ -84,7 +84,7 @@ describe('typing into URL input', () => {
         cy.get('input[name="url"]')
             .type('http://example.com/some/path?a=cat&b=dog&a=camel')
 
-        cy.get('.query > li')
+        cy.get('.query li')
             .each(assertQueryParams(cy, expectedQueryParams))
     })
 })

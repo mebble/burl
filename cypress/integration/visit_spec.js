@@ -79,7 +79,7 @@ describe('app visit', () => {
                 .should('have.value', '8080')
             cy.get('input[name="path"]')
                 .should('have.value', '/path')
-            cy.get('.query > li')
+            cy.get('.query li')
                 .should('have.length', expectedQueryParams.length)
                 .each(assertQueryParams(cy, expectedQueryParams))
             cy.get('input[name="fragment"]')

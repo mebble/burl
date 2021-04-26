@@ -1,18 +1,22 @@
+import { List } from 'antd';
 import QueryParam from './QueryParam';
 
 export default function QueryList({ queryParams, disabled, onChange, onRemove }) {
     return (
-        <ul className="query">{
-            Array.from(queryParams).map(([ key, val ]) => (
-                <li key={key}>
+        <List
+            className="query"
+            size="small"
+            dataSource={Array.from(queryParams)}
+            renderItem={([ key, val ]) => (
+                <List.Item key={key}>
                     <QueryParam
                         name={key}
                         value={val}
                         disabled={disabled}
                         onValueChange={value => onChange(key, value)}
                         onRemove={() => onRemove(key)} />
-                </li>
-            ))
-        }</ul>
+                </List.Item>
+            )}
+        />
     );
 }
