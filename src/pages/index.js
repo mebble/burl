@@ -44,17 +44,17 @@ export default function Home() {
                             ? prompt.invalid
                             : prompt.done)
                 }</p>
-                <UrlField name="protocol" value={url.protocol} onChange={e => send(action('PROTOCOL', e.target.value))} disabled={disableFields} />
-                <UrlField name="hostname" value={url.hostname} onChange={e => send(action('HOSTNAME', e.target.value))}  disabled={disableFields} />
-                <UrlField name="port" value={url.port} onChange={e => send(action('PORT', e.target.value))} disabled={disableFields} />
-                <UrlField name="path" value={url.path} onChange={e => send(action('PATH', e.target.value))} disabled={disableFields} />
+                <UrlField name="protocol" value={url.protocol} onChange={value => send(action('PROTOCOL', value))} disabled={disableFields} />
+                <UrlField name="hostname" value={url.hostname} onChange={value => send(action('HOSTNAME', value))}  disabled={disableFields} />
+                <UrlField name="port" value={url.port} onChange={value => send(action('PORT', value))} disabled={disableFields} />
+                <UrlField name="path" value={url.path} onChange={value => send(action('PATH', value))} disabled={disableFields} />
                 <QueryList
                     queryParams={url.query}
                     disabled={disableFields}
                     onChange={(key, value) => send(action('QUERY_UPDATE', { key, value }))}
                     onRemove={(key) => send(action('QUERY_REMOVE', key))} />
-                <QueryForm disabled={disableFields} onSubmit={({ newKey, newValue }) => send(action('QUERY_ADD', { key: newKey, value: newValue }))} />
-                <UrlField name="fragment" value={url.fragment} onChange={e => send(action('FRAGMENT', e.target.value))} disabled={disableFields} />
+                <QueryForm disabled={disableFields} onSubmit={(key, value) => send(action('QUERY_ADD', { key, value }))} />
+                <UrlField name="fragment" value={url.fragment} onChange={value => send(action('FRAGMENT', value))} disabled={disableFields} />
             </main>
         </div>
     )

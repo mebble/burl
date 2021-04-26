@@ -6,7 +6,7 @@ export default function QueryForm({ disabled, onSubmit }) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        onSubmit({ newKey: key, newValue: value });
+        onSubmit(key, value);
         setKey('');
         setValue('');
     };

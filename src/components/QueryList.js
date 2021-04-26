@@ -9,7 +9,7 @@ export default function QueryList({ queryParams, disabled, onChange, onRemove })
                         name={key}
                         value={val}
                         disabled={disabled}
-                        onChange={e => onChange(key, e.target.value)}
+                        onValueChange={value => onChange(key, value)}
                         onRemove={() => onRemove(key)} />
                 </li>
             ))
