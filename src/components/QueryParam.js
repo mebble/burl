@@ -1,10 +1,10 @@
-import UrlField from './UrlField';
+import { Input, Button, Space } from 'antd';
 
 export default function QueryParam({ name, value, disabled, onChange, onRemove }) {
     return (
-        <>
-            <UrlField name={name} value={value} onChange={onChange} disabled={disabled} />
-            <button type="button" data-query-key={name} onClick={onRemove}>-</button>
-        </>
+        <Space>
+            <Input name={name} value={value} onChange={onChange} type="text" disabled={disabled} addonBefore={name} />
+            <Button type="button" data-query-key={name} onClick={onRemove}>-</Button>
+        </Space>
     );
 };
