@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css';
 
 import UrlField from '../components/UrlField';
 import QueryForm from '../components/QueryForm';
-import QueryParam from '../components/QueryParam';
+import QueryList from '../components/QueryList';
 
 import { badUrl, getUrlParam, parseUrl } from '../url';
 import { prompt } from '../constants';
@@ -48,18 +48,11 @@ export default function Home() {
                 <UrlField name="hostname" value={url.hostname} onChange={e => send(action('HOSTNAME', e.target.value))}  disabled={disableFields} />
                 <UrlField name="port" value={url.port} onChange={e => send(action('PORT', e.target.value))} disabled={disableFields} />
                 <UrlField name="path" value={url.path} onChange={e => send(action('PATH', e.target.value))} disabled={disableFields} />
-                <ul className="query">{
-                    Array.from(url.query).map(([ key, val ]) => (
-                        <li key={key}>
-                            <QueryParam
-                                name={key}
-                                value={val}
-                                disabled={disableFields}
-                                onChange={e => send(action('QUERY_UPDATE', { key, value: e.target.value }))}
-                                onRemove={() => send(action('QUERY_REMOVE', key))} />
-                        </li>
-                    ))
-                }</ul>
+                <QueryList
+                    queryParams={url.query}
+                    disabled={disableFields}
+                    onChange={(key, value) => send(action('QUERY_UPDATE', { key, value }))}
+                    onRemove={(key) => send(action('QUERY_REMOVE', key))} />
                 <QueryForm disabled={disableFields} onSubmit={({ newKey, newValue }) => send(action('QUERY_ADD', { key: newKey, value: newValue }))} />
                 <UrlField name="fragment" value={url.fragment} onChange={e => send(action('FRAGMENT', e.target.value))} disabled={disableFields} />
             </main>
