@@ -30,9 +30,7 @@ export default function Home() {
             </Head>
             <main className={styles.main}>
                 <h1 className={styles.title}>bURL</h1>
-                <p className={styles.flex}>
-                    <UrlInput url={url} onChange={value => send(action('REPLACE', parseUrl(value)))} />
-                </p>
+                <UrlInput url={url} onChange={value => send(action('REPLACE', parseUrl(value)))} />
                 <p className="prompt">{
                     url.toString() === ''
                         ? prompt.intro
