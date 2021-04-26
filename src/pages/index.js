@@ -3,8 +3,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
 import UrlField from '../components/UrlField';
-import QueryForm from '../components/QueryForm';
-import QueryList from '../components/QueryList';
+import Query from '../components/Query';
 import UrlInput from '../components/UrlInput';
 
 import { badUrl, getUrlParam, parseUrl } from '../url';
@@ -42,12 +41,12 @@ export default function Home() {
                 <UrlField name="hostname" value={url.hostname} onChange={value => send(action('HOSTNAME', value))}  disabled={disableFields} />
                 <UrlField name="port" value={url.port} onChange={value => send(action('PORT', value))} disabled={disableFields} />
                 <UrlField name="path" value={url.path} onChange={value => send(action('PATH', value))} disabled={disableFields} />
-                <QueryList
+                <Query
                     queryParams={url.query}
                     disabled={disableFields}
                     onChange={(key, value) => send(action('QUERY_UPDATE', { key, value }))}
-                    onRemove={(key) => send(action('QUERY_REMOVE', key))} />
-                <QueryForm disabled={disableFields} onSubmit={(key, value) => send(action('QUERY_ADD', { key, value }))} />
+                    onRemove={(key) => send(action('QUERY_REMOVE', key))}
+                    onSubmit={(key, value) => send(action('QUERY_ADD', { key, value }))} />
                 <UrlField name="fragment" value={url.fragment} onChange={value => send(action('FRAGMENT', value))} disabled={disableFields} />
             </main>
         </div>
