@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css';
 import UrlField from '../components/UrlField';
 import QueryForm from '../components/QueryForm';
 import QueryList from '../components/QueryList';
+import UrlInput from '../components/UrlInput';
 
 import { badUrl, getUrlParam, parseUrl } from '../url';
 import { prompt } from '../constants';
@@ -30,12 +31,7 @@ export default function Home() {
             <main className={styles.main}>
                 <h1 className={styles.title}>bURL</h1>
                 <p className={styles.flex}>
-                    <input name="url" value={url.toString()} type="text" onChange={e => send(action('REPLACE', parseUrl(e.target.value)))} />
-                    <a className="url"
-                        href={disableFields ? '#' : url.toString()}
-                        target={disableFields ? null : "_blank"}
-                        rel="noopener noreferrer"
-                    >Visit</a>
+                    <UrlInput url={url} onChange={value => send(action('REPLACE', parseUrl(value)))} />
                 </p>
                 <p className="prompt">{
                     url.toString() === ''
