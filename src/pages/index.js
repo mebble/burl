@@ -4,6 +4,8 @@ import styles from '../styles/Home.module.css';
 
 import UrlField from '../components/UrlField';
 import QueryForm from '../components/QueryForm';
+import QueryParam from '../components/QueryParam';
+
 import { badUrl, getUrlParam, parseUrl } from '../url';
 import { prompt } from '../constants';
 import { urlReducer, action } from '../reducers';
@@ -49,8 +51,12 @@ export default function Home() {
                 <ul className="query">{
                     Array.from(url.query).map(([ key, val ]) => (
                         <li key={key}>
-                            <UrlField name={key} value={val} onChange={e => send(action('QUERY_UPDATE', { key, value: e.target.value }))} disabled={disableFields} />
-                            <button type="button" data-query-key={key} onClick={() => send(action('QUERY_REMOVE', key))}>-</button>
+                            <QueryParam
+                                name={key}
+                                value={val}
+                                disabled={disableFields}
+                                onChange={e => send(action('QUERY_UPDATE', { key, value: e.target.value }))}
+                                onRemove={() => send(action('QUERY_REMOVE', key))} />
                         </li>
                     ))
                 }</ul>
