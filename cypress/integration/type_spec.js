@@ -69,6 +69,19 @@ describe('RipeUrl', () => {
 
             expect(url.toString()).to.equal('http://example.com/')
         })
+
+        it('should have a path that starts with "/" if the path field doesn\'t start with it and is nonempty', () => {
+            const url = new RipeUrl({
+                protocol: 'http',
+                hostname: 'example.com',
+                port: '',
+                path: 'path',
+                query: new Map(),
+                fragment: '',
+            })
+
+            expect(url.toString()).to.equal('http://example.com/path')
+        })
     })
 
     describe('isBad', () => {

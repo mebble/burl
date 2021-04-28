@@ -18,7 +18,10 @@ export class RipeUrl {
             string += `:${this.port}`;
         }
         if (this.path) {
-            string += this.path;
+            let path = this.path.startsWith('/')
+                ? this.path
+                : `/${this.path}`;
+            string += path;
         }
         if (this.query.size > 0) {
             string += `?${this._toQueryString()}`;
