@@ -8,7 +8,7 @@ export default function QueryList({ queryParams, disabled, onChange, onRemove })
             size="small"
             dataSource={Array.from(queryParams)}
             renderItem={([ key, val ]) => (
-                <List.Item key={key} style={{ border: 'none', padding: '4px 16px' }}>
+                <List.Item key={key} style={{ border: 'none', padding: '4px 0px' }}>
                     <QueryParam
                         name={key}
                         value={val}

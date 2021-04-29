@@ -15,14 +15,14 @@ export default function QueryForm({ disabled, onSubmit }) {
     return (
         <form className="query-form" onSubmit={handleSubmit}>
             <Input.Group>
-                <Row gutter={4} justify="center">
-                    <Col span={8}>
+                <Row gutter={4} justify="space-between">
+                    <Col flex="100px">
                         <Input name="new-query-key" value={key} type="text" onChange={e => setKey(e.target.value)} disabled={disabled} />
                     </Col>
-                    <Col span={10}>
+                    <Col flex="auto">
                         <Input name="new-query-value" value={value} type="text" onChange={e => setValue(e.target.value)} disabled={disabled} />
                     </Col>
-                    <Col span={4}>
+                    <Col>
                         <Button htmlType="submit" disabled={disabled}>Add</Button>
                     </Col>
                 </Row>
