@@ -54,7 +54,7 @@ describe('typing into URL input', () => {
         cy.get('input[name="hostname"]')
             .should('have.value', 'example.com')
         cy.get('input[name="port"]')
-            .should('have.value', '80')
+            .should('have.value', 80)
         cy.get('input[name="path"]')
             .should('have.value', '/path')
         cy.get('.query li')
@@ -119,13 +119,22 @@ describe('editing one of the URL fields', () => {
             .should('have.value', 'http://example.comcom:80/path?a=cat&b=dog#foo')
     })
 
-    it('should update the port field and url input when the port is edited', () => {
+    it('should update the port field and url input when the port is edited with numeric characters', () => {
         cy.get('input[name="port"]')
             .type('08')
-            .should('have.value', '8008')
+            .should('have.value', 8008)
 
         cy.get('input[name="url"]')
             .should('have.value', 'http://example.com:8008/path?a=cat&b=dog#foo')
+    })
+
+    it('should NOT update the port field and url input when the port is edited with non-numeric characters', () => {
+        cy.get('input[name="port"]')
+            .type('23abc')
+            .should('have.value', 8023)
+
+        cy.get('input[name="url"]')
+            .should('have.value', 'http://example.com:8023/path?a=cat&b=dog#foo')
     })
 
     it('should update the path field and url input when the path is edited', () => {

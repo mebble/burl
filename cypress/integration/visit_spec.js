@@ -76,7 +76,8 @@ describe('app visit', () => {
             cy.get('input[name="hostname"]')
                 .should('have.value', 'example.com')
             cy.get('input[name="port"]')
-                .should('have.value', '8080')
+                .should('have.attr', 'type', 'number')  // port should be a number input
+                .should('have.value', 8080)
             cy.get('input[name="path"]')
                 .should('have.value', '/path')
             cy.get('.query li')

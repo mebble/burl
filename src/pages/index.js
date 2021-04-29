@@ -39,7 +39,7 @@ export default function Home() {
                 }</p>
                 <UrlField name="protocol" value={url.protocol} onChange={value => send(action('PROTOCOL', value))} disabled={disableFields} />
                 <UrlField name="hostname" value={url.hostname} onChange={value => send(action('HOSTNAME', value))}  disabled={disableFields} />
-                <UrlField name="port" value={url.port} onChange={value => send(action('PORT', value))} disabled={disableFields} />
+                <UrlField name="port" type="number" value={url.port} onChange={value => send(action('PORT', value))} disabled={disableFields} />
                 <UrlField name="path" value={url.path} onChange={value => send(action('PATH', value))} disabled={disableFields} />
                 <Query
                     queryParams={url.query}
