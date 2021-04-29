@@ -239,7 +239,7 @@ describe('parseUrl', () => {
         expect(url.isBad()).to.be.false
         expect(url.protocol).to.equal('http')
         expect(url.hostname).to.equal('example.com')
-        expect(url.port).to.equal('9000')
+        expect(url.port).to.equal(9000)
         expect(url.path).to.equal('/path')
         expect(url.query.get('a')).to.equal('cat')
         expect(url.query.get('b')).to.equal('dog')
@@ -251,7 +251,7 @@ describe('parseUrl', () => {
 
         const url = parseUrl(urlString)
 
-        expect(url.port).to.equal('')
+        expect(url.port).to.equal(undefined)
     });
 
     it('should not set the port when url has no port but a :digits pattern appears after the explicit path followed by a misleading path', () => {
@@ -259,7 +259,7 @@ describe('parseUrl', () => {
 
         const url = parseUrl(urlString)
 
-        expect(url.port).to.equal('')
+        expect(url.port).to.equal(undefined)
     });
 
     it('should set the explicitly given port even if the protocol infers it: http', () => {
@@ -268,7 +268,7 @@ describe('parseUrl', () => {
         const url = parseUrl(urlString)
 
         expect(url.protocol).to.equal('http')
-        expect(url.port).to.equal('80')
+        expect(url.port).to.equal(80)
     });
 
     it('should set the explicitly given port even if the protocol infers it: https', () => {
@@ -277,7 +277,7 @@ describe('parseUrl', () => {
         const url = parseUrl(urlString)
 
         expect(url.protocol).to.equal('https')
-        expect(url.port).to.equal('443')
+        expect(url.port).to.equal(443)
     });
 
     it('should ignore the trailing query string separator of a url', () => {
@@ -302,7 +302,7 @@ describe('parseUrl', () => {
 
         const url = parseUrl(urlString)
 
-        expect(url.port).to.equal('')
+        expect(url.port).to.equal(undefined)
         expect(url.query.size).to.equal(0)
         expect(url.fragment).to.equal('')
     });
@@ -335,7 +335,7 @@ describe('emptyUrl', () => {
 
         expect(url.protocol).to.equal('')
         expect(url.hostname).to.equal('')
-        expect(url.port).to.equal('')
+        expect(url.port).to.equal(undefined)
         expect(url.path).to.equal('')
         expect(url.query.size).to.equal(0)
         expect(url.fragment).to.equal('')
@@ -355,7 +355,7 @@ describe('badUrl', () => {
 
         expect(url.protocol).to.equal('')
         expect(url.hostname).to.equal('')
-        expect(url.port).to.equal('')
+        expect(url.port).to.equal(undefined)
         expect(url.path).to.equal('')
         expect(url.query.size).to.equal(0)
         expect(url.fragment).to.equal('')

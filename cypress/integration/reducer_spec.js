@@ -6,7 +6,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url1.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -15,7 +15,7 @@ describe('urlReducer', () => {
             raw: 'some-raw-string',
             protocol: 'http',
             hostname: 'url2.com',
-            port: '',
+            port: 90,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -32,7 +32,7 @@ describe('urlReducer', () => {
             raw: 'some-raw-string',
             protocol: 'http',
             hostname: 'url2.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -48,7 +48,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -56,7 +56,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'https',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -78,7 +78,7 @@ describe('urlReducer', () => {
             raw: 'some-raw-string',
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -94,7 +94,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url1.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -102,7 +102,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url2.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -124,12 +124,12 @@ describe('urlReducer', () => {
             raw: 'some-raw-string',
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
         })
-        const action = { type: 'PORT', payload: '9090' }
+        const action = { type: 'PORT', payload: 9090 }
 
         const newUrl = urlReducer(current, action)
 
@@ -140,7 +140,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '1000',
+            port: 1000,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -148,12 +148,12 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '2000',
+            port: 2000,
             path: '/',
             query: new Map(),
             fragment: '',
         })
-        const action = { type: 'PORT', payload: '2000' }
+        const action = { type: 'PORT', payload: 2000 }
 
         const newUrl = urlReducer(current, action)
 
@@ -170,7 +170,7 @@ describe('urlReducer', () => {
             raw: 'some-raw-string',
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -186,7 +186,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/path1',
             query: new Map(),
             fragment: '',
@@ -194,7 +194,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/path2',
             query: new Map(),
             fragment: '',
@@ -216,7 +216,7 @@ describe('urlReducer', () => {
             raw: 'some-raw-string',
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -232,7 +232,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: 'f1',
@@ -240,7 +240,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: 'f2',
@@ -262,7 +262,7 @@ describe('urlReducer', () => {
             raw: 'some-raw-string',
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -278,7 +278,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -289,7 +289,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'camel'],
@@ -319,7 +319,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -330,7 +330,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -360,7 +360,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -371,7 +371,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -402,7 +402,7 @@ describe('urlReducer', () => {
             raw: 'some-raw-string',
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map(),
             fragment: '',
@@ -418,7 +418,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -429,7 +429,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -460,7 +460,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -471,7 +471,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -501,7 +501,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -512,7 +512,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -542,7 +542,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -553,7 +553,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -584,7 +584,7 @@ describe('urlReducer', () => {
             raw: 'some-raw-string',
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -603,7 +603,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -615,7 +615,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -639,7 +639,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -650,7 +650,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -674,7 +674,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -685,7 +685,7 @@ describe('urlReducer', () => {
         const expected = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
@@ -709,7 +709,7 @@ describe('urlReducer', () => {
         const current = new RipeUrl({
             protocol: 'http',
             hostname: 'url.com',
-            port: '',
+            port: 80,
             path: '/',
             query: new Map([
                 ['a', 'cat'],
