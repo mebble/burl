@@ -1,10 +1,13 @@
-import { Space } from 'antd';
+import { Space, Typography } from 'antd';
 import QueryList from './QueryList';
 import QueryForm from './QueryForm';
 
+const { Title } = Typography;
+
 export default function Query({ queryParams, disabled, onChange, onRemove, onSubmit }) {
     return (
-        <Space direction="vertical">
+        <Space direction="vertical" style={{ margin: '1rem 0' }}>
+            <Title level={4} style={{ margin: 0 }}>Query</Title>
             <QueryList
                 queryParams={queryParams}
                 disabled={disabled}
