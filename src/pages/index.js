@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from 'react';
+import { Space } from 'antd';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
@@ -37,17 +38,19 @@ export default function Home() {
                             ? prompt.invalid
                             : prompt.done)
                 }</p>
-                <UrlField name="protocol" value={url.protocol} onChange={value => send(action('PROTOCOL', value))} disabled={disableFields} />
-                <UrlField name="hostname" value={url.hostname} onChange={value => send(action('HOSTNAME', value))}  disabled={disableFields} />
-                <UrlField name="port" type="number" value={url.port} onChange={value => send(action('PORT', value))} disabled={disableFields} />
-                <UrlField name="path" value={url.path} onChange={value => send(action('PATH', value))} disabled={disableFields} />
-                <Query
-                    queryParams={url.query}
-                    disabled={disableFields}
-                    onChange={(key, value) => send(action('QUERY_UPDATE', { key, value }))}
-                    onRemove={(key) => send(action('QUERY_REMOVE', key))}
-                    onSubmit={(key, value) => send(action('QUERY_ADD', { key, value }))} />
-                <UrlField name="fragment" value={url.fragment} onChange={value => send(action('FRAGMENT', value))} disabled={disableFields} />
+                <Space direction="vertical">
+                    <UrlField name="protocol" value={url.protocol} onChange={value => send(action('PROTOCOL', value))} disabled={disableFields} />
+                    <UrlField name="hostname" value={url.hostname} onChange={value => send(action('HOSTNAME', value))}  disabled={disableFields} />
+                    <UrlField name="port" type="number" value={url.port} onChange={value => send(action('PORT', value))} disabled={disableFields} />
+                    <UrlField name="path" value={url.path} onChange={value => send(action('PATH', value))} disabled={disableFields} />
+                    <Query
+                        queryParams={url.query}
+                        disabled={disableFields}
+                        onChange={(key, value) => send(action('QUERY_UPDATE', { key, value }))}
+                        onRemove={(key) => send(action('QUERY_REMOVE', key))}
+                        onSubmit={(key, value) => send(action('QUERY_ADD', { key, value }))} />
+                    <UrlField name="fragment" value={url.fragment} onChange={value => send(action('FRAGMENT', value))} disabled={disableFields} />
+                </Space>
             </main>
         </div>
     )
