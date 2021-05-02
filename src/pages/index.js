@@ -3,6 +3,7 @@ import { Space } from 'antd';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
+import Title from '../components/Title';
 import UrlField from '../components/UrlField';
 import Query from '../components/Query';
 import UrlInput from '../components/UrlInput';
@@ -29,7 +30,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
-                <h1 className={styles.title}>bURL</h1>
+                <Title>bURL</Title>
                 <UrlInput url={url} onChange={value => send(action('REPLACE', parseUrl(value)))} />
                 <p className="prompt">{
                     url.toString() === ''
