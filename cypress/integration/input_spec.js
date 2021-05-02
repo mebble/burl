@@ -137,6 +137,15 @@ describe('editing one of the URL fields', () => {
             .should('have.value', 'http://example.com:8023/path?a=cat&b=dog#foo')
     })
 
+    it('should remove the port from the port field and url input when the port is cleared by the user', () => {
+        cy.get('input[name="port"]')
+            .type('{backspace}{backspace}')
+            .should('have.value', '')
+
+        cy.get('input[name="url"]')
+            .should('have.value', 'http://example.com/path?a=cat&b=dog#foo')
+    })
+
     it('should update the path field and url input when the path is edited', () => {
         cy.get('input[name="path"]')
             .type('/subpath')
