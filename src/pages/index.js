@@ -5,11 +5,11 @@ import styles from '../styles/Home.module.css';
 
 import Title from '../components/Title';
 import UrlField from '../components/UrlField';
+import Prompt from '../components/Prompt';
 import Query from '../components/Query';
 import UrlInput from '../components/UrlInput';
 
 import { badUrl, getUrlParam, parseUrl } from '../url';
-import { prompt } from '../constants';
 import { urlReducer, action } from '../reducers';
 
 export default function Home() {
@@ -32,13 +32,7 @@ export default function Home() {
             <main className={styles.main}>
                 <Title>bURL</Title>
                 <UrlInput url={url} onChange={value => send(action('REPLACE', parseUrl(value)))} />
-                <p className="prompt">{
-                    url.toString() === ''
-                        ? prompt.intro
-                        : (url.isBad()
-                            ? prompt.invalid
-                            : prompt.done)
-                }</p>
+                <Prompt url={url} />
                 <Space direction="vertical">
                     <UrlField name="protocol" value={url.protocol} onChange={value => send(action('PROTOCOL', value))} disabled={disableFields} />
                     <UrlField name="hostname" value={url.hostname} onChange={value => send(action('HOSTNAME', value))}  disabled={disableFields} />
