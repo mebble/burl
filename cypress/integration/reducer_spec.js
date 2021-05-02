@@ -2,6 +2,15 @@ import { urlReducer } from '../../src/reducers'
 import { RawUrl, RipeUrl } from '../../src/types'
 
 describe('urlReducer', () => {
+    const base = {
+        protocol: 'http',
+        hostname: 'url.com',
+        port: '',
+        path: '/',
+        query: new Map(),
+        fragment: '',
+    }
+
     context('REPLACE action', () => {
         it('forwards the payload', () => {
             const current = new RipeUrl({
@@ -32,13 +41,8 @@ describe('urlReducer', () => {
     context('PROTOCOL action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
+                ...base,
                 raw: 'some-raw-string',
-                protocol: 'http',
-                hostname: 'url2.com',
-                port: '',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const action = { type: 'PROTOCOL', payload: 'https' }
 
@@ -49,20 +53,12 @@ describe('urlReducer', () => {
 
         it('replaces only the protocol', () => {
             const current = new RipeUrl({
+                ...base,
                 protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const expected = new RipeUrl({
+                ...base,
                 protocol: 'https',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const action = { type: 'PROTOCOL', payload: 'https' }
 
@@ -80,13 +76,8 @@ describe('urlReducer', () => {
     context('HOSTNAME action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
+                ...base,
                 raw: 'some-raw-string',
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const action = { type: 'HOSTNAME', payload: 'e.com' }
 
@@ -97,20 +88,12 @@ describe('urlReducer', () => {
 
         it('replaces only the hostname', () => {
             const current = new RipeUrl({
-                protocol: 'http',
+                ...base,
                 hostname: 'url1.com',
-                port: '',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
+                ...base,
                 hostname: 'url2.com',
-                port: '',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const action = { type: 'HOSTNAME', payload: 'url2.com' }
 
@@ -128,13 +111,8 @@ describe('urlReducer', () => {
     context('PORT action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
+                ...base,
                 raw: 'some-raw-string',
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const action = { type: 'PORT', payload: '9090' }
 
@@ -145,20 +123,12 @@ describe('urlReducer', () => {
 
         it('replaces only the port', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
+                ...base,
                 port: '1000',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
+                ...base,
                 port: '2000',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const action = { type: 'PORT', payload: '2000' }
 
@@ -176,13 +146,8 @@ describe('urlReducer', () => {
     context('PATH action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
+                ...base,
                 raw: 'some-raw-string',
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const action = { type: 'PATH', payload: '/path' }
 
@@ -193,20 +158,12 @@ describe('urlReducer', () => {
 
         it('replaces only the path', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
+                ...base,
                 path: '/path1',
-                query: new Map(),
-                fragment: '',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
+                ...base,
                 path: '/path2',
-                query: new Map(),
-                fragment: '',
             })
             const action = { type: 'PATH', payload: '/path2' }
 
@@ -224,13 +181,8 @@ describe('urlReducer', () => {
     context('FRAGMENT action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
+                ...base,
                 raw: 'some-raw-string',
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const action = { type: 'FRAGMENT', payload: 'foo' }
 
@@ -241,19 +193,11 @@ describe('urlReducer', () => {
 
         it('replaces only the fragment', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
-                query: new Map(),
+                ...base,
                 fragment: 'f1',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
-                query: new Map(),
+                ...base,
                 fragment: 'f2',
             })
             const action = { type: 'FRAGMENT', payload: 'f2' }
