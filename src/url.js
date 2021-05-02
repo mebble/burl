@@ -78,9 +78,9 @@ const getPort = (hostNameFound, pathFound, url) => {
     const regex = new RegExp(`${hostNameFound}:(\\d+)${pathFound}`);
     const match = url.match(regex);
     if (match) {
-        return parseInt(match[1], 10);
+        return match[1];
     }
-    return undefined;
+    return '';
 };
 
 // deprecated
@@ -88,7 +88,7 @@ export const emptyUrl = () => {
     return new RawUrl({
         protocol: '',
         hostname: '',
-        port: undefined,
+        port: '',
         path: '',
         query: new Map(),
         fragment: '',
@@ -102,7 +102,7 @@ export const badUrl = (raw) => {
         raw: raw,
         protocol: '',
         hostname: '',
-        port: undefined,
+        port: '',
         path: '',
         query: new Map(),
         fragment: '',

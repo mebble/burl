@@ -6,7 +6,7 @@ describe('RipeUrl', () => {
             const url = new RipeUrl({
                 protocol: 'http',
                 hostname: 'example.com',
-                port: undefined,
+                port: '',
                 path: '',
                 query: new Map(),
                 fragment: '',
@@ -19,7 +19,7 @@ describe('RipeUrl', () => {
             const url = new RipeUrl({
                 protocol: 'http',
                 hostname: 'example.com',
-                port: 9000,
+                port: '9000',
                 path: '/path',
                 query: new Map([
                     ['a', 'cat'],
@@ -35,7 +35,7 @@ describe('RipeUrl', () => {
             const url = new RipeUrl({
                 protocol: 'http',
                 hostname: 'example.com',
-                port: 80,
+                port: '80',
                 path: '/path',
                 query: new Map(),
                 fragment: '',
@@ -48,7 +48,7 @@ describe('RipeUrl', () => {
             const url = new RipeUrl({
                 protocol: 'https',
                 hostname: 'example.com',
-                port: 443,
+                port: '443',
                 path: '/path',
                 query: new Map(),
                 fragment: '',
@@ -61,7 +61,7 @@ describe('RipeUrl', () => {
             const url = new RipeUrl({
                 protocol: 'http',
                 hostname: 'example.com',
-                port: undefined,
+                port: '',
                 path: '/',
                 query: new Map(),
                 fragment: '',
@@ -74,7 +74,7 @@ describe('RipeUrl', () => {
             const url = new RipeUrl({
                 protocol: 'http',
                 hostname: 'example.com',
-                port: undefined,
+                port: '',
                 path: 'path',
                 query: new Map(),
                 fragment: '',
@@ -89,7 +89,7 @@ describe('RipeUrl', () => {
             const url = new RipeUrl({
                 protocol: 'http',
                 hostname: 'example.com',
-                port: 9000,
+                port: '9000',
                 path: '/path',
                 query: new Map([
                     ['a', 'cat'],
@@ -116,7 +116,7 @@ describe('RawUrl', () => {
                 isBad: true,
                 protocol: 'http',
                 hostname: 'example.com',
-                port: undefined,
+                port: '',
                 path: '/path',
                 query: new Map(),
                 fragment: '',
