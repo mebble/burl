@@ -1,17 +1,23 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 0rem 0.5rem;
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main {
+  margin-bottom: 1.5rem;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.main {
-  padding: 5rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.footer {
+    padding-top: 1rem;
+    padding-bottom: 1.75rem;
 }

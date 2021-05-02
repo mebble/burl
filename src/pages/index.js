@@ -47,6 +47,11 @@ export default function Home() {
                     <UrlField name="fragment" value={url.fragment} onChange={value => send(action('FRAGMENT', value))} disabled={disableFields} />
                 </Space>
             </main>
+            <footer className={styles.footer}>
+                <a href="https://github.com/mebble/burl/">
+                    <img src="/github.svg" alt="Github source code" />
+                </a>
+            </footer>
         </div>
     )
 }
