@@ -5,10 +5,12 @@ describe('urlReducer', () => {
     const base = {
         protocol: 'http',
         hostname: 'url.com',
-        port: '',
-        path: '/',
-        query: new Map(),
-        fragment: '',
+        port: '8080',
+        path: '/path',
+        query: new Map([
+            ['a', 'cat']
+        ]),
+        fragment: 'f1',
     }
 
     context('REPLACE action', () => {
@@ -216,13 +218,8 @@ describe('urlReducer', () => {
     context('QUERY_UPDATE action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
+                ...base,
                 raw: 'some-raw-string',
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const action = { type: 'QUERY_UPDATE', payload: {} }
 
@@ -233,26 +230,18 @@ describe('urlReducer', () => {
 
         it('replaces the given query param value', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'camel'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const action = {
                 type: 'QUERY_UPDATE',
@@ -274,26 +263,18 @@ describe('urlReducer', () => {
 
         it('ignores the given query param value if query key is not in current URL', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const action = {
                 type: 'QUERY_UPDATE',
@@ -315,26 +296,18 @@ describe('urlReducer', () => {
 
         it('keeps the current query if key is undefined', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const action = {
                 type: 'QUERY_UPDATE',
@@ -358,13 +331,8 @@ describe('urlReducer', () => {
     context('QUERY_ADD action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
+                ...base,
                 raw: 'some-raw-string',
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
-                query: new Map(),
-                fragment: '',
             })
             const action = { type: 'QUERY_ADD', payload: {} }
 
@@ -375,27 +343,19 @@ describe('urlReducer', () => {
 
         it('sets a new key-value pair when the key is new', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                     ['c', 'camel'],
                 ]),
-                fragment: 'f1',
             })
             const action = {
                 type: 'QUERY_ADD',
@@ -417,26 +377,18 @@ describe('urlReducer', () => {
 
         it('ignores the given query param value if query key is already in current URL', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const action = {
                 type: 'QUERY_ADD',
@@ -458,26 +410,18 @@ describe('urlReducer', () => {
 
         it('keeps the current query if key is undefined', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const action = {
                 type: 'QUERY_ADD',
@@ -499,26 +443,18 @@ describe('urlReducer', () => {
 
         it('keeps the current query if key is an empty string', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const action = {
                 type: 'QUERY_ADD',
@@ -542,16 +478,8 @@ describe('urlReducer', () => {
     context('QUERY_REMOVE action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
+                ...base,
                 raw: 'some-raw-string',
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
-                query: new Map([
-                    ['a', 'cat'],
-                    ['b', 'dog'],
-                ]),
-                fragment: '',
             })
             const action = { type: 'QUERY_REMOVE', payload: {} }
 
@@ -562,27 +490,19 @@ describe('urlReducer', () => {
 
         it('removes the query param having the payload key', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                     ['c', 'camel'],
                 ]),
-                fragment: 'f1',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['c', 'camel'],
                 ]),
-                fragment: 'f1',
             })
             const action = { type: 'QUERY_REMOVE', payload: 'b' }
 
@@ -598,26 +518,18 @@ describe('urlReducer', () => {
 
         it('keeps the current query if query key is not in current URL', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const action = { type: 'QUERY_REMOVE', payload: 'c' }
 
@@ -633,26 +545,18 @@ describe('urlReducer', () => {
 
         it('keeps the current query if key is undefined', () => {
             const current = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const expected = new RipeUrl({
-                protocol: 'http',
-                hostname: 'url.com',
-                port: '',
-                path: '/',
+                ...base,
                 query: new Map([
                     ['a', 'cat'],
                     ['b', 'dog'],
                 ]),
-                fragment: 'f1',
             })
             const action = { type: 'QUERY_REMOVE', payload: undefined }
 
