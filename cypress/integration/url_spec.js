@@ -246,16 +246,16 @@ describe('parseUrl', () => {
         expect(url.fragment).to.equal('foo')
     });
 
-    it('should not set the port when url has no port but a :digits pattern appears after the explicit path', () => {
-        const urlString = 'http://example.com/path:8080'
+    it('should set the port when url has no path', () => {
+        const urlString = 'http://example.com:8080'
 
         const url = parseUrl(urlString)
 
-        expect(url.port).to.equal('')
+        expect(url.port).to.equal('8080')
     });
 
-    it('should not set the port when url has no port but a :digits pattern appears after the explicit path followed by a misleading path', () => {
-        const urlString = 'http://example.com/path?a=:8080/path'
+    it('should not set the port when a :digits pattern doesn\'t appear next to the hostname', () => {
+        const urlString = 'http://example.com/path:8080'
 
         const url = parseUrl(urlString)
 

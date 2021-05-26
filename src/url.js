@@ -64,7 +64,7 @@ export const parseUrl = (url) => {
         raw: url,
         protocol: webApiUrl.protocol.slice(0, -1),
         hostname: hostname,
-        port: getPort(hostname, path, url),
+        port: getPort(hostname, url),
         path: path,
         query: getQueryParams(url),
         fragment: webApiUrl.hash.slice(1),
@@ -74,8 +74,8 @@ export const parseUrl = (url) => {
     return parsedUrl;
 };
 
-const getPort = (hostNameFound, pathFound, url) => {
-    const regex = new RegExp(`${hostNameFound}:(\\d+)${pathFound}`);
+const getPort = (hostNameFound, url) => {
+    const regex = new RegExp(`${hostNameFound}:(\\d+)`);
     const match = url.match(regex);
     if (match) {
         return match[1];
