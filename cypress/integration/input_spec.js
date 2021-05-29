@@ -156,7 +156,7 @@ describe('editing one of the URL fields', () => {
     })
 
     it('should update the value of the query param field and url input when a query param value is edited', () => {
-        cy.get('input[name="a"]')
+        cy.get('input[aria-labelledby="query-a"]')
             .type('nap')
             .should('have.value', 'catnap')
 
