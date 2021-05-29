@@ -16,7 +16,7 @@ describe('typing into URL input', () => {
         cy.get('.prompt')
             .contains(prompt.invalid)
         fieldNames.forEach(name => {
-            cy.get(`input[name="${name}"]`)
+            cy.get(`input[aria-labelledby="${name}"]`)
                 .should('have.value', '')
                 .and('be.disabled')
         })
@@ -45,22 +45,22 @@ describe('typing into URL input', () => {
         cy.get('.prompt')
             .contains(prompt.done)
         fieldNames.forEach(name => {
-            cy.get(`input[name="${name}"]`)
+            cy.get(`input[aria-labelledby="${name}"]`)
                 .and('not.be.disabled')
         })
 
-        cy.get('input[name="protocol"]')
+        cy.get('input[aria-labelledby="protocol"]')
             .should('have.value', 'http')
-        cy.get('input[name="hostname"]')
+        cy.get('input[aria-labelledby="hostname"]')
             .should('have.value', 'example.com')
-        cy.get('input[name="port"]')
+        cy.get('input[aria-labelledby="port"]')
             .should('have.value', 80)
-        cy.get('input[name="path"]')
+        cy.get('input[aria-labelledby="path"]')
             .should('have.value', '/path')
         cy.get('.query li')
             .should('have.length', expectedQueryParams.length)
             .each(assertQueryParams(cy, expectedQueryParams))
-        cy.get('input[name="fragment"]')
+        cy.get('input[aria-labelledby="fragment"]')
             .should('have.value', 'foo')
 
         cy.get('form.query-form').within(() => {
@@ -102,7 +102,7 @@ describe('editing one of the URL fields', () => {
     })
 
     it('should update the protocol field and url input when the protocol is edited', () => {
-        cy.get('input[name="protocol"]')
+        cy.get('input[aria-labelledby="protocol"]')
             .type('s')
             .should('have.value', 'https')
 
@@ -111,7 +111,7 @@ describe('editing one of the URL fields', () => {
     })
 
     it('should update the hostname field and url input when the hostname is edited', () => {
-        cy.get('input[name="hostname"]')
+        cy.get('input[aria-labelledby="hostname"]')
             .type('com')
             .should('have.value', 'example.comcom')
 
@@ -120,7 +120,7 @@ describe('editing one of the URL fields', () => {
     })
 
     it('should update the port field and url input when the port is edited with numeric characters', () => {
-        cy.get('input[name="port"]')
+        cy.get('input[aria-labelledby="port"]')
             .type('08')
             .should('have.value', 8008)
 
@@ -129,7 +129,7 @@ describe('editing one of the URL fields', () => {
     })
 
     it('should NOT update the port field and url input when the port is edited with non-numeric characters', () => {
-        cy.get('input[name="port"]')
+        cy.get('input[aria-labelledby="port"]')
             .type('23abc')
             .should('have.value', 8023)
 
@@ -138,7 +138,7 @@ describe('editing one of the URL fields', () => {
     })
 
     it('should remove the port from the port field and url input when the port is cleared by the user', () => {
-        cy.get('input[name="port"]')
+        cy.get('input[aria-labelledby="port"]')
             .type('{backspace}{backspace}')
             .should('have.value', '')
 
@@ -147,7 +147,7 @@ describe('editing one of the URL fields', () => {
     })
 
     it('should update the path field and url input when the path is edited', () => {
-        cy.get('input[name="path"]')
+        cy.get('input[aria-labelledby="path"]')
             .type('/subpath')
             .should('have.value', '/path/subpath')
 
@@ -165,7 +165,7 @@ describe('editing one of the URL fields', () => {
     })
 
     it('should update the fragment field and url input when the fragment is edited', () => {
-        cy.get('input[name="fragment"]')
+        cy.get('input[aria-labelledby="fragment"]')
             .type('bar')
             .should('have.value', 'foobar')
 
