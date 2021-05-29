@@ -1,4 +1,4 @@
-import { RipeUrl, RawUrl } from '../../src/types'
+import { RipeUrl, RawUrl } from '../../../src/types'
 
 describe('RipeUrl', () => {
     describe('toString', () => {

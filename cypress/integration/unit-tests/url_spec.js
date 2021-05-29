@@ -1,5 +1,5 @@
-import { RawUrl } from '../../src/types'
-import { getQueryParams, getUrlParam, isHttpUrl, parseUrl, emptyUrl, badUrl } from '../../src/url'
+import { RawUrl } from '../../../src/types'
+import { getQueryParams, getUrlParam, isHttpUrl, parseUrl, emptyUrl, badUrl } from '../../../src/url'
 
 describe('getQueryParams', () => {
     it('should return an empty map for an invalid URL', () => {

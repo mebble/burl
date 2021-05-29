@@ -1,5 +1,5 @@
-import { urlReducer } from '../../src/reducers'
-import { RawUrl, RipeUrl } from '../../src/types'
+import { urlReducer } from '../../../src/reducers'
+import { RawUrl, RipeUrl } from '../../../src/types'
 
 describe('urlReducer', () => {
     const base = {
