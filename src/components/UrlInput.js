@@ -6,7 +6,7 @@ export default function UrlInput({ url, onChange }) {
     return (
         <Row style={{ width: '100%', marginBottom: '.75rem' }} justify="center" align="middle" gutter={8}>
             <Col flex={10}>
-                <Input name="url" value={url.toString()} type="text" onChange={e => onChange(e.target.value)} />
+                <Input aria-label="url" value={url.toString()} type="text" onChange={e => onChange(e.target.value)} />
             </Col>
             <Col flex={2}>
                 <a className="url"

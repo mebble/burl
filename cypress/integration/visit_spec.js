@@ -6,7 +6,7 @@ describe('app visit', () => {
         it('should contain the correct prompt and empty and disabled URL fields and query form', () => {
             cy.visit('/')
 
-            cy.get('input[name="url"]')
+            cy.get('input[aria-label="url"]')
                 .should('have.value', '')
             cy.get('.prompt')
                 .contains(prompt.intro)
@@ -38,7 +38,7 @@ describe('app visit', () => {
 
             cy.visit(`/?u=${url}`)
 
-            cy.get('input[name="url"]')
+            cy.get('input[aria-label="url"]')
                 .should('have.value', url)
             cy.get('.prompt')
                 .contains(prompt.invalid)
@@ -62,7 +62,7 @@ describe('app visit', () => {
 
             cy.visit(`/?u=${url}`)
 
-            cy.get('input[name="url"]')
+            cy.get('input[aria-label="url"]')
                 .should('have.value', url)
             cy.get('.prompt')
                 .contains(prompt.done)
@@ -97,7 +97,7 @@ describe('visit the given url', () => {
     })
 
     it('should have an anchor tag that opens the given url in a new tab and avoids tabnabbing', () => {
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .clear()
             .type(url)
 
@@ -108,7 +108,7 @@ describe('visit the given url', () => {
     })
 
     it('should have an anchor tag that links to the current page within the current tab if the url is invalid', () => {
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .clear()
             .type('invalid-url')
 
@@ -118,7 +118,7 @@ describe('visit the given url', () => {
     })
 
     it('should have an anchor tag that links to the current page within the current tab if the url is empty', () => {
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .clear()
 
         cy.get('a.url')

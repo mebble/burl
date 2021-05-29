@@ -6,11 +6,11 @@ describe('typing into URL input', () => {
         cy.visit('/')
     })
     beforeEach(() => {
-        cy.get('input[name="url"]').clear()
+        cy.get('input[aria-label="url"]').clear()
     })
 
     it('should show invalid prompt, empty disabled URL fields and query form when invalid URL is typed', () => {
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .type('Hey hello')
 
         cy.get('.prompt')
@@ -39,7 +39,7 @@ describe('typing into URL input', () => {
             ['b', 'dog'],
         ];
 
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .type('http://example.com:80/path?a=cat&b=dog#foo')
 
         cy.get('.prompt')
@@ -82,7 +82,7 @@ describe('typing into URL input', () => {
             ['b', 'dog'],
         ];
 
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .type('http://example.com/some/path?a=cat&b=dog&a=camel')
 
         cy.get('.query li')
@@ -96,7 +96,7 @@ describe('editing one of the URL fields', () => {
         cy.visit('/')
     })
     beforeEach(() => {
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .clear()
             .type('http://example.com:80/path?a=cat&b=dog#foo')
     })
@@ -106,7 +106,7 @@ describe('editing one of the URL fields', () => {
             .type('s')
             .should('have.value', 'https')
 
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .should('have.value', 'https://example.com:80/path?a=cat&b=dog#foo')
     })
 
@@ -115,7 +115,7 @@ describe('editing one of the URL fields', () => {
             .type('com')
             .should('have.value', 'example.comcom')
 
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .should('have.value', 'http://example.comcom:80/path?a=cat&b=dog#foo')
     })
 
@@ -124,7 +124,7 @@ describe('editing one of the URL fields', () => {
             .type('08')
             .should('have.value', 8008)
 
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .should('have.value', 'http://example.com:8008/path?a=cat&b=dog#foo')
     })
 
@@ -133,7 +133,7 @@ describe('editing one of the URL fields', () => {
             .type('23abc')
             .should('have.value', 8023)
 
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .should('have.value', 'http://example.com:8023/path?a=cat&b=dog#foo')
     })
 
@@ -142,7 +142,7 @@ describe('editing one of the URL fields', () => {
             .type('{backspace}{backspace}')
             .should('have.value', '')
 
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .should('have.value', 'http://example.com/path?a=cat&b=dog#foo')
     })
 
@@ -151,7 +151,7 @@ describe('editing one of the URL fields', () => {
             .type('/subpath')
             .should('have.value', '/path/subpath')
 
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .should('have.value', 'http://example.com:80/path/subpath?a=cat&b=dog#foo')
     })
 
@@ -160,7 +160,7 @@ describe('editing one of the URL fields', () => {
             .type('nap')
             .should('have.value', 'catnap')
 
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .should('have.value', 'http://example.com:80/path?a=catnap&b=dog#foo')
     })
 
@@ -169,7 +169,7 @@ describe('editing one of the URL fields', () => {
             .type('bar')
             .should('have.value', 'foobar')
 
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .should('have.value', 'http://example.com:80/path?a=cat&b=dog#foobar')
     })
 })

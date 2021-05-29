@@ -5,7 +5,7 @@ describe('adding new query param', () => {
         cy.visit('/')
     })
     beforeEach(() => {
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .clear()
             .type('http://e.com?a=cat&b=dog')
         cy.get('form.query-form').within(() => {
@@ -36,7 +36,7 @@ describe('adding new query param', () => {
                 .should('have.length', expectedQueryParams.length)
                 .each(assertQueryParams(cy, expectedQueryParams))
 
-            cy.get('input[name="url"]')
+            cy.get('input[aria-label="url"]')
                 .should('have.value', 'http://e.com/?a=cat&b=dog&c=dinosaur')
 
             cy.get('form.query-form').within(() => {
@@ -97,7 +97,7 @@ describe('removing query params', () => {
         cy.visit('/')
     })
     beforeEach(() => {
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .clear()
             .type('http://e.com?a=cat&b=dog&c=capybara')
     })
@@ -114,7 +114,7 @@ describe('removing query params', () => {
         cy.get('.query li')
             .should('have.length', expectedQueryParams.length)
             .each(assertQueryParams(cy, expectedQueryParams))
-        cy.get('input[name="url"]')
+        cy.get('input[aria-label="url"]')
             .should('have.value', 'http://e.com/?a=cat&c=capybara')
     })
 })
