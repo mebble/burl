@@ -21,10 +21,10 @@ describe('typing into URL input', () => {
                 .and('be.disabled')
         })
         cy.get('form.query-form').within(() => {
-            cy.get(`input[name="${queryAddNames.key}"]`)
+            cy.get(`input[aria-label="${queryAddNames.key}"]`)
                 .should('have.value', '')
                 .and('be.disabled')
-            cy.get(`input[name="${queryAddNames.value}"]`)
+            cy.get(`input[aria-label="${queryAddNames.value}"]`)
                 .should('have.value', '')
                 .and('be.disabled')
             cy.get('button')
@@ -64,10 +64,10 @@ describe('typing into URL input', () => {
             .should('have.value', 'foo')
 
         cy.get('form.query-form').within(() => {
-            cy.get(`input[name="${queryAddNames.key}"]`)
+            cy.get(`input[aria-label="${queryAddNames.key}"]`)
                 .should('have.value', '')
                 .and('not.be.disabled')
-            cy.get(`input[name="${queryAddNames.value}"]`)
+            cy.get(`input[aria-label="${queryAddNames.value}"]`)
                 .should('have.value', '')
                 .and('not.be.disabled')
             cy.get('button')

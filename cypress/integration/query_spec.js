@@ -9,18 +9,18 @@ describe('adding new query param', () => {
             .clear()
             .type('http://e.com?a=cat&b=dog')
         cy.get('form.query-form').within(() => {
-            cy.get(`input[name="${queryAddNames.key}"]`)
+            cy.get(`input[aria-label="${queryAddNames.key}"]`)
                 .clear()
-            cy.get(`input[name="${queryAddNames.value}"]`)
+            cy.get(`input[aria-label="${queryAddNames.value}"]`)
                 .clear()
         })
     })
 
     it('should update the field inputs when typing into the add query input form', () => {
-        cy.get(`input[name="${queryAddNames.key}"]`)
+        cy.get(`input[aria-label="${queryAddNames.key}"]`)
             .type('c')
             .should('have.value', 'c')
-        cy.get(`input[name="${queryAddNames.value}"]`)
+        cy.get(`input[aria-label="${queryAddNames.value}"]`)
             .type('dinosaur')
             .should('have.value', 'dinosaur')
     })
@@ -40,18 +40,18 @@ describe('adding new query param', () => {
                 .should('have.value', 'http://e.com/?a=cat&b=dog&c=dinosaur')
 
             cy.get('form.query-form').within(() => {
-                cy.get(`input[name="${queryAddNames.key}"]`)
+                cy.get(`input[aria-label="${queryAddNames.key}"]`)
                     .should('have.value', '')
-                cy.get(`input[name="${queryAddNames.value}"]`)
+                cy.get(`input[aria-label="${queryAddNames.value}"]`)
                     .should('have.value', '')
             })
         }
 
         it('should add a query param on value enter and then clear the form inputs', () => {
             cy.get('form.query-form').within(() => {
-                cy.get(`input[name="${queryAddNames.key}"]`)
+                cy.get(`input[aria-label="${queryAddNames.key}"]`)
                     .type('c')
-                cy.get(`input[name="${queryAddNames.value}"]`)
+                cy.get(`input[aria-label="${queryAddNames.value}"]`)
                     .type('dinosaur{enter}')
             })
 
@@ -60,9 +60,9 @@ describe('adding new query param', () => {
 
         it('should add a query param on key enter and then clear the form inputs', () => {
             cy.get('form.query-form').within(() => {
-                cy.get(`input[name="${queryAddNames.value}"]`)
+                cy.get(`input[aria-label="${queryAddNames.value}"]`)
                     .type('dinosaur')
-                cy.get(`input[name="${queryAddNames.key}"]`)
+                cy.get(`input[aria-label="${queryAddNames.key}"]`)
                     .type('c{enter}')
             })
 
@@ -71,9 +71,9 @@ describe('adding new query param', () => {
 
         it('should add a query param on button click and then clear the form inputs', () => {
             cy.get('form.query-form').within(() => {
-                cy.get(`input[name="${queryAddNames.key}"]`)
+                cy.get(`input[aria-label="${queryAddNames.key}"]`)
                     .type('c')
-                cy.get(`input[name="${queryAddNames.value}"]`)
+                cy.get(`input[aria-label="${queryAddNames.value}"]`)
                     .type('dinosaur')
                 cy.get('button')
                     .click()

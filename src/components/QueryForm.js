@@ -17,10 +17,10 @@ export default function QueryForm({ disabled, onSubmit }) {
             <Input.Group>
                 <Row gutter={4} justify="space-between">
                     <Col flex="100px">
-                        <Input name="new-query-key" value={key} type="text" onChange={e => setKey(e.target.value)} disabled={disabled} />
+                        <Input aria-label="New query key" value={key} type="text" onChange={e => setKey(e.target.value)} disabled={disabled} />
                     </Col>
                     <Col flex="auto">
-                        <Input name="new-query-value" value={value} type="text" onChange={e => setValue(e.target.value)} disabled={disabled} />
+                        <Input aria-label="New query value" value={value} type="text" onChange={e => setValue(e.target.value)} disabled={disabled} />
                     </Col>
                     <Col>
                         <Button htmlType="submit" disabled={disabled}>Add</Button>

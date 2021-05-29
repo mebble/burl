@@ -14,6 +14,6 @@ export const fieldNames = [
 ]
 
 export const queryAddNames = {
-    key: 'new-query-key',
-    value: 'new-query-value'
+    key: 'New query key',
+    value: 'New query value'
 };

@@ -19,10 +19,10 @@ describe('app visit', () => {
                 .should('not.have.descendants', 'li')
 
             cy.get('form.query-form').within(() => {
-                cy.get(`input[name="${queryAddNames.key}"]`)
+                cy.get(`input[aria-label="${queryAddNames.key}"]`)
                     .should('have.value', '')
                     .and('be.disabled')
-                cy.get(`input[name="${queryAddNames.value}"]`)
+                cy.get(`input[aria-label="${queryAddNames.value}"]`)
                     .should('have.value', '')
                     .and('be.disabled')
                 cy.get('button')
