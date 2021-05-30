@@ -1,14 +1,15 @@
 import { Input, Row, Col } from 'antd';
+import styles from '../styles/UrlInput.module.css';
 
 export default function UrlInput({ url, onChange }) {
     const valid = !url.isBad();
 
     return (
-        <Row style={{ width: '100%', marginBottom: '.75rem' }} justify="center" align="middle" gutter={8}>
+        <Row className={styles.container} justify="center" align="middle" gutter={8}>
             <Col flex={10}>
                 <Input aria-label="url" value={url.toString()} type="text" onChange={e => onChange(e.target.value)} />
             </Col>
-            <Col flex={2}>
+            <Col>
                 <a className="url"
                     href={valid ? url.toString() : '#'}
                     target={valid ? "_blank" : null}
