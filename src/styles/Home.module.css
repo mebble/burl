@@ -23,3 +23,37 @@
     display: flex;
     justify-content: center;
 }
+
+.breakdown {
+    width: 100%;
+}
+
+@media (min-width: 480px) {
+    .breakdown {
+        width: 80%;
+    }
+}
+
+@media (min-width: 640px) {
+    .breakdown {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .breakdown {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .breakdown {
+        width: 40%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .breakdown {
+        width: 35%;
+    }
+}

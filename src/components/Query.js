@@ -6,7 +6,7 @@ const { Title } = Typography;
 
 export default function Query({ queryParams, disabled, onChange, onRemove, onSubmit }) {
     return (
-        <Space direction="vertical" style={{ margin: '1rem 0' }}>
+        <Space direction="vertical" style={{ margin: '1rem 0', width: '100%' }}>
             <Title level={4} style={{ margin: 0 }}>Query</Title>
             <QueryList
                 queryParams={queryParams}

@@ -33,7 +33,7 @@ export default function Home() {
                 <Title>bURL</Title>
                 <UrlInput url={url} onChange={value => send(action('REPLACE', parseUrl(value)))} />
                 <Prompt url={url} />
-                <Space direction="vertical">
+                <Space className={styles.breakdown} direction="vertical">
                     <UrlField name="protocol" value={url.protocol} onChange={value => send(action('PROTOCOL', value))} disabled={disableFields} />
                     <UrlField name="hostname" value={url.hostname} onChange={value => send(action('HOSTNAME', value))}  disabled={disableFields} />
                     <UrlField name="port" type="number" value={url.port} onChange={value => send(action('PORT', value))} disabled={disableFields} />
