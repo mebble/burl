@@ -15,8 +15,8 @@ export default function QueryForm({ disabled, onSubmit }) {
     return (
         <form className="query-form" onSubmit={handleSubmit}>
             <Input.Group>
-                <Row gutter={4} justify="space-between">
-                    <Col flex="100px">
+                <Row gutter={4} justify="space-between" wrap={false}>
+                    <Col style={{ maxWidth: '100px' }}>
                         <Input aria-label="New query key" value={key} type="text" onChange={e => setKey(e.target.value)} disabled={disabled} />
                     </Col>
                     <Col flex="auto">
