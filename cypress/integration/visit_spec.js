@@ -101,7 +101,7 @@ describe('visit the given url', () => {
             .clear()
             .type(url)
 
-        cy.get('a.url')
+        cy.get('a#visit-url')
             .should('have.attr', 'href', url)
             .and('have.attr', 'target', "_blank")
             .and('have.attr', 'rel', 'noopener noreferrer')
@@ -112,7 +112,7 @@ describe('visit the given url', () => {
             .clear()
             .type('invalid-url')
 
-        cy.get('a.url')
+        cy.get('a#visit-url')
             .should('have.attr', 'href', "#")
             .and('not.have.attr', 'target')
     })
@@ -121,7 +121,7 @@ describe('visit the given url', () => {
         cy.get('input[aria-label="url"]')
             .clear()
 
-        cy.get('a.url')
+        cy.get('a#visit-url')
             .should('have.attr', 'href', "#")
             .and('not.have.attr', 'target')
     })

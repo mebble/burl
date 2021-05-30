@@ -10,7 +10,7 @@ export default function UrlInput({ url, onChange }) {
                 <Input aria-label="url" value={url.toString()} type="text" onChange={e => onChange(e.target.value)} />
             </Col>
             <Col>
-                <a className="url"
+                <a id="visit-url"
                     href={valid ? url.toString() : '#'}
                     target={valid ? "_blank" : null}
                     rel="noopener noreferrer"
