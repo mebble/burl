@@ -3,22 +3,22 @@
 [![CI Status](https://github.com/mebble/burl/workflows/CI/badge.svg)](https://github.com/mebble/burl/actions)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c59c4fa2-64e4-46e8-a0dc-ebd07896475b/deploy-status)](https://app.netlify.com/sites/burl/deploys)
 
-Break up URLs at [burl.bar](https://burl.bar/)
+Break up URLs at [burl.netlify.app](https://burl.netlify.app/)
 
 ## Usage
 
 Open the app with a blank URL:
 
-[https://burl.bar](https://burl.bar/)
+[https://burl.netlify.app](https://burl.netlify.app/)
 
 Open the app with some given URL:
 
-[https://burl.bar/?u=https://www.reddit.com/r/aww/comments/mtv5a3/this_german_shepherd_is_well_known_in_her/?utm_source=share&utm_medium=web2x&context=3](https://burl.bar/?u=https://www.reddit.com/r/aww/comments/mtv5a3/this_german_shepherd_is_well_known_in_her/?utm_source=share&utm_medium=web2x&context=3)
+[https://burl.netlify.app/?u=https://www.reddit.com/r/aww/comments/mtv5a3/this_german_shepherd_is_well_known_in_her/?utm_source=share&utm_medium=web2x&context=3](https://burl.netlify.app/?u=https://www.reddit.com/r/aww/comments/mtv5a3/this_german_shepherd_is_well_known_in_her/?utm_source=share&utm_medium=web2x&context=3)
 
 ## Dev Requirements
 
 - Node.js
-- npm or yarn
+- yarn
 
 ## Dev Setup
 
@@ -26,7 +26,7 @@ Clone the project, `cd` into the project's root directory and install the projec
 
 ```bash
 cd burl
-yarn install  # or npm install
+yarn install
 ```
 
 ## Testing
@@ -34,20 +34,12 @@ yarn install  # or npm install
 Run the application in development mode
 
 ```bash
-# with npm
-npm run dev
-
-# with yarn
 yarn dev
 ```
 
 In another terminal window, open the Cypress runner
 
 ```bash
-# with npm
-npm run cypress:open
-
-# with yarn
 yarn cypress:open
 ```
 
@@ -56,10 +48,6 @@ In the Cypress runner, select the test file you want to run. This test will be r
 Before committing your code, run all the tests of the application
 
 ```bash
-# with npm
-npm run cypress:run
-
-# with yarn
 yarn cypress:run
 ```
 
