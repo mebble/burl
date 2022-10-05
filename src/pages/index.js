@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css';
 
 import Title from '../components/Title';
 import UrlField from '../components/UrlField';
+import FragmentField from '../components/FragmentField';
 import Prompt from '../components/Prompt';
 import Query from '../components/Query';
 import UrlInput from '../components/UrlInput';
@@ -44,7 +45,7 @@ export default function Home() {
                         onChange={(key, value) => send(action('QUERY_UPDATE', { key, value }))}
                         onRemove={(key) => send(action('QUERY_REMOVE', key))}
                         onSubmit={(key, value) => send(action('QUERY_ADD', { key, value }))} />
-                    <UrlField name="fragment" value={url.fragment} onChange={value => send(action('FRAGMENT', value))} disabled={disableFields} />
+                    <FragmentField name="fragment" value={url.fragment} onChange={value => send(action('FRAGMENT', value))} disabled={disableFields} />
                 </Space>
             </main>
             <footer className={styles.footer}>
