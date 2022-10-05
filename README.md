@@ -65,3 +65,5 @@ yarn cypress:run
 ## References
 
 - URL structure: https://en.wikipedia.org/wiki/URL#Syntax
+- URL encoding: https://en.wikipedia.org/wiki/Percent-encoding
+- URI schemes: https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml

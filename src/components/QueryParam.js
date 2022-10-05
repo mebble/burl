@@ -1,4 +1,4 @@
-import { Input, Button, Row, Col } from 'antd';
+import { Input, Button, Switch, Row, Col } from 'antd';
 
 export default function QueryParam({ name, value, disabled, onValueChange, onRemove }) {
     const ariaId = `query-${name}`;
@@ -9,6 +9,15 @@ export default function QueryParam({ name, value, disabled, onValueChange, onRem
             </Col>
             <Col>
                 <Button htmlType="button" data-query-key={name} onClick={onRemove}>-</Button>
+            </Col>
+            <Col>
+                <Switch size="small" aria-label={`${ariaId}-decode-url`} onClick={(checked, e) => {
+                    if (checked) {
+                        onValueChange(decodeURIComponent(value))
+                    } else {
+                        onValueChange(encodeURIComponent(value))
+                    }
+                }} />
             </Col>
         </Row>
     );
