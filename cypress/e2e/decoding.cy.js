@@ -16,7 +16,7 @@ describe('URL decoding', () => {
             .type(`http://example.com:80/path?a=cat&b=${encodedParam}#${encodedFragment}`)
     })
 
-    it('decodes a query param field', () => {
+    it('decodes a query param field and update the url bar', () => {
         cy.get('input[aria-labelledby="query-b"]')
             .should('have.value', encodedParam)
 
@@ -25,13 +25,14 @@ describe('URL decoding', () => {
             .click()
             .should('have.attr', 'aria-checked', 'true')
 
-
         cy.get('.query li')
             .should('have.length', 2)
             .each(assertQueryParams(cy, [
                 ['a', 'cat'],
                 ['b', decodedParam]
             ]))
+        cy.get('input[aria-label="url"]')
+            .should('have.value', `http://example.com:80/path?a=cat&b=${decodedParam}#${encodedFragment}`)
 
         cy.get('[role="switch"][aria-label="query-b-decode-url"]')
             .click()
@@ -43,9 +44,11 @@ describe('URL decoding', () => {
                 ['a', 'cat'],
                 ['b', encodedParam]
             ]))
+        cy.get('input[aria-label="url"]')
+            .should('have.value', `http://example.com:80/path?a=cat&b=${encodedParam}#${encodedFragment}`)
     })
 
-    it('decodes the fragment field', () => {
+    it('decodes the fragment field and update the url bar', () => {
         cy.get('input[aria-labelledby="fragment"]')
             .should('have.value', encodedFragment)
 
@@ -54,9 +57,10 @@ describe('URL decoding', () => {
             .click()
             .should('have.attr', 'aria-checked', 'true')
 
-
         cy.get('input[aria-labelledby="fragment"]')
             .should('have.value', decodedFragment)
+        cy.get('input[aria-label="url"]')
+            .should('have.value', `http://example.com:80/path?a=cat&b=${encodedParam}#${decodedFragment}`)
 
         cy.get('[role="switch"][aria-label="fragment-decode-url"]')
             .click()
@@ -64,5 +68,7 @@ describe('URL decoding', () => {
 
         cy.get('input[aria-labelledby="fragment"]')
             .should('have.value', encodedFragment)
+        cy.get('input[aria-label="url"]')
+            .should('have.value', `http://example.com:80/path?a=cat&b=${encodedParam}#${encodedFragment}`)
     })
 })
