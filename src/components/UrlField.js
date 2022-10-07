@@ -1,5 +1,5 @@
-import { Input, Button, Row, Col } from 'antd';
-import IconCopy from './IconCopy';
+import { Input, Row, Col } from 'antd';
+import CopyButton from './CopyButton';
 
 export default function UrlField({ name, type = 'text', value, disabled, onChange }) {
     return (
@@ -8,10 +8,7 @@ export default function UrlField({ name, type = 'text', value, disabled, onChang
                 <Input type={type} value={value} onChange={e => onChange(e.target.value)} disabled={disabled} addonBefore={<span id={name}>{name}</span>} aria-labelledby={name} />
             </Col>
             <Col style={{ display: 'flex', alignItems: 'center'}}>
-                <Button aria-label={`Copy ${name}`} htmlType="button" size="small" icon={<IconCopy />} onClick={() => {
-                    navigator.clipboard.writeText(value)
-                }}>
-                </Button>
+                <CopyButton name={name} value={value} />
             </Col>
         </Row>
     );

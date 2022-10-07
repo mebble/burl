@@ -13,7 +13,7 @@ describe('Copying fields to the clipboard', () => {
 
     it('copies the URL bar input')
 
-    it('copies a URL field', () => {
+    it('copies the URL fields', () => {
         const fieldValues = [
             'http',
             'example.com',
@@ -35,6 +35,17 @@ describe('Copying fields to the clipboard', () => {
         })
     })
 
-
-    it('copies a query param field')
+    it('copies the query param fields', () => {
+        cy.window().then(win => {
+            zip(['a', 'b'], ['cat', 'dog']).forEach(([name, value]) => {
+                cy.get(`button[aria-label="Copy query ${name}"]`)
+                    .click()
+                    .then(() => {
+                        win.navigator.clipboard.readText().then(text => {
+                            expect(text).to.eq(value)
+                        })
+                    })
+            })
+        })
+    })
 })
