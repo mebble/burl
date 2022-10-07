@@ -1,5 +1,6 @@
-import { Switch, Row, Col  } from 'antd';
+import { Row, Col  } from 'antd';
 import UrlField from './UrlField';
+import DecodeURISwitch from './DecodeURISwitch';
 
 export default function FragmentField({ name, value, disabled, onChange }) {
     return (
@@ -8,13 +9,7 @@ export default function FragmentField({ name, value, disabled, onChange }) {
                 <UrlField name={name} value={value} onChange={onChange} disabled={disabled} />
             </Col>
             <Col style={{ display: 'flex', alignItems: 'center'}}>
-                <Switch size="small" aria-label={`${name}-decode-url`} disabled={disabled} onClick={(checked, e) => {
-                    if (checked) {
-                        onChange(decodeURIComponent(value))
-                    } else {
-                        onChange(encodeURIComponent(value))
-                    }
-                }} />
+                <DecodeURISwitch name={`${name}-decode-url`} value={value} disabled={disabled} onSwitch={onChange} />
             </Col>
         </Row>
     );
