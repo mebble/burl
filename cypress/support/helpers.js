@@ -27,3 +27,7 @@ export const queryAddNames = {
     key: 'New query key',
     value: 'New query value'
 };
+
+export const zip = (xs, ys) => {
+    return xs.map((x, i) => [x, ys[i]])
+};
