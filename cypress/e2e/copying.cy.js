@@ -1,6 +1,8 @@
 import { fieldNames, zip } from "../support/helpers"
 
 describe('Copying fields to the clipboard', () => {
+    const urlValue = `http://example.com:80/path?a=cat&b=dog#foo`;
+
     before(() => {
         cy.visit('/')
     })
@@ -8,10 +10,20 @@ describe('Copying fields to the clipboard', () => {
     beforeEach(() => {
         cy.get('input[aria-label="url"]')
             .clear()
-            .type(`http://example.com:80/path?a=cat&b=dog#foo`)
+            .type(urlValue)
     })
 
-    it('copies the URL bar input')
+    it('copies the URL bar input', () => {
+        cy.window().then(win => {
+            cy.get(`button[aria-label="Copy url"]`)
+                .click()
+                .then(() => {
+                    win.navigator.clipboard.readText().then(text => {
+                        expect(text).to.eq(urlValue)
+                    })
+                })
+        })
+    })
 
     it('copies the URL fields', () => {
         const fieldValues = [
