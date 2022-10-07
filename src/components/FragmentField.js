@@ -8,7 +8,7 @@ export default function FragmentField({ name, value, disabled, onChange }) {
                 <UrlField name={name} value={value} onChange={onChange} disabled={disabled} />
             </Col>
             <Col style={{ display: 'flex', alignItems: 'center'}}>
-                <Switch size="small" aria-label={`${name}-decode-url`} onClick={(checked, e) => {
+                <Switch size="small" aria-label={`${name}-decode-url`} disabled={disabled} onClick={(checked, e) => {
                     if (checked) {
                         onChange(decodeURIComponent(value))
                     } else {

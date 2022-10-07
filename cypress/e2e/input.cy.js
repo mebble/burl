@@ -1,5 +1,5 @@
 import { prompt } from '../../src/constants'
-import { assertQueryParams, fieldNames, queryAddNames } from '../support/helpers'
+import { assertQueryParams, assertQueryParamSwitches, fieldNames, queryAddNames } from '../support/helpers'
 
 describe('typing into URL input', () => {
     before(() => {
@@ -31,6 +31,9 @@ describe('typing into URL input', () => {
                 .should('have.text', 'Add')
                 .and('be.disabled')
         })
+
+        cy.get(`[role="switch"][aria-label="fragment-decode-url"]`)
+            .should('be.disabled')
     })
 
     it('should show good prompt and filled editable URL fields and query form when valid URL is typed', () => {
@@ -60,8 +63,10 @@ describe('typing into URL input', () => {
         cy.get('.query li')
             .should('have.length', expectedQueryParams.length)
             .each(assertQueryParams(cy, expectedQueryParams))
-        cy.get('input[aria-labelledby="fragment"]')
-            .should('have.value', 'foo')
+            .each(assertQueryParamSwitches(cy, [
+                ['a', true],
+                ['b', true],
+            ]))
 
         cy.get('form.query-form').within(() => {
             cy.get(`input[aria-label="${queryAddNames.key}"]`)
@@ -74,6 +79,11 @@ describe('typing into URL input', () => {
                 .should('have.text', 'Add')
                 .and('not.be.disabled')
         })
+
+        cy.get('input[aria-labelledby="fragment"]')
+            .should('have.value', 'foo')
+        cy.get(`[role="switch"][aria-label="fragment-decode-url"]`)
+            .should('not.be.disabled')
     })
 
     it('should display only the last of the duplicate keys of the URL query params', () => {

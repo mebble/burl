@@ -51,17 +51,6 @@ You can also run the Cypress tests in headless mode:
 yarn cypress:run
 ```
 
-## TODOs
-
-- Critical
-    - a11y & keyboard navigation
-    - Handle url encoding
-
-- Bonus
-    - Dark/light theme
-    - i18n and l10n
-    - SEO
-
 ## References
 
 - URL structure: https://en.wikipedia.org/wiki/URL#Syntax

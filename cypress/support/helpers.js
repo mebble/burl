@@ -5,6 +5,16 @@ export const assertQueryParams = (cy, expectedPairs) => ($item, i) => {
         .should('have.value', val)
 };
 
+export const assertQueryParamSwitches = (cy, expectedPairs) => ($item, i) => {
+    const [ key, switchState ] = expectedPairs[i]
+    cy.wrap($item).contains(key)
+    cy.wrap($item).find(`[role="switch"][aria-label="query-${key}-decode-url"]`)
+            .should(switchState
+                ? 'not.be.disabled'
+                : 'be.disabled'
+            )
+}
+
 export const fieldNames = [
     'protocol',
     'hostname',

@@ -29,6 +29,9 @@ describe('app visit', () => {
                     .should('have.text', 'Add')
                     .and('be.disabled')
             })
+
+            cy.get(`[role="switch"][aria-label="fragment-decode-url"]`)
+                .should('be.disabled')
         })
     })
 
