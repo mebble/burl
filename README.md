@@ -17,16 +17,15 @@ Open the app with some given URL:
 
 ## Dev Requirements
 
-- Node.js
-- yarn
+- [Node.js](https://nodejs.org/en)
+- [pnpm](https://pnpm.io/)
 
 ## Dev Setup
 
 Clone the project, `cd` into the project's root directory and install the project's dependencies
 
 ```bash
-cd burl
-yarn install
+pnpm install
 ```
 
 ## Testing
@@ -34,13 +33,13 @@ yarn install
 Run the application in development mode
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 In another terminal window, open the Cypress runner
 
 ```bash
-yarn cypress:open
+pnpm cypress:open
 ```
 
 In the Cypress runner, select the test file you want to run. This test will be run in a Cypress-controlled browser. Then as you update your tests and the corresponding application code, you can re-run the tests from the Cypress browser.
@@ -48,7 +47,7 @@ In the Cypress runner, select the test file you want to run. This test will be r
 You can also run the Cypress tests in headless mode:
 
 ```bash
-yarn cypress:run
+pnpm cypress:run
 ```
 
 ## References
