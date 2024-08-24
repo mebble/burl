@@ -1,4 +1,5 @@
-import { RipeUrl, RawUrl } from '../../../src/types'
+import { describe, it, expect } from 'vitest'
+import { RipeUrl, RawUrl } from './types.js'
 
 describe('RipeUrl', () => {
     describe('toString', () => {

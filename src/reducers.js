@@ -1,4 +1,4 @@
-import { RipeUrl } from './types'
+import { RipeUrl } from './types.js'
 
 export const urlReducer = (url, action) => {
     if (action.type === 'PROTOCOL') {

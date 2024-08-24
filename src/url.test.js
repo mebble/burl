@@ -1,5 +1,6 @@
-import { RawUrl } from '../../../src/types'
-import { getQueryParams, getUrlParam, isHttpUrl, parseUrl, emptyUrl, badUrl } from '../../../src/url'
+import { describe, it, expect } from 'vitest'
+import { RawUrl } from './types.js'
+import { getQueryParams, getUrlParam, isHttpUrl, parseUrl, emptyUrl, badUrl } from './url.js'
 
 describe('getQueryParams', () => {
     it('should return an empty map for an invalid URL', () => {
@@ -102,7 +103,7 @@ describe('getQueryParams', () => {
         expect(params).to.deep.equal(expected)
     })
 
-    context('URL having a URL query parameter value', () => {
+    describe('URL having a URL query parameter value', () => {
         it('should return the param value for a url with no other query params or fragments', () => {
             const params = getQueryParams('http://example.com/some/path?url=http://example.com')
             const expected = new Map([

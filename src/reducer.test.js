@@ -1,5 +1,6 @@
-import { urlReducer } from '../../../src/reducers'
-import { RawUrl, RipeUrl } from '../../../src/types'
+import { describe, it, expect } from 'vitest'
+import { urlReducer } from './reducers.js'
+import { RawUrl, RipeUrl } from './types.js'
 
 describe('urlReducer', () => {
     const base = {
@@ -13,7 +14,7 @@ describe('urlReducer', () => {
         fragment: 'f1',
     }
 
-    context('REPLACE action', () => {
+    describe('REPLACE action', () => {
         it('forwards the payload', () => {
             const current = new RipeUrl({
                 protocol: 'http',
@@ -40,7 +41,7 @@ describe('urlReducer', () => {
         })
     })
 
-    context('PROTOCOL action', () => {
+    describe('PROTOCOL action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
                 ...base,
@@ -75,7 +76,7 @@ describe('urlReducer', () => {
         })
     })
 
-    context('HOSTNAME action', () => {
+    describe('HOSTNAME action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
                 ...base,
@@ -110,7 +111,7 @@ describe('urlReducer', () => {
         })
     })
 
-    context('PORT action', () => {
+    describe('PORT action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
                 ...base,
@@ -145,7 +146,7 @@ describe('urlReducer', () => {
         })
     })
 
-    context('PATH action', () => {
+    describe('PATH action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
                 ...base,
@@ -180,7 +181,7 @@ describe('urlReducer', () => {
         })
     })
 
-    context('FRAGMENT action', () => {
+    describe('FRAGMENT action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
                 ...base,
@@ -215,7 +216,7 @@ describe('urlReducer', () => {
         })
     })
 
-    context('QUERY_UPDATE action', () => {
+    describe('QUERY_UPDATE action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
                 ...base,
@@ -328,7 +329,7 @@ describe('urlReducer', () => {
         })
     })
 
-    context('QUERY_ADD action', () => {
+    describe('QUERY_ADD action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
                 ...base,
@@ -475,7 +476,7 @@ describe('urlReducer', () => {
         })
     })
 
-    context('QUERY_REMOVE action', () => {
+    describe('QUERY_REMOVE action', () => {
         it('returns a RipeUrl', () => {
             const current = new RawUrl({
                 ...base,
@@ -571,7 +572,7 @@ describe('urlReducer', () => {
         })
     })
 
-    context('unknown action', () => {
+    describe('unknown action', () => {
         it('returns the current URL', () => {
             const current = new RipeUrl({
                 protocol: 'http',

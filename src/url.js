@@ -1,5 +1,5 @@
-import { RawUrl } from './types';
-import { emptyIfBlank } from './utils';
+import { RawUrl } from './types.js';
+import { emptyIfBlank } from './utils.js';
 
 export const getQueryParams = (url) => {
     if (!url.includes('?')) {
