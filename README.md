@@ -50,6 +50,18 @@ You can also run the Cypress tests in headless mode:
 pnpm cypress:run
 ```
 
+## Debugging
+
+Debugging unit tests:
+
+```bash
+pnpm test:debug
+```
+
+Connect to the debugger from the browser or your IDE
+
+The unit tests are run with vitest. See the [https://vitest.dev/guide/debugging](vitest docs) for more information.
+
 ## References
 
 - URL structure: https://en.wikipedia.org/wiki/URL#Syntax

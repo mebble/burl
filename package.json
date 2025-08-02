@@ -8,6 +8,7 @@
     "build": "next build && next export",
     "start": "next start",
     "test": "vitest run",
+    "test:debug": "vitest run --inspect-brk --no-file-parallelism",
     "test:watch": "vitest watch",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
